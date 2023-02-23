@@ -48,6 +48,8 @@
 >> - ***To deploy the app run this command.***  
 >> - firebase deploy  
 >> - Hosting URL: https://recepies-64384.web.app  
+  
+#### Automatic Firebase deployment through Github Actions   
 >> - ***Github Action Deploy***     
 >> - firebase init  
 >> - go to the process and choose the following  
@@ -64,5 +66,8 @@
       - run: npm install
       - run: npm run build
 >> - push everything to your repo and check the actions tab in github
-
-
+  
+#### Manual Firebase deployment  
+>> - add the following to the package.json file:
+>> - "buildDeploy": "npm build && firebase deploy --only hosting"
+>> - run the command: npm buildDeploy
