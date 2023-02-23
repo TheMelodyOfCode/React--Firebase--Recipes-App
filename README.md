@@ -24,20 +24,20 @@
 ##### NPM version: 9.4.1
 
 > Sass
->> npm i sass
+> - npm i sass
 
 > Firebase
->> npm install firebase  
+> - npm install firebase  
 > Firebase Tools  
->> npm i firebase-tools  
->>> **you might need to Set-ExecutionPolicy Bypass -scope Process -Force**  
->>> **commands:** firebase --help  
->>> **commands:** firebase login  
->>> - after login:   
->>> - firebase init  
->>> - go to the process and choose build insted of public for REACT  
->>> - npm run build  
->>> - https://bookshelf--raw-ec617.web.app/  
+> - npm i firebase-tools  
+>> **you might need to Set-ExecutionPolicy Bypass -scope Process -Force**  
+>> **commands:** firebase --help  
+>> **commands:** firebase login  
+>> - after login:   
+>> - firebase init  
+>> - go to the process and choose build insted of public for REACT  
+>> - npm run build  
+>> - https://bookshelf--raw-ec617.web.app/  
 
 > React Error Boundary  
 >>npm i react-error-boundary  
