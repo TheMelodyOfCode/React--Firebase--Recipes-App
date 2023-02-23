@@ -23,22 +23,46 @@
 ##### Node Version v18.14.0
 ##### NPM version: 9.4.1
 
-> Sass
-> - npm i sass
-
+> Sass  
+> - npm i sass  
+> React Error Boundary    
+> - npm i react-error-boundary  
 > Firebase
 > - npm install firebase  
-> Firebase Tools  
-> - npm i firebase-tools  
->> **you might need to Set-ExecutionPolicy Bypass -scope Process -Force**  
->> **commands:** firebase --help  
->> **commands:** firebase login  
->> - after login:   
->> - firebase init  
->> - go to the process and choose build insted of public for REACT  
->> - npm run build  
->> - https://bookshelf--raw-ec617.web.app/  
 
-> React Error Boundary  
-> - npm i react-error-boundary  
+#### Firebase Tools  
+> Firebase Tools  
+> - npm i firebase-tools 
+>> type ***firebase --help*** to see if it works 
+>> In case of error ***you might need to Set-ExecutionPolicy***  
+>> - Set-ExecutionPolicy Bypass -scope Process -Force  
+>> - firebase login  
+#### Firebase Tools Setup ***after login you can set up a variety of things***     
+>> - ***Hosting***     
+>> - firebase init  
+>> - Hosting: Configure and deploy Firebase Hosting sites 
+>> - choose a project or create one 
+>> - go to the process and choose build insted of public for REACT  
+>> - ***run this command to generate the production build of your REACT app:***  
+>> - npm run build  
+>> - ***To deploy the app run this command.***  
+>> - firebase deploy  
+>> - Hosting URL: https://recepies-64384.web.app  
+>> - ***Github Action Deploy***     
+>> - firebase init  
+>> - go to the process and choose the following  
+>> - Hosting with Gitub Action Deploy  
+>> - build directory insted of public for REACT  
+>> - automtic deploy on push to main branch  
+>> - N - don't overwrite index.html  
+>> - choose repository to deploy from *username/repo-name*  
+>> - N - don't run a buils script beforehand  
+>> - automatic deploy when PR is merged to main branch
+>> - ***In the github folder* are 2 files now**  
+>> - ***.github/workflows/firebase-hosting-merge.yml***
+>> - ***.github/workflows/firebase-hosting-pull-request.yml***
+>> - insert in bothe files under steps:
+      - run: install npm
+      - run: npm run build
+
 
