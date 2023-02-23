@@ -52,9 +52,8 @@
 >> - firebase init  
 >> - go to the process and choose the following  
 >> - Hosting with Gitub Action Deploy  
->> - build directory insted of public for REACT  
+>> - N - run build script before every deploy
 >> - automtic deploy on push to main branch  
->> - N - don't overwrite index.html  
 >> - choose repository to deploy from *username/repo-name*  
 >> - N - don't run a buils script beforehand  
 >> - automatic deploy when PR is merged to main branch
@@ -62,7 +61,8 @@
 >> - ***.github/workflows/firebase-hosting-merge.yml***
 >> - ***.github/workflows/firebase-hosting-pull-request.yml***
 >> - insert in bothe files under steps:
-      - run: install npm
+      - run: npm install
       - run: npm run build
+>> - push everything to your repo and check the actions tab in github
 
 
