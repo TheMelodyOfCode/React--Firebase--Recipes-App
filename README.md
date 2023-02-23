@@ -40,5 +40,5 @@
 >> - https://bookshelf--raw-ec617.web.app/  
 
 > React Error Boundary  
->>npm i react-error-boundary  
+> - npm i react-error-boundary  
 
