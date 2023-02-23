@@ -1,8 +1,15 @@
-# Bookshelf
+# Recepies App
+
+### Description
+> This is mainly a Firebase project about:  
+> - Firebase Web App Hosting  
+> - Firebase Firestore  
+> - Firebase Storage  
+> - Firebase Functions  
 
 #### React APP
-> Run the app from the client folder - npm start</br>
-> Runs on localhost:3000</br>
+> Run the app from the client folder - npm start  
+> Runs on localhost:3000  
 
 #### VPN - Proxy (possible error)
 > In case you get the following Error:  
