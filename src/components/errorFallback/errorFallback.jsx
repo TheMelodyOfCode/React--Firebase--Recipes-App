@@ -1,5 +1,4 @@
 
-import './errorFallback.styles.scss'
 
 
 const ErrorFallback = ({error, resetErrorBoundary,}) => {

@@ -5,14 +5,17 @@ import {ErrorBoundary} from 'react-error-boundary'
 
 import './main.scss';
 import App from './App';
-import ErrorFallback from './components/errorFallback/errorFallback';
 
+import ErrorFallback from './components/errorFallback/errorFallback';
+import { UserProvider } from './contexts/user.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback} >
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );

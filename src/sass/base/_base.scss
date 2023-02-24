@@ -24,13 +24,10 @@ It's important to set a % value here since the user can change the font-settings
 .container {
     display: grid;
     grid-template-columns: minmax(4rem, 1fr) repeat(1, minmax(min-content, max-content))  minmax(4rem, 1fr);
-    grid-template-rows: minmax(30vh, 1fr) repeat(1, minmax(min-content, max-content))  minmax(4rem, 1fr);
+    grid-template-rows: minmax(15vh, 1fr) repeat(1, minmax(min-content, max-content))  minmax(4rem, 1fr);
     justify-content: center;
     justify-self: center;
 
-    // @include respond(phone-bg) {
-    //     grid-template-rows: 2.5rem repeat(4, min-content) 4rem ;
-    //     }
 }
 
 /* to set color to text-select on page */

@@ -1,0 +1,58 @@
+$background: $color-gray-3;
+// $modal-width: 25%;
+// $modal-height: 40%;
+
+.modal {
+
+  background-color: $background;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // width: $modal-width;
+  // height: $modal-height;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 5px;
+  text-align: center;
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+
+    &--title {
+      font-size: 2.3rem;
+    }
+
+    button {
+        padding: 1rem;
+        border-radius: 5px;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        
+        &:first-of-type {
+          background-color: #e86c60;
+          color: white;
+          
+          &:hover {
+            background-color: darken(red, 10%);
+          }
+        }
+      }
+  }
+  
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+
+  }
+  
+
+}
+
