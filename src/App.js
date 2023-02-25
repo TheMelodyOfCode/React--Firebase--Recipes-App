@@ -1,13 +1,15 @@
 import  * as React from  'react';
 
-import AuthenticatedApp from './pages/authenticatedApp';
-import UnauthenticatedApp from './pages/unauthenticatedApp';
+import AuthenticatedApp from './routes/authenticatedApp';
+import UnauthenticatedApp from './routes/unauthenticatedApp';
 
 import { UserContext } from './contexts/user.context';
-import { BrowserRouter } from 'react-router-dom';
-import { createAuthUserWithEmailAndPassword, signInAuthUserWithEmailAndPassword } from './utils/firebase/firebase.utils';
-import { signOutUser} from './utils/firebase/firebase.utils';
 
+import { createAuthUserWithEmailAndPassword, 
+  signInAuthUserWithEmailAndPassword,
+  sendAuthUserPasswordReset } from './utils/firebase/firebase.utils';
+
+import { signOutUser} from './utils/firebase/firebase.utils';
 
 
 function App() {
@@ -68,16 +70,32 @@ function App() {
     setState('idle')
   }
 
+const handleSendResetPasswordEmail = async (formData) => {
+    if (!formData) {
+      return;
+    }
+    try {
+      await sendAuthUserPasswordReset(formData.email);
+      alert("sent the password reset email");
+    } catch (error) {
+      console.log('Error Message:', error.message, 'Error Code:', error.code);
+    }
+  }
+
+
+
+
+
   if (isLoading ) {
     return <div>Loooooooading</div>
   }
   if (state) {
   return currentUser ? (
-    <BrowserRouter>
-      <AuthenticatedApp user={currentUser} logout={logout} />
-    </BrowserRouter>
+    <createBrowserRouter>
+        <AuthenticatedApp user={currentUser} logout={logout} />
+    </createBrowserRouter>
     ) : (
-      <UnauthenticatedApp login={login} register={register} />
+      <UnauthenticatedApp login={login} handleSendResetPasswordEmail={handleSendResetPasswordEmail} register={register} />
     )
   }
 }

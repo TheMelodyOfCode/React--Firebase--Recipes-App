@@ -5,6 +5,7 @@ const BUTTON_Style_CLASSES = {
     white: 'btn--white',
     black: 'btn--black',
     blue: 'btn--blue',
+    darkBlue: 'btn--darkBlue',
     blueGray: 'btn--blueGray',
     green: 'btn--green',
     red: 'btn--red',

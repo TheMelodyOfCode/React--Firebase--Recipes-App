@@ -69,10 +69,6 @@
         &::after {
             background-color: $color-gray-1;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
 
     &--black {
@@ -84,10 +80,6 @@
         &::after {
             background-color: $color-black;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
     
     &--blue {
@@ -99,11 +91,8 @@
         &::after {
             background-color: $color-secondary-blue;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
+
     &--blueGray {
         background-color: $color-blueGray-dark-1;
         color: $color-light-green-1;
@@ -114,11 +103,21 @@
         &::after {
             background-color: $color-white;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
+
+    &--darkBlue {
+        background-color: $color-tertiary-blue;
+        color: $color-light-green-1;
+        font-family: $special-font-1;
+        padding-top: 1.5rem;
+        font-size: 1.8rem;
+        width: 50%;
+        height: 3rem;
+        &::after {
+            background-color: $color-black;
+        }
+    }
+
     &--red {
         background-color: $color-red-1;
         color: $color-white;
@@ -128,11 +127,8 @@
         &::after {
             background-color: $color-red-1;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
+
     &--green {
         background-color: $color-light-green-2;
         color: $color-black;
@@ -142,10 +138,6 @@
         &::after {
             background-color: $color-light-green-1;
         }
-        @include respond(phone-sm) {
-            font-size: 1.4rem;
-            height: 2.5rem;
-            }
     }
 
 }

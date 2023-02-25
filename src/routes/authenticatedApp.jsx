@@ -2,10 +2,8 @@
 
 import Button from '../components/button/button'
 
-
-import AppRoutes from '../routes/appRoutes'
-import SideNav from '../routes/sideNav'
-
+import SideNav from '../components/sideNav/sideNav'
+import Recipies from './recipies'
 
 const AuthenticatedApp = ({user, logout}) => {
   return (
@@ -50,7 +48,7 @@ const AuthenticatedApp = ({user, logout}) => {
           <SideNav />
         </div>
         <main css={{width: '100%'}}>
-          <AppRoutes  />
+          <Recipies  />
         </main>
       </div>
 

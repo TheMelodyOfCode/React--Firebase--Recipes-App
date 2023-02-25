@@ -29,16 +29,16 @@ const UnauthenticatedApp =({login, register}) => {
     <main className='container'>
         <div className='unauthenticatedApp'>
           <img className='unauthenticatedApp__mainLogo'  src="img/recepie-logo.jpg" alt="logo"/>
-            <div className='unauthenticatedApp__login-btn'>
+            <div className='unauthenticatedApp__login--btn'>
                 <Button btnType='green' onClick={() => setOpenModal('login')}  >Login</Button>  
             </div>
-            <div className='unauthenticatedApp__reg-btn'>
+            <div className='unauthenticatedApp__reg--btn'>
                 <Button btnType='black' onClick={() => setOpenModal('register')}>Register</Button>
             </div>
-            <div className='unauthenticatedApp__googel-btn'>
+            <div className='unauthenticatedApp__google--btn'>
                 <Button btnType='blue'   onClick={signInWithGoogle}  >Googel Login</Button>  
             </div>
-            <div className='unauthenticatedApp__github-btn'>
+            <div className='unauthenticatedApp__github--btn'>
                 <Button btnType='white' onClick={signInWithGithub}  >
                     <img className='unauthenticatedApp__githubLogo'  src="img/github-logo.png" alt="logo"/>
                 </Button>
@@ -50,7 +50,7 @@ const UnauthenticatedApp =({login, register}) => {
                     <button onClick={() => setOpenModal('none')}>Close</button>
                 </div>
                 <div className='modal__body'>
-                    <LoginForm onSubmit={login} buttonText="Login" />
+                    <LoginForm onSubmit={login}  buttonText="Login" />
                 </div>
             </div>
         )}
