@@ -17,10 +17,11 @@ const UnauthenticatedApp =({login, register}) => {
   const signInWithGoogle = async ()=>{
     await signInWithGooglePopup();
     }
-
-  const signInWithGithub = async ()=>{
-    await signInWithGithubPopup();
+    
+    const signInWithGithub = async ()=>{
+        await signInWithGithubPopup();
     }
+    
 
 
   return (
@@ -42,7 +43,6 @@ const UnauthenticatedApp =({login, register}) => {
                     <img className='unauthenticatedApp__githubLogo'  src="img/github-logo.png" alt="logo"/>
                 </Button>
             </div>
-
         {openModal === 'login' && (
             <div className='modal'>
                 <div className='modal__header'>

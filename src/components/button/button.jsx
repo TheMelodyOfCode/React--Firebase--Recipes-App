@@ -7,6 +7,7 @@ const BUTTON_Style_CLASSES = {
     blue: 'btn--blue',
     blueGray: 'btn--blueGray',
     green: 'btn--green',
+    red: 'btn--red',
 }
 
 const BUTTON_Animation_CLASSES = {

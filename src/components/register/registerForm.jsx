@@ -22,16 +22,19 @@ const RegisterForm = ({onSubmit, buttonText}) => {
       className="form"
       onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email
         <input className="form__input"  id="email" />
+        </label>
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password
         <input className="form__input"  id="password" type="password" />
+        </label>
       </div>
       <div>
-        <label htmlFor="passwordConfirm">Password Confirm</label>
+        <label htmlFor="passwordConfirm">Password Confirm
         <input className="form__input"  id="passwordConfirm" type="password" />
+        </label>
       </div>
       <div>
       <br/>
