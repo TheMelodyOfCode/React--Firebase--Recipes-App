@@ -1,5 +1,5 @@
 import { useRouteError, Link } from "react-router-dom";
-import BgVideo from "../bg-video/bg-video.component";
+import BgVideo from "../../bg-video/bg-video.component";
 
 const PageNotFound = () => {
 
@@ -13,7 +13,7 @@ const PageNotFound = () => {
     <section className="errorPage">
             <BgVideo videoSrc='space'/>
             <h5 className="errorPage__heading">
-            Sorry, an unexpected error has occurred
+            Sorry, this Page doesn't exist
             </h5>
 
             <img className="errorPage__img"  src="img/error.png" alt="Ooops error Button" />

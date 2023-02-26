@@ -7,8 +7,8 @@ import {
     "../utils/firebase/firebase.utils";
 
 import Button from '../components/button/button';
-import LoginForm from '../components/login/loginForm';
-import RegisterForm from '../components/register/registerForm';
+import LoginForm from '../components/authentication/login/loginForm';
+import RegisterForm from '../components/authentication/register/registerForm';
 
 const UnauthenticatedApp =({login, register}) => {
 

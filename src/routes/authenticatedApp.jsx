@@ -22,6 +22,7 @@ const AuthenticatedApp = ({user, logout}) => {
           Logout
         </Button>
       </div>
+      
       <div
         style={{
           margin: '0 auto',

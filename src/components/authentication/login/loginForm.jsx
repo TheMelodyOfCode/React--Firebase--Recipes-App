@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from "../button/button"
+import Button from "../../button/button"
 
 
 const LoginForm = ({onSubmit, buttonText}) => {

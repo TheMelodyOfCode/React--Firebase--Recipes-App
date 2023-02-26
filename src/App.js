@@ -2,7 +2,7 @@ import  * as React from  'react';
 
 import AuthenticatedApp from './routes/authenticatedApp';
 import UnauthenticatedApp from './routes/unauthenticatedApp';
-import VerifyEmail from './components/verifyEmail/verifyEmail';
+import VerifyEmail from './components/authentication/verifyEmail/verifyEmail';
 
 import { UserContext } from './contexts/user.context';
 

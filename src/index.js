@@ -13,11 +13,11 @@ import {
 import './main.scss';
 import App from './App';
 
-import ErrorFallback from './components/errorFallback/errorFallback';
+import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';
 import { UserProvider } from './contexts/user.context';
-import ResetPassword from './components/resetPassword/resetPassword';
+import ResetPassword from './components/authentication/resetPassword/resetPassword';
 import Recipies from './routes/recipies';
-import PageNotFound from './components/pageNotFound/pageNotFound';
+import PageNotFound from './components/errorHandling/pageNotFound/pageNotFound';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route

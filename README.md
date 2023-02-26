@@ -73,9 +73,9 @@
 >> - ***Add secrets to actions***  
 >> - go to the repo settings  
 >> - go to secrets  
->> - add the firebase configuration key and value:  
+>> - add the firebase configuration:  
 >> - enter the variables form the env. file under github workflow in both .yml files  
->> - put under runs-on: ubuntu-latest  
+>> - put under runs-on: ubuntu-latest the follwoing example
       - env:  
             FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  
             FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}  
@@ -86,7 +86,6 @@
             FIREBASE_TOKEN_URI: ${{ secrets.FIREBASE_TOKEN_URI }}  
             FIREBASE_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}  
             FIREBASE_CLIENT_X509_CERT_URL: ${{ secrets.FIREBASE_CLIENT_X509_CERT_URL }}  
->> - the value hast to be put in ${{ secrets.VARIABLE_NAME }}  
   
 #### Manual Firebase deployment  
 >> - add the following to the package.json file:  
