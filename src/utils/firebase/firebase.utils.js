@@ -7,6 +7,7 @@ import { getAnalytics } from "firebase/analytics";
 import { 
   getAuth, 
   // signInWithRedirect, 
+  sendEmailVerification,
   signInWithPopup, 
   sendPasswordResetEmail,
   GoogleAuthProvider,
@@ -65,7 +66,15 @@ export const signInWithGithubPopup =()=> signInWithPopup(auth, githubProvider);
 export const createAuthUserWithEmailAndPassword = async (email, password)=>{
   if(!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password)
+    .then((auth) => {
+        const user = auth.user;
+        sendEmailVerification(user);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 };
+
 
 export const signInAuthUserWithEmailAndPassword = async (email, password)=>{
   if(!email || !password) return;

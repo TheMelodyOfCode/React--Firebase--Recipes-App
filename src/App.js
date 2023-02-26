@@ -2,6 +2,7 @@ import  * as React from  'react';
 
 import AuthenticatedApp from './routes/authenticatedApp';
 import UnauthenticatedApp from './routes/unauthenticatedApp';
+import VerifyEmail from './components/verifyEmail/verifyEmail';
 
 import { UserContext } from './contexts/user.context';
 
@@ -55,7 +56,10 @@ function App() {
           formData.email, 
           formData.password
           );
-        setState('idle')
+        setState('loading')
+        if (currentUser) {
+          setState('idle')
+        }
     } catch(error) {
       if (error.code === 'auth/email-already-in-use') {
           alert('cannot create user email already in use')
@@ -87,7 +91,7 @@ const handleSendResetPasswordEmail = async (formData) => {
 
 
   if (isLoading ) {
-    return <div>Loooooooading</div>
+    return <VerifyEmail />
   }
   if (state) {
   return currentUser ? (

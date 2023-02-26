@@ -15,7 +15,7 @@ import App from './App';
 
 import ErrorFallback from './components/errorFallback/errorFallback';
 import { UserProvider } from './contexts/user.context';
-import ResetEmail from './components/resetEmail/resetEmail';
+import ResetPassword from './components/resetPassword/resetPassword';
 import Recipies from './routes/recipies';
 import PageNotFound from './components/pageNotFound/pageNotFound';
 const router = createBrowserRouter(
@@ -28,7 +28,7 @@ const router = createBrowserRouter(
         <Route errorElement={<PageNotFound />}>
             <Route index element={<App />} />
             <Route path="/recipies" element={<Recipies />} />
-            <Route path="/reset" element={<ResetEmail />} />
+            <Route path="/reset" element={<ResetPassword />} />
         </Route>
     </Route>
   )

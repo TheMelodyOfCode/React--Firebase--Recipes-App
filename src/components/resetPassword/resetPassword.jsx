@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from "../button/button"
 
 
-const ResetEmail = ({handleSendResetPasswordEmail}) => {
+const ResetPassword = ({handleSendResetPasswordEmail}) => {
     
     function handleSubmit(event) {
       event.preventDefault()
@@ -58,4 +58,4 @@ const ResetEmail = ({handleSendResetPasswordEmail}) => {
     )
   }
 
-  export default ResetEmail;
+  export default ResetPassword;
