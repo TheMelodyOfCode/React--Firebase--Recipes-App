@@ -68,9 +68,27 @@
 >> - insert in bothe files under steps:
       - run: npm install
       - run: npm run build
->> - push everything to your repo and check the actions tab in github
+>> - push everything to your repo and check the actions tab in github  
+  
+>> - ***Add secrets to actions***  
+>> - go to the repo settings  
+>> - go to secrets  
+>> - add the firebase configuration key and value:  
+>> - enter the variables form the env. file under github workflow in both .yml files  
+>> - put under runs-on: ubuntu-latest  
+      - env:  
+            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  
+            FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}  
+            FIREBASE_PROJECT_NUMBER: ${{ secrets.FIREBASE_PROJECT_NUMBER }}  
+            FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}  
+            FIREBASE_CLIENT_ID: ${{ secrets.FIREBASE_CLIENT_ID }}  
+            FIREBASE_AUTH_URI: ${{ secrets.FIREBASE_AUTH_URI }}  
+            FIREBASE_TOKEN_URI: ${{ secrets.FIREBASE_TOKEN_URI }}  
+            FIREBASE_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}  
+            FIREBASE_CLIENT_X509_CERT_URL: ${{ secrets.FIREBASE_CLIENT_X509_CERT_URL }}  
+>> - the value hast to be put in ${{ secrets.VARIABLE_NAME }}  
   
 #### Manual Firebase deployment  
->> - add the following to the package.json file:
->> - "buildDeploy": "npm build && firebase deploy --only hosting"
->> - run the command: npm buildDeploy
+>> - add the following to the package.json file:  
+>> - "buildDeploy": "npm build && firebase deploy --only hosting"  
+>> - run the command: npm buildDeploy  
