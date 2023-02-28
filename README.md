@@ -25,10 +25,13 @@
 
 > Sass  
 > - npm i sass  
+
 > React Error Boundary    
 > - npm i react-error-boundary  
 > React Router DOM 
 >> npm i react-router-dom 
+> React Icons
+>> npm install react-icons --save
 
 > Firebase
 > - npm install firebase  

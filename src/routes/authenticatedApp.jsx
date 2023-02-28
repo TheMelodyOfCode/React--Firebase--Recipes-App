@@ -1,27 +1,15 @@
 
 
-import Button from '../components/button/button'
 
-import SideNav from '../components/sideNav/sideNav'
+import SideNav from '../components/navigation/sideNav/sideNav'
 import Recipies from './recipies'
+import MainNav from '../components/navigation/mainNav/mainNav'
 
 const AuthenticatedApp = ({user, logout}) => {
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-        }}
-      >
-        {user.email}
-        <Button btnType='blueGray' css={{marginLeft: '10px'}} onClick={logout}>
-          Logout
-        </Button>
-      </div>
+    <MainNav user={user} logout={logout} />
+
       
       <div
         style={{
