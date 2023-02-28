@@ -6,27 +6,40 @@ import VerifyEmail from './components/authentication/verifyEmail/verifyEmail';
 
 import { UserContext } from './contexts/user.context';
 
-import { createAuthUserWithEmailAndPassword, 
+import { 
+  createAuthUserWithEmailAndPassword, 
   signInAuthUserWithEmailAndPassword,
-  sendAuthUserPasswordReset } from './utils/firebase/firebase.utils';
+  sendAuthUserPasswordReset, 
+  onAuthStateChangeListener } from './utils/firebase/firebase.utils';
 
 import { signOutUser} from './utils/firebase/firebase.utils';
 
+import { FullPageSpinner } from './utils/icons/icons';
 
 function App() {
-  // const navigate = useNavigate();
+
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
  
   const [state, setState] = React.useState('idle')
   const isLoading = state === 'loading'
+  const verifyEmail = state === 'verifyEmail'
 
 
   const login = async (formData) => {
-    // console.log('login', formData)
     setState('loading')
     try {
-      await signInAuthUserWithEmailAndPassword(formData.email, formData.password);
-      setState('idle')
+      onAuthStateChangeListener(async (user)=>{
+        if (!user.emailVerified) {
+          setState('verifyEmail')
+          return <VerifyEmail />
+        } else {
+          await signInAuthUserWithEmailAndPassword(formData.email, formData.password);
+          if (currentUser) {
+            setState('idle')
+          }
+        }
+    })
+
     } catch(error) { 
       switch(error.code) {
           case 'auth/wrong-password':
@@ -56,7 +69,7 @@ function App() {
           formData.email, 
           formData.password
           );
-        setState('loading')
+          setState('verifyEmail')
         if (currentUser) {
           setState('idle')
         }
@@ -88,9 +101,10 @@ const handleSendResetPasswordEmail = async (formData) => {
 
 
 
-
-
   if (isLoading ) {
+    return <FullPageSpinner />
+  }
+  if (verifyEmail ) {
     return <VerifyEmail />
   }
   if (state) {

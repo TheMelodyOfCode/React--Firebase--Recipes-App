@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-// import { GrUserSettings } from 'react-icons/gr';
-// import { RiLogoutBoxRLine } from 'react-icons/ri';
-// import { IoFastFoodOutline } from 'react-icons/io5';
+import { FoodIcon, SettingsIcon, LogoutIcon, ContactIcon } from '../../../utils/icons/icons';
 
 const MainNav = ({user, logout}) => {
 
@@ -23,10 +21,10 @@ const MainNav = ({user, logout}) => {
         <div className="mainNav__toggleMenu__background">&nbsp;</div>
         <nav className="mainNav__toggleMenu__nav">
             <ul className="mainNav__toggleMenu__list">
-                <li className="toggleMenu__item"><Link to='/' className="mainNav__toggleMenu__link">Home</Link></li>
-                <li className="toggleMenu__item"><Link to='profile' className="mainNav__toggleMenu__link">Profile</Link></li>
-                <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link">contact</Link></li>
-                <li className="toggleMenu__item"><Link className="mainNav__toggleMenu__link" as='span' onClick={logout} >SIGN OUT</Link ></li>
+                <li className="toggleMenu__item"><Link to='/' className="mainNav__toggleMenu__link"><FoodIcon />{' '} Home</Link></li>
+                <li className="toggleMenu__item"><Link to='profile' className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li>
+                <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link"><ContactIcon/>{' '} Contact</Link></li>
+                <li className="toggleMenu__item"><Link className="mainNav__toggleMenu__link"  onClick={logout} ><LogoutIcon/>{' '} SIGN OUT</Link ></li>
             </ul>
         </nav>
     </div>

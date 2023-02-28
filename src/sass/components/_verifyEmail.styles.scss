@@ -36,6 +36,15 @@
             color: $color-black;
             margin-bottom: 2rem;
         }
-    } 
+    }
+    
+    &__resetLink {
+        font-size: $medium-font-size;
+        font-weight: 300;
+        padding: 1rem 2rem;
+        color: $color-red-1;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
       
 }

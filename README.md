@@ -33,6 +33,9 @@
 > React Icons
 >> npm install react-icons --save
 
+> Styled Components
+> - npm i styled-components
+
 > Firebase
 > - npm install firebase  
 
@@ -93,4 +96,4 @@
 #### Manual Firebase deployment  
 >> - add the following to the package.json file:  
 >> - "buildDeploy": "npm build && firebase deploy --only hosting"  
->> - run the command: npm buildDeploy  
+>> - run the command: npm run buildDeploy  

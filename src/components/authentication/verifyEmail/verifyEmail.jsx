@@ -21,7 +21,7 @@ const VerifyEmail = () => {
                                 <br/>
                 <li>If you don't get forwarded</li>
                                 <br/>
-                <a href="/"><li className="form__resetLink" >Click here to login</li></a>
+                <a href="/"><li className="verifyEmail__resetLink" >Click here</li></a>
               </ol>
           </div>
       </div >
