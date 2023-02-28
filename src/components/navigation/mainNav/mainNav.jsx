@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
-import { GrUserSettings } from 'react-icons/gr';
-import { RiLogoutBoxRLine } from 'react-icons/ri';
-import { IoFastFoodOutline } from 'react-icons/io5';
+// import { GrUserSettings } from 'react-icons/gr';
+// import { RiLogoutBoxRLine } from 'react-icons/ri';
+// import { IoFastFoodOutline } from 'react-icons/io5';
 
 const MainNav = ({user, logout}) => {
 
