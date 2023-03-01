@@ -12,22 +12,21 @@ import {
 
 import './main.scss';
 import App from './App';
-
-import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';
 import { UserProvider } from './contexts/user.context';
+import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';
 import ResetPassword from './components/authentication/resetPassword/resetPassword';
-import Recipies from './routes/recipies';
-import PageNotFound from './components/errorHandling/pageNotFound/pageNotFound';
+import RouteError from './components/errorHandling/routeErros/routeErrors';
+
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
     path="/"
-    // element={<Navigation />}
-    errorElement={<PageNotFound />}
+    element={<App />}
+    errorElement={<RouteError />}
     >
-        <Route errorElement={<PageNotFound />}>
+        <Route errorElement={<RouteError />}>
             <Route index element={<App />} />
-            <Route path="/recipies" element={<Recipies />} />
             <Route path="/reset" element={<ResetPassword />} />
         </Route>
     </Route>

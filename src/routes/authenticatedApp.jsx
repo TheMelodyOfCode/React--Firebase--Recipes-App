@@ -1,9 +1,7 @@
-
-
-
 import SideNav from '../components/navigation/sideNav/sideNav'
 import Recipies from './recipies'
 import MainNav from '../components/navigation/mainNav/mainNav'
+
 
 const AuthenticatedApp = ({user, logout}) => {
   return (

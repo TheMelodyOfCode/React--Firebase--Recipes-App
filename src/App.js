@@ -9,12 +9,11 @@ import { UserContext } from './contexts/user.context';
 import { 
   createAuthUserWithEmailAndPassword, 
   signInAuthUserWithEmailAndPassword,
-  sendAuthUserPasswordReset, 
-  onAuthStateChangeListener } from './utils/firebase/firebase.utils';
+  sendAuthUserPasswordReset,
+  signOutUser } from './utils/firebase/firebase.utils';
 
-import { signOutUser} from './utils/firebase/firebase.utils';
+import { FullPageSpinner } from './utils/lib/lib';
 
-import { FullPageSpinner } from './utils/icons/icons';
 
 function App() {
 
@@ -26,20 +25,11 @@ function App() {
 
 
   const login = async (formData) => {
-    setState('loading')
-    try {
-      onAuthStateChangeListener(async (user)=>{
-        if (!user.emailVerified) {
-          setState('verifyEmail')
-          return <VerifyEmail />
-        } else {
-          await signInAuthUserWithEmailAndPassword(formData.email, formData.password);
-          if (currentUser) {
-            setState('idle')
-          }
-        }
-    })
 
+   
+    try {
+        setState('loading')
+        await signInAuthUserWithEmailAndPassword(formData.email, formData.password);   
     } catch(error) { 
       switch(error.code) {
           case 'auth/wrong-password':
@@ -53,11 +43,10 @@ function App() {
       }
       
     }
-
+    setState('idle')
   }
  
   const register = async (formData) => {
-    // console.log('register', formData)
     setState('loading')
     if (formData.password !== formData.passwordConfirm) {
       alert("passwords do not match");
@@ -100,7 +89,6 @@ const handleSendResetPasswordEmail = async (formData) => {
   }
 
 
-
   if (isLoading ) {
     return <FullPageSpinner />
   }
@@ -109,12 +97,11 @@ const handleSendResetPasswordEmail = async (formData) => {
   }
   if (state) {
   return currentUser ? (
-    <createBrowserRouter>
         <AuthenticatedApp user={currentUser} logout={logout} />
-    </createBrowserRouter>
     ) : (
       <UnauthenticatedApp login={login} handleSendResetPasswordEmail={handleSendResetPasswordEmail} register={register} />
     )
+    
   }
 }
 export default App;

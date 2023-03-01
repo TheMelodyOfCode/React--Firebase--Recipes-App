@@ -64,14 +64,33 @@ export const createAuthUserWithEmailAndPassword = async (email, password)=>{
 
 
 export const signInAuthUserWithEmailAndPassword = async (email, password)=>{
-  if(!email || !password) return;
-//   onAuthStateChangeListener((user)=>{
-//     if (!user.emailVerified) {
-//       alert('please verify your email');
-//     }
-// })
+      if(!email || !password) return;
+      onAuthStateChangeListener((user)=>{
+        if (!user.emailVerified) {
+          alert(`
+          Please verify your email. 
+          We have re-send you a verification email to: 
+          ${user.email}.
+          check your Inbox or Spam folder.
+          Otherwise just refresh the Page
+          `)
+          .then((auth) => {
+            const user = auth.user;
+            sendEmailVerification(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+})
   return await signInWithEmailAndPassword(auth, email, password)
 };
+
+export const VerifyNotification = () => {
+
+//....
+
+}
 
 // ############################################################################################################
 export const sendAuthUserPasswordReset = async (email)=>{

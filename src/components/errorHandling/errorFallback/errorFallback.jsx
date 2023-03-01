@@ -1,5 +1,8 @@
 
-
+/** Inside of an errorElement, this hooks returns thrown responses
+ * 
+ *  any error thrown during an action, loader, or rendering is caught and returned by routeError.
+ */
 
 const ErrorFallback = ({error, resetErrorBoundary,}) => {
     

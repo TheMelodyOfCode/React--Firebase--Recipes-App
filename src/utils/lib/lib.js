@@ -4,7 +4,7 @@ import { RiLogoutBoxRLine, RiContactsBook2Line } from 'react-icons/ri';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import {FaSpinner} from 'react-icons/fa'
 
-
+// ### ICONS ###
 
 function FullPageSpinner() {
     return (
