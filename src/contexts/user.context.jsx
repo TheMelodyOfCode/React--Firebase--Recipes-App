@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { onAuthStateChangeListener } from "../utils/firebase/firebase.utils";
+import { onAuthStateChangeListener } from "../utils/firebase/firebase.auth";
 
 
 // as the actual value you want to access

@@ -64,6 +64,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password)=>{
 
 
 export const signInAuthUserWithEmailAndPassword = async (email, password)=>{
+  // TODO: set up customized verification email with a link to the app
       if(!email || !password) return;
       onAuthStateChangeListener((user)=>{
         if (!user.emailVerified) {

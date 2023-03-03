@@ -2,6 +2,7 @@
 import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxRLine, RiContactsBook2Line } from 'react-icons/ri';
 import { IoFastFoodOutline } from 'react-icons/io5';
+import {TiDeleteOutline} from 'react-icons/ti'
 import {FaSpinner} from 'react-icons/fa'
 
 // ### ICONS ###
@@ -20,6 +21,19 @@ function FullPageSpinner() {
       >
         <FaSpinner />
       </div>
+    )
+  }
+
+function DeleteIcon() {
+    return (
+        <span
+            style={{
+              color: 'black',
+              fontSize: '2rem',
+        }}
+        >
+        <TiDeleteOutline />
+        </span>  
     )
   }
 
@@ -79,4 +93,5 @@ function ContactIcon() {
     SettingsIcon,
     LogoutIcon,
     ContactIcon,
+    DeleteIcon,
 }

@@ -4,7 +4,7 @@ import {
     signInWithGooglePopup, 
     signInWithGithubPopup,
     } from 
-    "../utils/firebase/firebase.utils";
+    "../utils/firebase/firebase.auth";
 
 import Button from '../components/button/button';
 import LoginForm from '../components/authentication/login/loginForm';

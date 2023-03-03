@@ -9,6 +9,10 @@ const BUTTON_Style_CLASSES = {
     blueGray: 'btn--blueGray',
     green: 'btn--green',
     red: 'btn--red',
+    addIngredient: 'btn--addIngredient',
+    createUpdate: 'btn--createUpdate',
+    deleteRecipe: 'btn--deleteRecipe',
+    cancelRecipe: 'btn--cancelRecipe',
 }
 
 const BUTTON_Animation_CLASSES = {

@@ -12,7 +12,7 @@ const MainNav = ({user, logout}) => {
     <nav className='mainNav' >
 
             <div className="mainNav__logoBox">
-                <h1 className='mainNav__logoBox--logo'>Recepies</h1>
+                <h1 className='mainNav__logoBox--logo'>Recipies</h1>
             </div>
             <p className="mainNav__userEmail" >{user.email}</p>
 

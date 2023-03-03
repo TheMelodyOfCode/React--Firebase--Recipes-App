@@ -10,9 +10,10 @@ import {
   createAuthUserWithEmailAndPassword, 
   signInAuthUserWithEmailAndPassword,
   sendAuthUserPasswordReset,
-  signOutUser } from './utils/firebase/firebase.utils';
+  signOutUser } from './utils/firebase/firebase.auth';
 
 import { FullPageSpinner } from './utils/lib/lib';
+
 
 
 function App() {
@@ -26,7 +27,6 @@ function App() {
 
   const login = async (formData) => {
 
-   
     try {
         setState('loading')
         await signInAuthUserWithEmailAndPassword(formData.email, formData.password);   
@@ -50,6 +50,7 @@ function App() {
     setState('loading')
     if (formData.password !== formData.passwordConfirm) {
       alert("passwords do not match");
+      setState('idle')
       return;
     }
 
@@ -97,7 +98,7 @@ const handleSendResetPasswordEmail = async (formData) => {
   }
   if (state) {
   return currentUser ? (
-        <AuthenticatedApp user={currentUser} logout={logout} />
+      <AuthenticatedApp user={currentUser} logout={logout} />
     ) : (
       <UnauthenticatedApp login={login} handleSendResetPasswordEmail={handleSendResetPasswordEmail} register={register} />
     )
