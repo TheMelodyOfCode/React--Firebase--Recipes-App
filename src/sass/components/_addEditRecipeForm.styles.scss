@@ -214,6 +214,7 @@
                 display: grid;
                 grid-template-columns: 1fr 3rem;
                 font-size: 1.5rem;
+                border: 1px solid #000 ;
                 background-color: $color-white;
 
                 @include respond(phone-sm) {

@@ -28,7 +28,7 @@ function DeleteIcon() {
     return (
         <span
             style={{
-              color: 'black',
+              color: 'red',
               fontSize: '2rem',
         }}
         >

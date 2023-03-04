@@ -97,3 +97,46 @@
 >> - add the following to the package.json file:  
 >> - "buildDeploy": "npm build && firebase deploy --only hosting"  
 >> - run the command: npm run buildDeploy  
+
+
+#### Firestore Security Rules  
+>> - Authorization  
+      *Annyone authenticated or not can read*     
+      - allow read: if true;  
+      *Only authenticated users can create, update, delete*    
+      - allow create, update, delete: if request.auth != null;  
+>> -  Sanitization  (only very specific fields can be used and no additional fields)
+>> -  Data Validation (the allowed fiels have to be of a specific type or range)
+>> -  Example:
+rules_version = '2';  
+service cloud.firestore {  
+  match /databases/{database}/documents {  
+    match /{document=**} {  
+// sanitization of requests  
+     function recipeHasOnlyAllowedFields(){  
+      let requiredFields = ['category', 'directions', 'ingredients', 'isPublished', 'name', 'publishDate'];  
+      let keys = request.resource.data.keys();  
+// these ensures that the fields ar on the request and ONLY on the request   
+      return keys.hasAll(requiredFields) && keys.hasOnly(requiredFields);  
+			}  
+// validation of requests  
+      function isRecipeValid(){  
+      let data = request.resource.data;  
+      
+      return data.name is string && data.name != '' &&  
+      data.category is string && data.category != '' &&  
+      data.directions is string && data.directions != '' &&  
+      data.isPublished is bool &&  
+      data.publishDate is timestamp &&  
+      data.ingredients.size() > 0                    
+      }
+// anyone authenticated or not can read  
+      allow read: if true;  
+// only authenticated users can doe this     
+       allow create, update: if request.auth != null && recipeHasOnlyAllowedFields() && isRecipeValid();  
+       
+			allow delete: if request.auth != null;  
+    }  
+  }  
+}  
+

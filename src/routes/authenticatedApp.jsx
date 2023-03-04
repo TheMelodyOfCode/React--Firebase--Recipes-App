@@ -3,7 +3,31 @@
 import MainNav from '../components/navigation/mainNav/mainNav'
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm'
 
+// import FirebaseFirestoreService from '../utils/firebase/firebase.firestore'
+import { createDocument } from '../utils/firebase/firebase.firestore';
+
+
 const AuthenticatedApp = ({user, logout}) => {
+
+
+  async function handleAddRecipe(newRecipe) {
+    
+    if(!newRecipe) return;
+    try {
+        await createDocument(
+        newRecipe
+      );
+      // handleFetchRecipes();
+      console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
+      alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
+
+
+
   return (
     <>
     <MainNav user={user} logout={logout} />
@@ -13,7 +37,8 @@ const AuthenticatedApp = ({user, logout}) => {
     <main className='authApp'>
       {/* <SideNav /> */}
       {/* <Recipies  /> */}
-      <AddEditRecipeForm/>
+      <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/>
+      {/* <AddEditRecipeForm /> */}
 
     </main>
 
