@@ -19,7 +19,7 @@ const RouteErrors = () => {
             <img className="errorPage__img"  src="img/error.png" alt="Ooops error Button" />
 
             <div className="errorPage__text">
-                <p>Error Message:.</p>
+                {/* <p>Error Message:.</p> */}
                 <p> {error.statusText || error.message} </p>
             </div>
 

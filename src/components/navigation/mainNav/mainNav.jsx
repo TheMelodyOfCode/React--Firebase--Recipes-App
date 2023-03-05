@@ -11,11 +11,11 @@ const MainNav = ({user, logout}) => {
     return (
     <nav className='mainNav' >
 
-            <div className="mainNav__logoBox">
-                <h1 className='mainNav__logoBox--logo'>Recipies</h1>
-            </div>
-            <p className="mainNav__userEmail" >{user.email}</p>
+    <div className="mainNav__logoBox">
+        <h1 className='mainNav__logoBox--logo'>Recipies</h1>
+    </div>
 
+    <p className="mainNav__userEmail" >{user.email}</p>
 
     <div className="mainNav__toggleMenu">
         <input type="checkbox" className="mainNav__toggleMenu__checkbox" id="navi-toggle" />

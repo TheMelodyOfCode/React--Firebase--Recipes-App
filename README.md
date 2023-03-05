@@ -106,8 +106,9 @@
       *Only authenticated users can create, update, delete*    
       - allow create, update, delete: if request.auth != null;  
 >> -  Sanitization  (only very specific fields can be used and no additional fields)
->> -  Data Validation (the allowed fiels have to be of a specific type or range)
->> -  Example:
+>> -  Data Validation (the allowed fiels have to be of a specific type or range)  
+-  Example:  
+  
 rules_version = '2';  
 service cloud.firestore {  
   match /databases/{database}/documents {  

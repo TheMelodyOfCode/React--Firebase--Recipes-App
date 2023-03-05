@@ -7,14 +7,15 @@ import { initApp } from "./firebase.auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import { 
   getFirestore, 
-  // doc, 
   // setDoc,
   collection,
   addDoc,
   // writeBatch,
   // getDoc, 
-  // query,
-  // getDocs,
+  query,
+  getDocs,
+  doc, 
+  getDocFromCache,
   // updateDoc,
 } from "firebase/firestore";
 
@@ -24,6 +25,7 @@ export const db = getFirestore(initApp);
 
 // ### UPLOAD FILES TO DB !! ###
 // #############################
+
   export const createDocument = async ( objectsToAdd) => {
     try {
         // Add a new document with a generated id.
@@ -36,6 +38,66 @@ export const db = getFirestore(initApp);
       console.log('error creating the Recipie', error.message)
     }
   }
+
+// ### GET all FILES from DB !! ###
+// #############################
+
+export const getCardItemsfromDB = async ()=>{
+  const collectionRef = collection(db, 'recipies');
+  const q = query(collectionRef);
+  
+  const querySnapshot = await getDocs(q);
+  
+  const cardItemsMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
+    const  items = docSnapshot.data();
+    // console.log(items)
+    return items;
+  }, {});
+  // console.log('cardItemsMap', cardItemsMap)
+  return cardItemsMap;
+}
+
+// getCardItemsfromDB();
+
+// export const getAllItemsfromDB = async ()=>{
+
+//   const querySnapshot = await getDocs(collection(db, "recipies"));
+  
+//   if (querySnapshot) {
+  
+//       querySnapshot.forEach((doc) => {
+//           // doc.data() is never undefined for query doc snapshots
+//           const docData = doc.data();
+//           // console.log('docData', docData)
+//           return docData;
+//         });
+//   } else {
+//     const error = {error: 'error', status: 'rejected', message: `Hoppala; , - Nothing found` }
+//     return Promise.reject(error)
+//   }
+// }
+// getAllItemsfromDB()
+
+
+// ### GET all FILES from DB !! ###
+// #############################
+
+// export const getAllItemsfromDB = async ()=>{
+//   const collectionRef = collection(db, 'userData');
+//   const q = query(collectionRef);
+//   const querySnapshot = await getDocs(q);
+//   if (querySnapshot) {
+//     const itemsMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
+//       const  items = docSnapshot.data();
+//       return items;
+//     }, {});
+//     return itemsMap;
+//   } else {
+//     const error = {error: 'error', status: 'rejected', message: `Hoppala; , - Nothing found` }
+//     return Promise.reject(error)
+//   }
+
+// }
 
 
 // #############################
@@ -74,24 +136,6 @@ export const db = getFirestore(initApp);
 //   }
 // }
 
-// ### GET all FILES from DB !! ###
-// #############################
 
-// export const getAllItemsfromDB = async ()=>{
-//   const collectionRef = collection(db, 'userData');
-//   const q = query(collectionRef);
-//   const querySnapshot = await getDocs(q);
-//   if (querySnapshot) {
-//     const itemsMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
-//       const  items = docSnapshot.data();
-//       return items;
-//     }, {});
-//     return itemsMap;
-//   } else {
-//     const error = {error: 'error', status: 'rejected', message: `Hoppala; , - Nothing found` }
-//     return Promise.reject(error)
-//   }
-
-// }
 
 
