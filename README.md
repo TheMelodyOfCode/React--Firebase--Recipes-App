@@ -33,8 +33,10 @@
 > React Icons
 >> npm install react-icons --save
 
-> Styled Components
-> - npm i styled-components
+> @emotion/css / @emotion/styled
+> The css function accepts styles as a template literal, object, or array of objects and returns a class name. It is the foundation of emotion.  
+> - npm i @emotion/css  
+> - npm i @emotion/styled  
 
 > Firebase
 > - npm install firebase  

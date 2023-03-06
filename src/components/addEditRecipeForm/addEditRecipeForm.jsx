@@ -24,9 +24,7 @@ function AddEditRecipeForm({
 
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
-  const [publishDate, setPublishDate] = React.useState(
-    new Date().toISOString().split("T")[0]
-  );
+  const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
   const [directions, setDirections] = React.useState("");
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
@@ -41,11 +39,23 @@ function AddEditRecipeForm({
 
     const isPublished = new Date(publishDate) <= new Date() ? true : false;
 
+    const date = new Date();
+    const dateAndTime = date.toLocaleString("de-DE", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+    }); 
+    const profileUpdated = dateAndTime;
+
     const newRecipe = {
       name,
       category,
       directions,
-      publishDate: new Date(publishDate),
+      publishDate: profileUpdated,
       isPublished,
       ingredients,
     };

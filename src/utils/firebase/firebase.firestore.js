@@ -14,8 +14,8 @@ import {
   // getDoc, 
   query,
   getDocs,
-  doc, 
-  getDocFromCache,
+  // doc, 
+  // getDocFromCache,
   // updateDoc,
 } from "firebase/firestore";
 
@@ -42,20 +42,65 @@ export const db = getFirestore(initApp);
 // ### GET all FILES from DB !! ###
 // #############################
 
-export const getCardItemsfromDB = async ()=>{
-  const collectionRef = collection(db, 'recipies');
-  const q = query(collectionRef);
-  
-  const querySnapshot = await getDocs(q);
-  
-  const cardItemsMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
-    const  items = docSnapshot.data();
-    // console.log(items)
-    return items;
-  }, {});
-  // console.log('cardItemsMap', cardItemsMap)
-  return cardItemsMap;
+export const getAllRecipiesfromDB = async ()=>{
+
+  try {
+    const collectionRef = collection(db, 'recipies');
+    const q = query(collectionRef);
+    const querySnapshot = await getDocs(q);
+
+    const responseFormated = querySnapshot.docs.map((doc) => {
+      const id = doc.id;
+      const data = doc.data();
+      data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+      return { id, ...data };
+    });
+    // console.log('responseFormated', responseFormated)
+    return responseFormated;
+  }
+  catch (e) {
+    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
+    return Promise.reject(error)
+  }
+    // const resonseFormated = querySnapshot.docs.map((doc) => {
+    //   const id = doc.id;
+    //   const data = doc.data();
+    //   data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+    //   return { id, ...data };
+    // });
+    // fetchedRecipes = [...resonseFormated];
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const getCardItemsfromDB = async ()=>{
+//   const collectionRef = collection(db, 'recipies');
+//   const q = query(collectionRef);
+
+//   const querySnapshot = await getDocs(q);
+//   console.log('querySnapshot', querySnapshot.docs)
+//   const cardItemsMap = querySnapshot.docs.reduce((acc, docSnapshot) =>{
+//     const  items = docSnapshot.data();
+//     // console.log(items)
+//     return items;
+//   }, {});
+//   // console.log('cardItemsMap', cardItemsMap)
+//   return cardItemsMap;
+// }
 
 // getCardItemsfromDB();
 

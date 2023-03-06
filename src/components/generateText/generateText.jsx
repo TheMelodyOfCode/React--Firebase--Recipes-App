@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Configuration, OpenAIApi } from "openai";
-//TODO - add your OpenAI API key in .env file
+//TODO - add your OpenAI API key in .env file (figure out why it's not working)
 import { OPENAI_API_KEY } from "../../utils/openAI/config";
 
 
@@ -32,6 +32,7 @@ const GenerateText = () => {
           temperature: 0.6,
           max_tokens: 1000,
         });
+        setResult(completion.data.choices[0].text);
         console.log(completion.data.choices[0].text);
       } catch(error) {
         if (error.response) {
@@ -63,7 +64,7 @@ const GenerateText = () => {
             />
             <input type="submit" value="Generate names" />
           </form>
-          <div >{result}</div>
+          <div  >{result}</div>
         </main>
       </div>
     );

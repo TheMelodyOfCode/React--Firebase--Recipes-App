@@ -1,3 +1,7 @@
+/** @jsxImportSource @emotion/react */ 
+
+import styled from '@emotion/styled'
+import {keyframes} from '@emotion/react'
 
 import { GrUserSettings } from 'react-icons/gr';
 import { RiLogoutBoxRLine, RiContactsBook2Line } from 'react-icons/ri';
@@ -6,23 +10,35 @@ import {TiDeleteOutline} from 'react-icons/ti'
 import {FaSpinner} from 'react-icons/fa'
 
 // ### ICONS ###
+const spin = keyframes({
+  '0%': {transform: 'rotate(0deg)'},
+  '100%': {transform: 'rotate(360deg)'},
+})
+
+const Spinner = styled(FaSpinner)({
+  animation: `${spin} 1s linear infinite`,
+})
+Spinner.defaultProps = {
+  'aria-label': 'loading',
+}
+
 
 function FullPageSpinner() {
-    return (
-      <div
-        style={{
-          fontSize: '4em',
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <FaSpinner />
-      </div>
-    )
-  }
+  return (
+    <div
+      css={{
+        fontSize: '5rem',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Spinner />
+    </div>
+  )
+}
 
 function DeleteIcon() {
     return (

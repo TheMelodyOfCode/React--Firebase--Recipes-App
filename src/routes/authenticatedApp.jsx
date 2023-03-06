@@ -2,55 +2,36 @@ import * as React from 'react';
 // import SideNav from '../components/navigation/sideNav/sideNav'
 // import Recipies from './recipies'
 import MainNav from '../components/navigation/mainNav/mainNav'
+import ItemCard from '../components/itemCard/itemCard';
+import { createDocument, getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm'
-// import ItemCard from '../components/itemCard/itemCard';
-import FetchData from '../utils/openAI/openAI';
-import { createDocument, getCardItemsfromDB } from '../utils/firebase/firebase.firestore';
-import GenerateText from '../components/generateText/generateText';
+// import GenerateText from '../components/generateText/generateText';
+import FilterRow from '../components/filterRow/filterRow';
+
+import { useAsync } from '../utils/lib/helperFunctions';
+import { FullPageSpinner } from '../utils/lib/lib';
+
 
 const AuthenticatedApp = ({user, logout}) => {
 
-  const [recipes, setRecipes] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-
-    // console.log(recipes);
-    // console.log(isLoading);
-
-  React.useEffect(() => {
-    setIsLoading(true);
-
-    // FetchData()
-
-    fetchRecipes()
-      .then((fetchedRecipes) => {
-        setRecipes(fetchedRecipes);
-      })
-      .catch((error) => {
-        console.error(error.message);
-        throw error;
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-
-  }, [user, logout]);
+  const {data: allFromDB, status, error, run} = useAsync({ 
+    status: 'idle' ,
+  })
 
 
-  async function fetchRecipes() {
+    React.useEffect(()=>{
+      const getAllItems = async ()=> {
+        const allFromDB = await getAllRecipiesfromDB()
+        return allFromDB;
+    };
+    run(getAllItems())
+        
+    }, [user, logout, run])
 
-    try {
-      const recipes = await getCardItemsfromDB();
-      // console.log(recipes);
-      return recipes;
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
 
-// handleFetchRecipes();
 
 async function handleAddRecipe(newRecipe) {
-    
+    console.log(newRecipe.publishDate);
   if(!newRecipe) return;
   try {
       await createDocument(
@@ -58,32 +39,37 @@ async function handleAddRecipe(newRecipe) {
     );
     // handleFetchRecipes();
     console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
-    alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
+    alert(`succesfully created a recipe with NAME = ${newRecipe.publishDate}`);
   } catch (error) {
     console.log(error.message);
   }
 
 }
 
-  return (
-    <>
-    <MainNav user={user} logout={logout} />
-    {/* <div css={{position: 'relative'}}>
-      
-    </div> */}
-    <main className='authApp'>
-      {/* <SideNav /> */}
-      {/* <Recipies  /> */}
+    switch (status) {
+      case 'idle':
+        return <span>Submit a cardName</span>
+      case 'pending':
+        return <FullPageSpinner />
+      case 'rejected':
+        throw error
+      case 'resolved':
+        return (
+          <>
+          <MainNav user={user} logout={logout} />
+          <main className='authApp'>
+          <FilterRow />
+          <ItemCard allFromDB={allFromDB}/> 
+            {/* <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> */}
+          </main>
+          </>
+        )
+      default:
+        throw new Error('This should be impossible')
+    }
 
-      {/* <ItemCard  />  */}
-      <GenerateText />
-      {/* <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> */}
-      {/* <AddEditRecipeForm /> */}
 
-    </main>
 
-    </>
-  )
 }
 
 export default AuthenticatedApp;

@@ -1,0 +1,36 @@
+
+  
+  .filterRow {
+  
+    display: grid;
+    grid-row: 1/2;
+    grid-template-columns:  repeat(3, minmax(0, 1fr));
+    grid-template-rows: 5rem;
+
+    z-index: 1;
+    @include respond(phone) { 
+        grid-template-columns:  repeat(2, minmax(0, 1fr)); 
+    }
+
+        &__recipeLabel {
+          grid-column: 1/2;
+
+              &--select {
+                font-size: 1.1rem;
+              }
+      
+            }
+
+        &__dateLabel {
+          grid-column: 3/4;
+  
+            // &--select {
+            //   font-size: 1.1rem;
+            // }
+  
+        }
+
+
+
+  
+  }
