@@ -143,3 +143,4 @@ service cloud.firestore {
   }  
 }  
 
+consol.trace('Hello World');
