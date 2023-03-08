@@ -111,6 +111,9 @@
 >> -  Data Validation (the allowed fiels have to be of a specific type or range)  
 -  Example:  
   
+The location is: 
+/recipies/{recipieId}
+
 rules_version = '2';  
 service cloud.firestore {  
   match /databases/{database}/documents {  
@@ -142,5 +145,3 @@ service cloud.firestore {
     }  
   }  
 }  
-
-consol.trace('Hello World');

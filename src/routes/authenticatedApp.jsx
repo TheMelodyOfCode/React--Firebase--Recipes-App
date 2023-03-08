@@ -31,15 +31,16 @@ const AuthenticatedApp = ({user, logout}) => {
 
 
 async function handleAddRecipe(newRecipe) {
-    console.log(newRecipe.publishDate);
+
   if(!newRecipe) return;
   try {
       await createDocument(
-      newRecipe
+      newRecipe,
+
     );
     // handleFetchRecipes();
     console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
-    alert(`succesfully created a recipe with NAME = ${newRecipe.publishDate}`);
+    alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
   } catch (error) {
     console.log(error.message);
   }
@@ -59,8 +60,8 @@ async function handleAddRecipe(newRecipe) {
           <MainNav user={user} logout={logout} />
           <main className='authApp'>
           <FilterRow />
-          <ItemCard allFromDB={allFromDB}/> 
-            {/* <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> */}
+          {/* <ItemCard allFromDB={allFromDB} user={user}/>  */}
+          <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/>
           </main>
           </>
         )

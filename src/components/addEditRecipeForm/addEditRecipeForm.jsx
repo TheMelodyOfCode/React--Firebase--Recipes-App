@@ -2,6 +2,7 @@ import  * as React from  'react';
 import Button from '../button/button';
 import { DeleteIcon } from '../../utils/lib/lib';
 import {Link} from 'react-router-dom';
+import { UserContext } from '../../contexts/user.context';
 
 function AddEditRecipeForm({
   existingRecipe,
@@ -10,6 +11,11 @@ function AddEditRecipeForm({
   handleDeleteRecipe,
   handleEditRecipeCancel,
 }) {
+  // eslint-disable-next-line no-unused-vars
+  const { currentUser, setCurrentUser} = React.useContext(UserContext);
+  
+
+
   React.useEffect(() => {
     if (existingRecipe) {
       setName(existingRecipe.name);
@@ -20,7 +26,10 @@ function AddEditRecipeForm({
     } else {
       resetForm();
     }
-  }, [existingRecipe]);
+  }, [ existingRecipe]);
+
+
+  
 
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
@@ -29,9 +38,12 @@ function AddEditRecipeForm({
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
 
+
+
+  // addPublisher()
   function handleRecipeFormSubmit(e) {
     e.preventDefault();
-
+    
     if (ingredients.length === 0) {
       alert("Ingredients cannot be empty. Please add at least 1 ingredient");
       return;
@@ -39,25 +51,15 @@ function AddEditRecipeForm({
 
     const isPublished = new Date(publishDate) <= new Date() ? true : false;
 
-    const date = new Date();
-    const dateAndTime = date.toLocaleString("de-DE", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit"
-    }); 
-    const profileUpdated = dateAndTime;
-
     const newRecipe = {
       name,
       category,
       directions,
-      publishDate: profileUpdated,
+      // publisher: currentUser.email,
+      publishDate: new Date(publishDate),
       isPublished,
       ingredients,
+
     };
 
     if (existingRecipe) {
@@ -68,6 +70,8 @@ function AddEditRecipeForm({
 
     resetForm();
   }
+
+
 
   function handleAddIngredient(e) {
     if (e.key && e.key !== "Enter") {
@@ -109,7 +113,6 @@ function AddEditRecipeForm({
     >
       {existingRecipe ? 
       <h2 className='recipeForm__mainTitle'>Update the Recipe</h2> : <h2 className='recipeForm__mainTitle'>Add a New Recipe</h2>}
-
       <div className="recipeForm__topFormSection">
         
           <label className="recipeForm__topFormSection__label--1">
@@ -120,10 +123,19 @@ function AddEditRecipeForm({
               value={name}
               placeholder="a.e. 'Chocolate Cake'"
               onChange={(e) => setName(e.target.value)}
-              className="recipeForm__topFormSection__input"
+              className="recipeForm__topFormSection__name"
             />
 
-          <label className="recipeForm__topFormSection__label--2"> 
+          <label className="recipeForm__topFormSection__label--2">
+            Publisher:{' '} </label>
+            <input
+              type="text"
+              value={currentUser.email}
+              readOnly
+              className="recipeForm__topFormSection__publisher"
+            />
+
+          <label className="recipeForm__topFormSection__label--3"> 
             Category:{' '}
             </label>
             <select
@@ -144,7 +156,7 @@ function AddEditRecipeForm({
               <option value="dessertsAndBakedGoods">Desserts & Baked Goods</option>
             </select>
 
-          <label className="recipeForm__topFormSection__label--3">
+          <label className="recipeForm__topFormSection__label--4">
             Directions:{' '}          
             </label>
             <textarea
@@ -155,7 +167,7 @@ function AddEditRecipeForm({
             ></textarea>
 
 
-          <label className="recipeForm__topFormSection__label--4">
+          <label className="recipeForm__topFormSection__label--5">
             Publish Date:{' '}
             </label>
             <input

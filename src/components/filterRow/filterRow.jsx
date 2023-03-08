@@ -6,6 +6,8 @@ export const FilterRow = () => {
     const [categoryFilter, setCategoryFilter] = React.useState('');
     const [orderBy, setOrderBy] = React.useState('publishDateDesc');
 
+
+
     return (
         <div className="filterRow">
             <label className="filterRow__recipeLabel">
@@ -17,15 +19,15 @@ export const FilterRow = () => {
                     required
                 >
                     <option value=""></option>
-                    <option value="breadsSandwichesAndPizza">
-                    Breads, Sandwiches, and Pizza
-                    </option>
+                    <option value="breadsSandwichesAndPizza">Breads, Sandwiches, and Pizza</option>
                     <option value="eggsAndBreakfast">Eggs & Breakfast</option>
-                    <option value="dessertsAndBakedGoods">
-                    Desserts & Baked Goods
-                    </option>
+                    <option value="saladsAnsSnacks">Salads & Snacks</option>
+                    <option value="soups">Soups</option>
+                    <option value="mainDish">Main Dish</option>
+                    <option value="meatLovers">Meat Lover's</option>
                     <option value="fishAndSeafood">Fish & Seafood</option>
                     <option value="vegetables">Vegetables</option>
+                    <option value="dessertsAndBakedGoods">Desserts & Baked Goods</option>
                 </select>
                 </label>
                 

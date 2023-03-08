@@ -2,15 +2,15 @@
 .recipeForm {
 
     display: grid;
-    grid-column: 3/4;
+    grid-column: 1/2;
     grid-row: 2/3;
     grid-template-columns: 1fr ;
     grid-template-rows: repeat(3, minmax(min-content, max-content))  ;
     grid-gap: 1rem;
     height: 100%;
     min-width: 40rem;
-    max-width: 100%;
-    flex-direction: column;
+    max-width: 40%;
+    // flex-direction: column;
     border: 0.1rem solid #000;
     border-radius: 0.4rem;
     padding: 1rem;
@@ -36,10 +36,10 @@
     &__topFormSection {
         display: grid;
         grid-template-columns: 1fr 1fr ;
-        grid-template-rows: repeat(4, minmax(min-content, max-content));
+        grid-template-rows: repeat(5, minmax(min-content, max-content));
         @include respond(phone-sm) {
             grid-template-columns: 1fr ;
-            grid-template-rows: repeat(8, minmax(min-content, max-content));
+            grid-template-rows: repeat(9, minmax(min-content, max-content));
             }
 
         &__label--1{
@@ -71,8 +71,16 @@
                 grid-row: 7/8;
                 }
         }
+        &__label--5{
+            grid-column: 1/2;
+            grid-row: 5 / 6;
+            font-size: 1.8rem;
+            @include respond(phone-sm) {
+                grid-row: 8/9;
+                }
+        }
 
-        &__input {
+        &__name {
             grid-column: 2/3;
             grid-row: 1/2;
             font-size: $default-font-size;
@@ -106,9 +114,26 @@
             }
         }
 
-        &__select {
+        &__publisher {
             grid-column: 2/3;
             grid-row: 2/3;
+            font-size: $default-font-size;
+            font-family: inherit;
+            color: $color-black;
+            background-color: $color-white;
+            padding: .5rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: $border-radius-small;
+            border-bottom: 3px solid transparent;
+                @include respond(phone-sm) {
+                    grid-column: 1/2;
+                    grid-row: 3/4;
+                    }
+        }
+
+        &__select {
+            grid-column: 2/3;
+            grid-row: 3/4;
             font-size: $default-font-size;
             font-family: inherit;
             color: $color-black;
@@ -122,12 +147,14 @@
             border: none;
             @include respond(phone-sm) {
                 grid-column: 1/2;
-                grid-row: 4/5;
+                grid-row: 7/8;
                 }
     
         }
 
         &__textArea {
+            grid-column: 2/3;
+            grid-row: 4/5;
             font-size: $default-font-size;
             font-family: inherit;
             color: $color-black;
@@ -140,13 +167,13 @@
             border: none;
             @include respond(phone-sm) {
                 grid-column: 1/2;
-                grid-row: 6/7;
+                grid-row: 8/9;
                 }
         }
 
         &__date {
             grid-column: 2/3;
-            grid-row: 4/5;
+            grid-row: 5/6;
             font-size: $default-font-size;
             font-family: inherit;
             color: $color-black;
@@ -160,7 +187,7 @@
             border: none;
             @include respond(phone-sm) {
                 grid-column: 1/2;
-                grid-row: 8/9;
+                grid-row: 9/10;
                 }
         }
 
