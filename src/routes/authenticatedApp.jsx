@@ -59,9 +59,9 @@ async function handleAddRecipe(newRecipe) {
           <>
           <MainNav user={user} logout={logout} />
           <main className='authApp'>
-          <FilterRow />
-          {/* <ItemCard allFromDB={allFromDB} user={user}/>  */}
-          <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/>
+           <FilterRow />
+          <ItemCard allFromDB={allFromDB} user={user}/>  
+          <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> 
           </main>
           </>
         )

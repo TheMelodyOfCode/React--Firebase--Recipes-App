@@ -17,7 +17,6 @@ import ErrorFallback from './components/errorHandling/errorFallback/errorFallbac
 import ResetPassword from './components/authentication/resetPassword/resetPassword';
 import RouteError from './components/errorHandling/routeErros/routeErrors';
 import AuthenticatedApp from './routes/authenticatedApp';
-import AddEditRecipeForm from './components/addEditRecipeForm/addEditRecipeForm';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,8 +28,7 @@ const router = createBrowserRouter(
         <Route errorElement={<RouteError />}>
             <Route index element={<App />} />
             <Route path="/reset" element={<ResetPassword />} />
-            <Route path="/recepies" element={<AuthenticatedApp />} />
-            <Route path="/addRecipe" element={<AddEditRecipeForm />} />
+            {/* <Route path="/recepies" element={<AuthenticatedApp />} /> */}
         </Route>
     </Route>
   )

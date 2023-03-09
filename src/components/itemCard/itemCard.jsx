@@ -28,10 +28,11 @@ return (
     <div className="itemCard" >
         {
         allFromDB.map((recipe) => { 
+            if (recipe.publisher === user.email) {
             return (
                 <div className="itemCard__container" key={recipe.id}>
-                    {
-                        recipe.isPublished === false ? (
+                    
+                    { recipe.isPublished === false ? (
                             <h1 className="itemCard__container__unpublished">UNPUBLISHED</h1>
                         ) :  <h1 className='itemCard__container__title'>{recipe.name}</h1>
                     }
@@ -62,8 +63,13 @@ return (
                                 ) : null
                             }
                         </div>    
-                </div>
-                )})
+                </div> 
+                ) } else {
+                    return null;
+                }   
+            
+            
+            })
         }
     </div>
 );

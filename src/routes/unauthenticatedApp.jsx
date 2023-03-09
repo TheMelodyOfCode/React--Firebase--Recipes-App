@@ -10,7 +10,7 @@ import Button from '../components/button/button';
 import LoginForm from '../components/authentication/login/loginForm';
 import RegisterForm from '../components/authentication/register/registerForm';
 
-const UnauthenticatedApp =({login, register}) => {
+const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
 
   const [openModal, setOpenModal] = React.useState('none')
 
@@ -50,7 +50,7 @@ const UnauthenticatedApp =({login, register}) => {
                     <button onClick={() => setOpenModal('none')}>Close</button>
                 </div>
                 <div className='modal__body'>
-                    <LoginForm onSubmit={login}  buttonText="Login" />
+                    <LoginForm onSubmit={login} buttonText="Login" />
                 </div>
             </div>
         )}

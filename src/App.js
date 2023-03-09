@@ -3,7 +3,7 @@ import  * as React from  'react';
 import AuthenticatedApp from './routes/authenticatedApp';
 import UnauthenticatedApp from './routes/unauthenticatedApp';
 import VerifyEmail from './components/authentication/verifyEmail/verifyEmail';
-
+import ResetPassword from './components/authentication/resetPassword/resetPassword';
 import { UserContext } from './contexts/user.context';
 
 import { 
@@ -23,6 +23,8 @@ function App() {
   const [state, setState] = React.useState('idle')
   const isLoading = state === 'loading'
   const verifyEmail = state === 'verifyEmail'
+  const resetPassword = state === 'resetPassword'
+  
 
 
   const login = async (formData) => {
@@ -71,6 +73,7 @@ function App() {
     }
   }
 
+
   const logout = () => {
     signOutUser()
     setCurrentUser(null);
@@ -78,12 +81,14 @@ function App() {
   }
 
 const handleSendResetPasswordEmail = async (formData) => {
+    setState('loading')
     if (!formData) {
       return;
     }
     try {
       await sendAuthUserPasswordReset(formData.email);
       alert("sent the password reset email");
+      setState('resetPassword')
     } catch (error) {
       console.log('Error Message:', error.message, 'Error Code:', error.code);
     }
@@ -92,6 +97,9 @@ const handleSendResetPasswordEmail = async (formData) => {
 
   if (isLoading ) {
     return <FullPageSpinner />
+  }
+  if (resetPassword ) {
+    return <ResetPassword />
   }
   if (verifyEmail ) {
     return <VerifyEmail />

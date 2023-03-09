@@ -1,12 +1,17 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
     FoodIcon, 
     SettingsIcon, 
     LogoutIcon, 
     ContactIcon } from '../../../utils/lib/lib';
 
+import UserProfile
+     from '../../../routes/userProfile';
+
+
 const MainNav = ({user, logout}) => {
+
 
     return (
     <nav className='mainNav' >
@@ -28,7 +33,7 @@ const MainNav = ({user, logout}) => {
                 <li className="toggleMenu__item"><p className="mainNav__userEmail" >{user.email}</p></li>
                 <br/>
                 <li className="toggleMenu__item"><Link to='/' className="mainNav__toggleMenu__link"><FoodIcon />{' '} Home</Link></li>
-                <li className="toggleMenu__item"><Link to='profile' className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li>
+                <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/profile"}} className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li>
                 <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link"><ContactIcon/>{' '} Contact</Link></li>
                 <li className="toggleMenu__item"><Link className="mainNav__toggleMenu__link"  onClick={logout} ><LogoutIcon/>{' '} SIGN OUT</Link ></li>
             </ul>

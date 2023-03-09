@@ -14,7 +14,7 @@ function AddEditRecipeForm({
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
   
-
+       const userEmail = currentUser.email;
 
   React.useEffect(() => {
     if (existingRecipe) {
@@ -35,6 +35,7 @@ function AddEditRecipeForm({
   const [category, setCategory] = React.useState("");
   const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
   const [directions, setDirections] = React.useState("");
+  // const [publisher, setPublisher] = React.useState("");
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
 
@@ -55,7 +56,7 @@ function AddEditRecipeForm({
       name,
       category,
       directions,
-      // publisher: currentUser.email,
+      publisher: userEmail,
       publishDate: new Date(publishDate),
       isPublished,
       ingredients,
@@ -130,7 +131,7 @@ function AddEditRecipeForm({
             Publisher:{' '} </label>
             <input
               type="text"
-              value={currentUser.email}
+              value={userEmail}
               readOnly
               className="recipeForm__topFormSection__publisher"
             />
