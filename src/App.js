@@ -89,7 +89,6 @@ const handleSendResetPasswordEmail = async (formData) => {
     }
     try {
       await sendAuthUserPasswordReset(formData.email);
-      alert("sent the password reset email");
     } catch (error) {
       console.log('Error Message:', error.message, 'Error Code:', error.code);
     }

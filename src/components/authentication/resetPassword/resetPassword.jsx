@@ -4,6 +4,8 @@ import Button from "../../button/button"
 
 const ResetPassword = ({handleSendResetPasswordEmail}) => {
     
+  const [sendPwState, setSendPwState] = React.useState(false)
+
     function handleSubmit(event) {
       event.preventDefault()
       const {email} = event.target.elements
@@ -12,6 +14,7 @@ const ResetPassword = ({handleSendResetPasswordEmail}) => {
       handleSendResetPasswordEmail({
         email: email.value,
       })
+      setSendPwState(true)
     }
 
     return (
@@ -20,6 +23,10 @@ const ResetPassword = ({handleSendResetPasswordEmail}) => {
         className="resetForm"
         onSubmit={handleSubmit}
         >
+
+          <div className="resetForm__goBack">
+              <a className="resetForm__goBack--link"  href='/'>Go Back</a>
+          </div>
 
           <div className="resetForm__heading" >
             <h2>Reset Password</h2>
@@ -35,22 +42,35 @@ const ResetPassword = ({handleSendResetPasswordEmail}) => {
                 <li>Enter your new password there</li>
               </ol>
           </div>
+          {
+            !sendPwState ? 
+            <div className="resetForm__inputBox" >
+              <label className="resetForm__inputBox__label" htmlFor="email">Email
+                <input className="resetForm__inputBox__formField" placeholder='Insert your email here ..'  id="email" type="email" required/>
+              </label>
+            </div> 
+            : 
+            <div className="resetForm__inputBox" >
+              <label className="resetForm__inputBox__label" htmlFor="email">
+                We have sent you an email with a password reset link
+              </label>
+            </div>
+          }
 
-          <div className="resetForm__inputBox" >
-            <label className="resetForm__inputBox__label" htmlFor="email">Email
-              <input className="resetForm__inputBox__formField" placeholder='Insert your email here ..'  id="email" type="email" required/>
-            </label>
-          </div>
-
-           <div className="resetForm__resetLink">
-            {/* <Spinner css={{marginLeft: 5}} /> */}
+            <div className="resetForm__resetBox">
+              {
+                !sendPwState ? 
                   <Button 
                     btnType='darkBlue'
                     type='submit'
                     onClick={handleSendResetPasswordEmail}>
                         Reset Password 
                   </Button>
-           </div>
+                  :
+                  <a className="resetForm__resetBox--link"  href='/'>Go to Login</a>
+              }
+            </div>
+
 
       </form>
 
