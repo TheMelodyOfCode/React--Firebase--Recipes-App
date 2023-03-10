@@ -70,4 +70,15 @@
             }
     }
 
+    &__pwReset--btn {
+        grid-column: 1/3;
+        grid-row: 4/5;        
+        text-align: center;
+        width: 100%;
+        @include respond(phone) {
+            grid-column: 1/2;
+            grid-row: 6/7;
+            }
+    }
+
 }

@@ -9,6 +9,7 @@ const BUTTON_Style_CLASSES = {
     blueGray: 'btn--blueGray',
     green: 'btn--green',
     red: 'btn--red',
+    resetPW: 'btn--resetPW',
     addIngredient: 'btn--addIngredient',
     createUpdate: 'btn--createUpdate',
     deleteRecipe: 'btn--deleteRecipe',

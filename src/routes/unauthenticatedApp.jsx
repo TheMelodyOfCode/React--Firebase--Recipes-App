@@ -10,7 +10,7 @@ import Button from '../components/button/button';
 import LoginForm from '../components/authentication/login/loginForm';
 import RegisterForm from '../components/authentication/register/registerForm';
 
-const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
+const UnauthenticatedApp =({login, setPasswordState, register}) => {
 
   const [openModal, setOpenModal] = React.useState('none')
 
@@ -21,7 +21,6 @@ const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
     const signInWithGithub = async ()=>{
         await signInWithGithubPopup();
     }
-    
 
 
   return (
@@ -30,10 +29,10 @@ const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
         <div className='unauthenticatedApp'>
           <img className='unauthenticatedApp__mainLogo'  src="img/recepie-logo.jpg" alt="logo"/>
             <div className='unauthenticatedApp__login--btn'>
-                <Button btnType='green' onClick={() => setOpenModal('login')}  >Login</Button>  
+                <Button btnType='green' onClick={() => setOpenModal('login')}  > Login</Button>  
             </div>
             <div className='unauthenticatedApp__reg--btn'>
-                <Button btnType='black' onClick={() => setOpenModal('register')}>Register</Button>
+                <Button btnType='black' onClick={() => setOpenModal('register')}> Register</Button>
             </div>
             <div className='unauthenticatedApp__google--btn'>
                 <Button btnType='blue'   onClick={signInWithGoogle}  >Googel Login</Button>  
@@ -43,11 +42,14 @@ const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
                     <img className='unauthenticatedApp__githubLogo'  src="img/github-logo.png" alt="logo"/>
                 </Button>
             </div>
+            <div className='unauthenticatedApp__pwReset--btn'>
+              <Button btnType='resetPW' onClick={setPasswordState}> Need a Password Reset ?</Button>
+            </div>
         {openModal === 'login' && (
             <div className='modal'>
                 <div className='modal__header'>
-                    <h3 className='modal__header--title'>Login</h3>
-                    <button onClick={() => setOpenModal('none')}>Close</button>
+                    <h3 className='modal__header--title'> Login</h3>
+                    <button onClick={() => setOpenModal('none')}> Close</button>
                 </div>
                 <div className='modal__body'>
                     <LoginForm onSubmit={login} buttonText="Login" />
@@ -58,8 +60,8 @@ const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
         {openModal === 'register' && (
             <div className='modal'>
                 <div className='modal__header'>
-                    <h3 className='modal__header--title'>Register</h3>
-                    <button onClick={() => setOpenModal('none')}>Close</button>
+                    <h3 className='modal__header--title'> Register</h3>
+                    <button onClick={() => setOpenModal('none')}> Close</button>
                 </div>  
                 <div className='modal__body'>
                     <RegisterForm onSubmit={register} buttonText="Register" />
@@ -69,11 +71,6 @@ const UnauthenticatedApp =({login, handleSendResetPasswordEmail, register}) => {
 
         </div>
     </main>
-
-        
-        
-
-        
 
   );
 }

@@ -35,9 +35,6 @@ const LoginForm = ({onSubmit, buttonText}) => {
             <Button btnType='blueGray' type="submit">{buttonText}</Button>
             {/* <Spinner css={{marginLeft: 5}} /> */}
           </div>
-          <div className="form__resetLink">
-              <a href="/reset">Password Reset ?</a>
-          </div>
         </div>
       </form>
 

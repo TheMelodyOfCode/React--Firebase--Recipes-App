@@ -1,6 +1,4 @@
 import * as React from 'react';
-// import SideNav from '../components/navigation/sideNav/sideNav'
-// import Recipies from './recipies'
 import MainNav from '../components/navigation/mainNav/mainNav'
 import ItemCard from '../components/itemCard/itemCard';
 import { createDocument, getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
@@ -10,6 +8,9 @@ import FilterRow from '../components/filterRow/filterRow';
 
 import { useAsync } from '../utils/lib/helperFunctions';
 import { FullPageSpinner } from '../utils/lib/lib';
+
+
+// import UserProfile from './userProfile';
 
 
 const AuthenticatedApp = ({user, logout}) => {
@@ -49,7 +50,7 @@ async function handleAddRecipe(newRecipe) {
 
     switch (status) {
       case 'idle':
-        return <span>Submit a cardName</span>
+        return <span>No Connection - Connect to Internet</span>
       case 'pending':
         return <FullPageSpinner />
       case 'rejected':
@@ -57,12 +58,12 @@ async function handleAddRecipe(newRecipe) {
       case 'resolved':
         return (
           <>
-          <MainNav user={user} logout={logout} />
-          <main className='authApp'>
-           <FilterRow />
-          <ItemCard allFromDB={allFromDB} user={user}/>  
-          <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> 
-          </main>
+            <MainNav user={user} logout={logout} />
+            <main className='authApp'>
+            <FilterRow />
+            <ItemCard allFromDB={allFromDB} user={user}/>  
+            <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> 
+            </main>
           </>
         )
       default:

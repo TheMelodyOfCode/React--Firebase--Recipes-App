@@ -16,7 +16,7 @@ import { UserProvider } from './contexts/user.context';
 import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';
 import ResetPassword from './components/authentication/resetPassword/resetPassword';
 import RouteError from './components/errorHandling/routeErros/routeErrors';
-import AuthenticatedApp from './routes/authenticatedApp';
+// import UserProfile from './routes/userProfile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +28,7 @@ const router = createBrowserRouter(
         <Route errorElement={<RouteError />}>
             <Route index element={<App />} />
             <Route path="/reset" element={<ResetPassword />} />
-            {/* <Route path="/recepies" element={<AuthenticatedApp />} /> */}
+            {/* <Route path="/profile" element={<UserProfile />} /> */}
         </Route>
     </Route>
   )

@@ -139,6 +139,18 @@
             background-color: $color-light-green-1;
         }
     }
+
+    &--resetPW {
+        background-color: transparent;
+        color: $color-BTN-blue-3;
+        font-family: $primary-font;
+        width: 60%;
+        height: 1.5rem;
+        padding-bottom: 1rem;
+        &:hover {
+            background-color: $color-light-green-1;
+        }
+    }
 // ### Recipe Form Section 2
 // ### add Ingredient
 

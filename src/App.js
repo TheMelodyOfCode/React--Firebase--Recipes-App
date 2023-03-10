@@ -73,6 +73,9 @@ function App() {
     }
   }
 
+  const setPasswordState = () => {
+    setState('resetPassword')
+  }
 
   const logout = () => {
     signOutUser()
@@ -81,14 +84,12 @@ function App() {
   }
 
 const handleSendResetPasswordEmail = async (formData) => {
-    setState('loading')
     if (!formData) {
       return;
     }
     try {
       await sendAuthUserPasswordReset(formData.email);
       alert("sent the password reset email");
-      setState('resetPassword')
     } catch (error) {
       console.log('Error Message:', error.message, 'Error Code:', error.code);
     }
@@ -99,7 +100,7 @@ const handleSendResetPasswordEmail = async (formData) => {
     return <FullPageSpinner />
   }
   if (resetPassword ) {
-    return <ResetPassword />
+    return <ResetPassword handleSendResetPasswordEmail={handleSendResetPasswordEmail} />
   }
   if (verifyEmail ) {
     return <VerifyEmail />
@@ -108,7 +109,7 @@ const handleSendResetPasswordEmail = async (formData) => {
   return currentUser ? (
       <AuthenticatedApp user={currentUser} logout={logout} />
     ) : (
-      <UnauthenticatedApp login={login} handleSendResetPasswordEmail={handleSendResetPasswordEmail} register={register} />
+      <UnauthenticatedApp login={login} setPasswordState={setPasswordState} register={register} />
     )
     
   }
