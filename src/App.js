@@ -14,6 +14,7 @@ import {
 
 import { FullPageSpinner } from './utils/lib/lib';
 
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -21,10 +22,7 @@ function App() {
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
  
   const [state, setState] = React.useState('idle')
-  const isLoading = state === 'loading'
-  const verifyEmail = state === 'verifyEmail'
-  const resetPassword = state === 'resetPassword'
-  
+
 
 
   const login = async (formData) => {
@@ -32,6 +30,7 @@ function App() {
     try {
         setState('loading')
         await signInAuthUserWithEmailAndPassword(formData.email, formData.password);   
+        setState('idle')
     } catch(error) { 
       switch(error.code) {
           case 'auth/wrong-password':
@@ -45,7 +44,7 @@ function App() {
       }
       
     }
-    setState('idle')
+      // setState('idle')
   }
  
   const register = async (formData) => {
@@ -77,11 +76,11 @@ function App() {
     setState('resetPassword')
   }
 
-  const logout = () => {
-    signOutUser()
-    setCurrentUser(null);
-    setState('idle')
-  }
+  // const logout = () => {
+  //   signOutUser()
+  //   setCurrentUser(null);
+  //   setState('idle')
+  // }
 
 const handleSendResetPasswordEmail = async (formData) => {
     if (!formData) {
@@ -93,24 +92,25 @@ const handleSendResetPasswordEmail = async (formData) => {
       console.log('Error Message:', error.message, 'Error Code:', error.code);
     }
   }
+console.log(state)
+  switch (state) {
+    case 'isLoading':
+      return <FullPageSpinner />
+    case 'resetPassword':
+      return <ResetPassword handleSendResetPasswordEmail={handleSendResetPasswordEmail} />
+    case 'verifyEmail':
+      return <VerifyEmail />
+    case 'idle':
+      return currentUser ? (
+        <AuthenticatedApp />
+        // <AuthenticatedApp user={currentUser} logout={logout} />
+      ) : (
+        <UnauthenticatedApp login={login} setPasswordState={setPasswordState} register={register} />
+      )
+    default:
+      // throw new Error('OOps,..This should be impossible')
+  }
 
 
-  if (isLoading ) {
-    return <FullPageSpinner />
-  }
-  if (resetPassword ) {
-    return <ResetPassword handleSendResetPasswordEmail={handleSendResetPasswordEmail} />
-  }
-  if (verifyEmail ) {
-    return <VerifyEmail />
-  }
-  if (state) {
-  return currentUser ? (
-      <AuthenticatedApp user={currentUser} logout={logout} />
-    ) : (
-      <UnauthenticatedApp login={login} setPasswordState={setPasswordState} register={register} />
-    )
-    
-  }
 }
 export default App;

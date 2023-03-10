@@ -3,47 +3,26 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import {ErrorBoundary} from 'react-error-boundary'
 import {
-  // BrowserRouter, 
-  createRoutesFromElements,
-  createBrowserRouter,   
-  RouterProvider,
-  Route,
+  BrowserRouter, 
  } from 'react-router-dom';
 
 import './main.scss';
 import App from './App';
 import { UserProvider } from './contexts/user.context';
 import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';
-import ResetPassword from './components/authentication/resetPassword/resetPassword';
-import RouteError from './components/errorHandling/routeErros/routeErrors';
-// import UserProfile from './routes/userProfile';
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route
-    path="/"
-    element={<App />}
-    errorElement={<RouteError />}
-    >
-        <Route errorElement={<RouteError />}>
-            <Route index element={<App />} />
-            <Route path="/reset" element={<ResetPassword />} />
-            {/* <Route path="/profile" element={<UserProfile />} /> */}
-        </Route>
-    </Route>
-  )
-);
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ErrorBoundary FallbackComponent={ErrorFallback} >
-        <UserProvider>
-          <RouterProvider router={router} />
-        </UserProvider>
-    </ErrorBoundary>
+    <BrowserRouter>
+        <ErrorBoundary FallbackComponent={ErrorFallback} >
+            <UserProvider>
+              <App />
+            </UserProvider>
+        </ErrorBoundary>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

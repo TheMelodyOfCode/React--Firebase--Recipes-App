@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { 
     FoodIcon, 
     SettingsIcon, 
     LogoutIcon, 
     ContactIcon } from '../../../utils/lib/lib';
 
-import UserProfile
-     from '../../../routes/userProfile';
 
 
 const MainNav = ({user, logout}) => {
