@@ -8,7 +8,7 @@ import { UserContext } from '../contexts/user.context';
 import ItemCard from '../components/itemCard/itemCard';
 import FilterRow from '../components/filterRow/filterRow';
 import { FullPageSpinner } from '../utils/lib/lib';
-
+import ItemCardFallback from "../components/itemCard/itemCardFallback";
 const Dashboard = () => {
 
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
@@ -30,8 +30,8 @@ const Dashboard = () => {
 
 switch (status) {
   case 'idle':
-    return <FullPageSpinner />
-    // return <span>No Connection - Connect to Internet</span>
+    // return <FullPageSpinner />
+    return <span>No Connection - Connect to Internet</span>
   case 'pending':
     return <FullPageSpinner />
   case 'rejected':
@@ -40,7 +40,11 @@ switch (status) {
     return (
       <>
             <FilterRow />
+            {
+              !allFromDB.length ? <ItemCardFallback />
+              :
             <ItemCard allFromDB={allFromDB} user={currentUser}/>  
+            }
       </>
 
     )

@@ -12,11 +12,11 @@ import RegisterForm from '../components/authentication/register/registerForm';
 
 const UnauthenticatedApp =({login, setPasswordState, register}) => {
 
-  const [openModal, setOpenModal] = React.useState('none')
+    const [openModal, setOpenModal] = React.useState('none')
 
-  const signInWithGoogle = async ()=>{
-    await signInWithGooglePopup();
-    }
+    const signInWithGoogle = async ()=>{
+        await signInWithGooglePopup();
+        }
     
     const signInWithGithub = async ()=>{
         await signInWithGithubPopup();

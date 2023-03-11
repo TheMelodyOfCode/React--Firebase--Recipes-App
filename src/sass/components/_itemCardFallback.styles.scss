@@ -1,0 +1,83 @@
+
+  // TODO: change styling
+  .itemCardFallback {
+  
+    display: grid;
+    grid-row: 2/3;
+    justify-content: center;
+    row-gap: 2rem;
+    column-gap: 2rem;
+
+    
+        &__container {
+          display: grid;
+          grid-template-columns: max-content;
+          grid-template-rows: repeat(3, minmax(min-content, 1fr));
+          text-align: center;
+          row-gap: 1rem;
+          height: 53rem;
+          width: 30rem;
+          border-radius: 1rem;
+          background-image: radial-gradient(
+            farthest-corner at 40px 40px,
+            $color-gray-1 0%,
+            $color-gray-4 80%
+          );
+
+          &__title {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            justify-self: center;
+            padding-top: 1rem;
+          }
+
+        
+          &__img {
+            grid-row: 2/3;
+            justify-self: center;
+            height: 25rem;
+            width: 26rem;
+            object-fit: cover;
+                &:hover {
+                  opacity: 0.8;
+              }
+            }
+      
+      
+          &__footer {
+            display: grid;
+            grid-column: 1/2;
+            grid-row: 3/4;
+            grid-template-columns: repeat(2, minmax(min-content, max-content));
+            grid-template-rows: repeat(3, minmax(min-content, max-content));
+            row-gap: .1rem;
+            font-size: 1.3rem;
+            padding: 1rem;
+            
+      
+            &__categoryTitle {
+              grid-column: 1/2;
+              grid-row: 1/2;
+            }
+            &__categoryContent {
+              grid-column: 2/3;
+              grid-row: 1/2;
+              justify-self: end;
+            }
+        
+            &__dateTitle {
+              grid-column: 1/2;
+              grid-row: 2/3;
+            }
+            &__dateContent {
+              grid-column: 2/3;
+              grid-row: 2/3;
+              justify-self: end;
+            }
+
+
+          }
+
+    }
+  
+  }

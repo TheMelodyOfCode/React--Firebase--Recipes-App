@@ -13,10 +13,6 @@ import AppRoutes from './appRoutes';
 // import { useAsync } from '../utils/lib/helperFunctions';
 // import { FullPageSpinner } from '../utils/lib/lib';
 
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
 
 
 const AuthenticatedApp = ({ logout}) => {
