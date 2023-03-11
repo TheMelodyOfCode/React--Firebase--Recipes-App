@@ -25,24 +25,24 @@
 @keyframes changeColor {
 
     0% {
-        background-image: linear-gradient(to right, $color-primary-1, $color-light-green-2);
+        background-image: linear-gradient(to right, $color-blueGray-dark-1, $color-light-green-2);
         /* This will clip the background to exactely where the text is */
         background-clip: text;
         color: transparent;
     }
     40% {
-        background-image: linear-gradient(to right, $color-light-green-2, $color-primary-1);
+        background-image: linear-gradient(to right, $color-light-green-2, $color-blueGray-dark-1);
         background-clip: text;
         color: transparent;
     }
     80% {
-        background-image: linear-gradient(to right, $color-primary-1, $color-light-green-2);
+        background-image: linear-gradient(to right, $color-blueGray-dark-1, $color-light-green-2);
         background-clip: text;
         color: transparent;
     }
     100% {
         opacity: 1;
-        background-image: linear-gradient(to right, $color-light-green-2, $color-primary-1);
+        background-image: linear-gradient(to right, $color-light-green-2, $color-blueGray-dark-1);
         background-clip: text;
         color: transparent;
     }

@@ -11,15 +11,14 @@ export const FilterRow = () => {
     return (
         <div className="filterRow">
             <label className="filterRow__recipeLabel">
-                Category:
                 <select
                     value={categoryFilter}
                     onChange={(e) => setCategoryFilter(e.target.value)}
                     className="filterRow__recipeLabel--select"
                     required
                 >
-                    <option value=""></option>
-                    <option value="breadsSandwichesAndPizza">Breads, Sandwiches, and Pizza</option>
+                    <option value="">Categories</option>
+                    <option value="breadsSandwichesAndPizza">Breads,Sandwiches, & Pizza</option>
                     <option value="eggsAndBreakfast">Eggs & Breakfast</option>
                     <option value="saladsAnsSnacks">Salads & Snacks</option>
                     <option value="soups">Soups</option>
@@ -32,20 +31,20 @@ export const FilterRow = () => {
                 </label>
 
                 <div className="filterRow__addRecipeBox">
-                        <a className="filterRow__addRecipeBox--link"  href='/addRecipe'>Add a New Recipe</a>
+                        <a className="filterRow__addRecipeBox--link"  href='/addRecipe'>Click to Add a Recipe</a>
                 </div>
                 
                 <label className="filterRow__dateLabel">
                 <select
                     value={orderBy}
                     onChange={(e) => setOrderBy(e.target.value)}
-                    className="filterRow__datelabel--select"
+                    className="filterRow__dateLabel--select"
                 >
                     <option value="publishDateDesc">
-                    Publish Date (newest - oldest)
+                    Sort Date (newest - oldest)
                     </option>
                     <option value="publishDateAsc">
-                    Publish Date (oldest - newest)
+                    Sort Date (oldest - newest)
                     </option>
                 </select>
             </label>

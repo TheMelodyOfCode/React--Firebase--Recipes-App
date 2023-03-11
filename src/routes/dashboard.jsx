@@ -1,17 +1,13 @@
 import * as React from 'react';
-
-
-// import MainNav from '../components/navigation/mainNav/mainNav'
-import ItemCard from '../components/itemCard/itemCard';
-// import GenerateText from '../components/generateText/generateText';
-import FilterRow from '../components/filterRow/filterRow';
-
-import { createDocument, getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
-
+import {  getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
 
 import { useAsync } from '../utils/lib/helperFunctions';
-import { FullPageSpinner } from '../utils/lib/lib';
 import { UserContext } from '../contexts/user.context';
+
+// import GenerateText from '../components/generateText/generateText';
+import ItemCard from '../components/itemCard/itemCard';
+import FilterRow from '../components/filterRow/filterRow';
+import { FullPageSpinner } from '../utils/lib/lib';
 
 const Dashboard = () => {
 
@@ -43,10 +39,8 @@ switch (status) {
   case 'resolved':
     return (
       <>
-            {/* <MainNav user={currentUser} logout={logout} /> */}
             <FilterRow />
             <ItemCard allFromDB={allFromDB} user={currentUser}/>  
-            {/* <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/>  */}
       </>
 
     )

@@ -3,10 +3,11 @@ import Button from '../button/button';
 import { DeleteIcon } from '../../utils/lib/lib';
 import {Link} from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
+import { createDocument, } from '../../utils/firebase/firebase.firestore';
 
 function AddEditRecipeForm({
   existingRecipe,
-  handleAddRecipe,
+  // handleAddRecipe,
   handleUpdateRecipe,
   handleDeleteRecipe,
   handleEditRecipeCancel,
@@ -28,9 +29,6 @@ function AddEditRecipeForm({
     }
   }, [ existingRecipe]);
 
-
-  
-
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
@@ -39,7 +37,21 @@ function AddEditRecipeForm({
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
 
+  async function handleAddRecipe(newRecipe) {
 
+    if(!newRecipe) return;
+    try {
+        await createDocument(
+        newRecipe,
+      );
+      // handleFetchRecipes();
+      console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
+      alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  
 
   // addPublisher()
   function handleRecipeFormSubmit(e) {
