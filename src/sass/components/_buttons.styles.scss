@@ -185,5 +185,17 @@
         height: 3rem;
         font-family: $primary-font;
     }
+// itemCard- Edit-btn
+    &--editRecipe {
+        background-color: transparent;
+        border: 1px solid $color-black;
+        color: $color-black;
+        width: 100%;
+        font-family: $primary-font;
+        text-align: center;
+        &:hover {
+            background-color: $color-white;
+        }
+    }
 
 }

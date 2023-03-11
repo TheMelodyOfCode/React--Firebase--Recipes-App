@@ -14,6 +14,7 @@ const BUTTON_Style_CLASSES = {
     createUpdate: 'btn--createUpdate',
     deleteRecipe: 'btn--deleteRecipe',
     cancelRecipe: 'btn--cancelRecipe',
+    editRecipe: 'btn--editRecipe',
 }
 
 const BUTTON_Animation_CLASSES = {

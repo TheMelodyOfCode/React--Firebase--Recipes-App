@@ -1,4 +1,4 @@
-
+import Button from "../button/button";
 
 
 const ItemCard = ({allFromDB, user}) => {
@@ -57,9 +57,9 @@ return (
                             </span>
                             {
                                 user ? (
-                                    <button className='itemCard__container__footer__button'>
-                                        Edit
-                                    </button>
+                                    <div className='itemCard__container__footer__editBtnBox' >
+                                            <Button btnType='editRecipe' >Edit</Button>
+                                    </div>
                                 ) : null
                             }
                         </div>    
