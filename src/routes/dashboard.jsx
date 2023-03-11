@@ -1,20 +1,19 @@
 import * as React from 'react';
 
 
-import MainNav from '../components/navigation/mainNav/mainNav'
+// import MainNav from '../components/navigation/mainNav/mainNav'
 import ItemCard from '../components/itemCard/itemCard';
-import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm'
 // import GenerateText from '../components/generateText/generateText';
 import FilterRow from '../components/filterRow/filterRow';
 
 import { createDocument, getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
-import { signOutUser } from '../utils/firebase/firebase.auth';
+
 
 import { useAsync } from '../utils/lib/helperFunctions';
 import { FullPageSpinner } from '../utils/lib/lib';
 import { UserContext } from '../contexts/user.context';
 
-const UserDashboard = () => {
+const Dashboard = () => {
 
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
 
@@ -32,25 +31,6 @@ const UserDashboard = () => {
         
     }, [ currentUser, run,])
 
-  const logout = () => {
-    signOutUser()
-    setCurrentUser(null);
-  }
-
-async function handleAddRecipe(newRecipe) {
-
-  if(!newRecipe) return;
-  try {
-      await createDocument(
-      newRecipe,
-    );
-    // handleFetchRecipes();
-    console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
-    alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
-  } catch (error) {
-    console.log(error.message);
-  }
-}
 
 switch (status) {
   case 'idle':
@@ -63,12 +43,10 @@ switch (status) {
   case 'resolved':
     return (
       <>
-            <MainNav user={currentUser} logout={logout} />
-            <main className='authApp'>
+            {/* <MainNav user={currentUser} logout={logout} /> */}
             <FilterRow />
             <ItemCard allFromDB={allFromDB} user={currentUser}/>  
-            <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/> 
-            </main>
+            {/* <AddEditRecipeForm handleAddRecipe={handleAddRecipe}/>  */}
       </>
 
     )
@@ -79,4 +57,4 @@ switch (status) {
 
 }
 
-export default UserDashboard;
+export default Dashboard;

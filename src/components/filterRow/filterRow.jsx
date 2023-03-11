@@ -30,6 +30,10 @@ export const FilterRow = () => {
                     <option value="dessertsAndBakedGoods">Desserts & Baked Goods</option>
                 </select>
                 </label>
+
+                <div className="filterRow__addRecipeBox">
+                        <a className="filterRow__addRecipeBox--link"  href='/addRecipe'>Add a New Recipe</a>
+                </div>
                 
                 <label className="filterRow__dateLabel">
                 <select

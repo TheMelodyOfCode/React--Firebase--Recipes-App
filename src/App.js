@@ -14,7 +14,9 @@ import {
 
 import { FullPageSpinner } from './utils/lib/lib';
 
-import { useNavigate } from 'react-router-dom';
+import {
+  BrowserRouter, 
+ } from 'react-router-dom';
 
 
 function App() {
@@ -76,11 +78,11 @@ function App() {
     setState('resetPassword')
   }
 
-  // const logout = () => {
-  //   signOutUser()
-  //   setCurrentUser(null);
-  //   setState('idle')
-  // }
+  const logout = () => {
+    signOutUser()
+    setCurrentUser(null);
+    setState('idle')
+  }
 
 const handleSendResetPasswordEmail = async (formData) => {
     if (!formData) {
@@ -92,7 +94,7 @@ const handleSendResetPasswordEmail = async (formData) => {
       console.log('Error Message:', error.message, 'Error Code:', error.code);
     }
   }
-console.log(state)
+// console.log(state)
   switch (state) {
     case 'isLoading':
       return <FullPageSpinner />
@@ -102,8 +104,9 @@ console.log(state)
       return <VerifyEmail />
     case 'idle':
       return currentUser ? (
-        <AuthenticatedApp />
-        // <AuthenticatedApp user={currentUser} logout={logout} />
+      <BrowserRouter >
+        <AuthenticatedApp logout={logout} />
+      </BrowserRouter>
       ) : (
         <UnauthenticatedApp login={login} setPasswordState={setPasswordState} register={register} />
       )
