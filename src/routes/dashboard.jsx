@@ -11,7 +11,7 @@ import { FullPageSpinner } from '../utils/lib/lib';
 import ItemCardFallback from "../components/itemCard/itemCardFallback";
 const Dashboard = () => {
 
-  const { currentUser, setCurrentUser} = React.useContext(UserContext);
+  const { currentUser, } = React.useContext(UserContext);
 
   const {data: allFromDB, status, error, run} = useAsync({ 
     status: 'idle' ,
