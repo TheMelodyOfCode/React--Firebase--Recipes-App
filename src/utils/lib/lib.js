@@ -9,6 +9,7 @@ import { IoFastFoodOutline } from 'react-icons/io5';
 import {TiDeleteOutline} from 'react-icons/ti'
 import {FaSpinner} from 'react-icons/fa'
 import {GrChapterAdd} from 'react-icons/gr'
+import {BsChatRightText} from 'react-icons/bs'
 
 // ### ICONS ###
 const spin = keyframes({
@@ -40,6 +41,19 @@ function FullPageSpinner() {
     </div>
   )
 }
+
+function TextIcon() {
+    return (
+        <span
+            style={{
+              color: 'black',
+              fontSize: '2rem',
+        }}
+        >
+        <BsChatRightText />
+        </span>  
+    )
+  }
 
 function AddIcon() {
     return (
@@ -125,4 +139,5 @@ function ContactIcon() {
     ContactIcon,
     DeleteIcon,
     AddIcon,
+    TextIcon
 }

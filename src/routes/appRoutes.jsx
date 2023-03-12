@@ -5,7 +5,7 @@ import * as React from 'react';
 import Dashboard from './dashboard';
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm';
 import RouteErrors from '../components/errorHandling/routeErros/routeErrors';
-
+import GenerateText from '../components/generateText/generateText';
 // import { FullPageSpinner } from '../utils/lib/lib';
 
 import {
@@ -21,6 +21,7 @@ const AppRoutes = () => {
             <Routes>
                   <Route path='/' element={<Dashboard />} />
                   <Route path="/addRecipe" element={<AddEditRecipeForm /> } />
+                  <Route path="/generateText" element={<GenerateText /> } />
                   {/* <Route path="/book/:bookId" element={<BookScreen user={user} />} />*/}
                   <Route path="*" element={<RouteErrors />} /> 
             </Routes>

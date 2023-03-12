@@ -3,7 +3,6 @@ import { Configuration, OpenAIApi } from "openai";
 //TODO - add your OpenAI API key in .env file (figure out why it's not working)
 import { OPENAI_API_KEY } from "../../utils/openAI/config";
 
-
 const configuration = new Configuration({
       apiKey: OPENAI_API_KEY,
     //  apiKey: process.env.OPENAI_API_KEY,  
@@ -13,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 
 
 const GenerateText = () => {
-    const [animalInput, setAnimalInput] = React.useState("");
+    const [recipeName, setRecipeName] = React.useState("");
     const [result, setResult] = React.useState();
   
 
@@ -28,7 +27,7 @@ const GenerateText = () => {
       try {
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: animalInput,
+          prompt: generatePrompt(recipeName),
           temperature: 0.6,
           max_tokens: 1000,
         });
@@ -43,29 +42,37 @@ const GenerateText = () => {
       }
 
     }
+
+    function generatePrompt(recipe) {
   
+      const capitalizedRecipe =
+        recipe[0].toUpperCase() + recipe.slice(1).toLowerCase();
+      return `Suggest three names for an animal that is a superhero.
+    
+    Dish: Cat
+    Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
+    Dish: Dog
+    Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+    Dish: ${capitalizedRecipe}
+    Names: `;
+    }
+  // TODO: add spinner
     return (
-      <div className="recipeForm">
-        <header>
-          <title>OpenAI Quickstart</title>
-          <link rel="icon" href="/dog.png" />
-        </header>
-  
-        <main >
-          <img src="/dog.png" alt='logo'/>
-          <h3>Ask a Question</h3>
-          <form onSubmit={onSubmit}>
+      <div className="generateText">
+          <img className="generateText__logo" src="/img/food.png" alt='logo'/>
+          <h3 className="generateText__title" >Get a Cool Name</h3>
+          <form className="generateText__form" onSubmit={onSubmit}>
             <input
+              className="generateText__form__input"
               type="text"
               name="animal"
-              placeholder="Enter an animal"
-              value={animalInput}
-              onChange={(e) => setAnimalInput(e.target.value)}
+              placeholder="Enter e.a: Pizza"
+              value={recipeName}
+              onChange={(e) => setRecipeName(e.target.value)}
             />
-            <input type="submit" value="Generate names" />
+            <input className="generateText__form__submit" type="submit" value="Generate names" />
           </form>
-          <div  >{result}</div>
-        </main>
+          <div className="generateText__textArea"  >{result}</div>
       </div>
     );
   }

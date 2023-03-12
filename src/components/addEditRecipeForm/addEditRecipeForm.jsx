@@ -130,6 +130,9 @@ function AddEditRecipeForm({
         
           <label className="recipeForm__topFormSection__label--1">
             Recipe Name:{' '} </label>
+            <Link className="recipeForm__topFormSection__link" to='/generateText'>
+              Need a cool Recipe-Name?
+            </Link>
             <input
               type="text"
               required
