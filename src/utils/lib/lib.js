@@ -8,6 +8,7 @@ import { RiLogoutBoxRLine, RiContactsBook2Line } from 'react-icons/ri';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import {TiDeleteOutline} from 'react-icons/ti'
 import {FaSpinner} from 'react-icons/fa'
+import {GrChapterAdd} from 'react-icons/gr'
 
 // ### ICONS ###
 const spin = keyframes({
@@ -39,6 +40,19 @@ function FullPageSpinner() {
     </div>
   )
 }
+
+function AddIcon() {
+    return (
+        <span
+            style={{
+              color: 'red',
+              fontSize: '2rem',
+        }}
+        >
+        <GrChapterAdd />
+        </span>  
+    )
+  }
 
 function DeleteIcon() {
     return (
@@ -110,4 +124,5 @@ function ContactIcon() {
     LogoutIcon,
     ContactIcon,
     DeleteIcon,
+    AddIcon,
 }

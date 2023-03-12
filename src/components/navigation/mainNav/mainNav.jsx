@@ -4,7 +4,8 @@ import {
     FoodIcon, 
     SettingsIcon, 
     LogoutIcon, 
-    ContactIcon } from '../../../utils/lib/lib';
+    ContactIcon,
+    AddIcon } from '../../../utils/lib/lib';
 
 
 
@@ -15,7 +16,10 @@ const MainNav = ({user, logout}) => {
     <nav className='mainNav' >
 
     <div className="mainNav__logoBox">
+    <Link to='/' className='mainNav__logoBox--link'>
         <h1 className='mainNav__logoBox--logo'>Recipies</h1>
+    </Link>
+        
     </div>
 
     <p className="mainNav__userEmail" >{user.email}</p>
@@ -30,8 +34,12 @@ const MainNav = ({user, logout}) => {
             <ul className="mainNav__toggleMenu__list">
                 <li className="toggleMenu__item"><p className="mainNav__userEmail" >{user.email}</p></li>
                 <br/>
-                <li className="toggleMenu__item"><Link to='/' className="mainNav__toggleMenu__link"><FoodIcon />{' '} Home</Link></li>
+                <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/"}} className="mainNav__toggleMenu__link"><FoodIcon />{' '} Home</Link></li>
+
                 <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/profile"}} className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li>
+
+                <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/addRecipe"}} className="mainNav__toggleMenu__link"><AddIcon/>{' '} Add Recipe</Link></li>
+
                 <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link"><ContactIcon/>{' '} Contact</Link></li>
                 <li className="toggleMenu__item"><Link className="mainNav__toggleMenu__link"  onClick={logout} ><LogoutIcon/>{' '} SIGN OUT</Link ></li>
             </ul>

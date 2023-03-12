@@ -19,6 +19,10 @@
                 grid-row: 1/2;
             }
 
+            &--link {
+                text-decoration: none;
+            }
+
             &--logo {
                 font-family: $handwriting-font-1;
                 font-weight: bold;

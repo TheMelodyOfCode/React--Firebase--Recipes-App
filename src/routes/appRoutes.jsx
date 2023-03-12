@@ -20,7 +20,7 @@ const AppRoutes = () => {
           <>
             <Routes>
                   <Route path='/' element={<Dashboard />} />
-                  <Route path="addRecipe" element={<AddEditRecipeForm /> } />
+                  <Route path="/addRecipe" element={<AddEditRecipeForm /> } />
                   {/* <Route path="/book/:bookId" element={<BookScreen user={user} />} />*/}
                   <Route path="*" element={<RouteErrors />} /> 
             </Routes>
