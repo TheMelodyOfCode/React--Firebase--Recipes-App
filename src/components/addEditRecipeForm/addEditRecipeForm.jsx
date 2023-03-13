@@ -3,19 +3,21 @@ import Button from '../button/button';
 import { DeleteIcon } from '../../utils/lib/lib';
 import {Link} from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
-import { createDocument, } from '../../utils/firebase/firebase.firestore';
+import { createDocument, UpdateUserDocinDB} from '../../utils/firebase/firebase.firestore';
+
 
 function AddEditRecipeForm({
   existingRecipe,
-  // handleAddRecipe,
   handleUpdateRecipe,
   handleDeleteRecipe,
   handleEditRecipeCancel,
 }) {
+
+  console.log(existingRecipe)
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
-  
-       const userEmail = currentUser.email;
+
+  const userEmail = currentUser.email;
 
   React.useEffect(() => {
     if (existingRecipe) {
@@ -33,9 +35,9 @@ function AddEditRecipeForm({
   const [category, setCategory] = React.useState("");
   const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
   const [directions, setDirections] = React.useState("");
-  // const [publisher, setPublisher] = React.useState("");
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
+  const [currentRecipe, setCurrentRecipe] = React.useState(null);
 
   async function handleAddRecipe(newRecipe) {
 
@@ -51,9 +53,39 @@ function AddEditRecipeForm({
       console.log(error.message);
     }
   }
-  
+// ################# Update Recipe Section ########################################
+  // async function handleUpdateRecipe(newRecipe, recipeId) {
+  //   try {
+  //     await UpdateUserDocinDB(
+  //       recipeId,
+  //       newRecipe
+  //     );
 
-  // addPublisher()
+  //     // handleFetchRecipes();
+  //     alert(`successfully updated a recipe with an ID = ${recipeId}`);
+  //     setCurrentRecipe(null);
+  //   } catch (error) {
+  //     alert(error.message);
+  //     throw error;
+  //   }
+  // }
+
+  // function handleEditRecipeClick(recipeId) {
+  //   const selectedRecipe = recipes.find((recipe) => {
+  //     return recipe.id === recipeId;
+  //   });
+
+  //   if (selectedRecipe) {
+  //     setCurrentRecipe(selectedRecipe);
+  //     window.scrollTo(0, document.body.scrollHeight);
+  //   }
+  // }
+
+  // function handleEditRecipeCancel() {
+  //   setCurrentRecipe(null);
+  // }
+
+
   function handleRecipeFormSubmit(e) {
     e.preventDefault();
     

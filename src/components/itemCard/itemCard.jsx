@@ -1,6 +1,31 @@
-import Button from "../button/button";
 import * as React from 'react';
-const ItemCard = ({allFromDB, user}) => {
+
+import Button from "../button/button";
+import { Link } from 'react-router-dom';
+
+const ItemCard = ({recipies, user, onSelect}) => {
+
+
+    // const [currentRecipeID, setCurrentRecipeID] = React.useState(null);
+    // const [recipe, setRecipe] = React.useState(null);
+
+
+    // console.log(currentRecipe)
+    // React.useEffect(() => {
+    //     if (!recipies) {
+    //       return
+    //     }
+    //     if(currentRecipeID) {
+    //     const recipe = recipies.find(recipe => recipe.id === currentRecipeID)
+    //     // setRecipe(recipe)
+    //     console.log(recipe)
+    //     }
+    //   }, [currentRecipeID, recipies])
+
+
+//   function handleEditRecipeClick (recipeID) {
+//         setCurrentRecipeID(recipeID)
+//     }
 
 
 
@@ -22,24 +47,30 @@ const ItemCard = ({allFromDB, user}) => {
     
         return label;
       }
+      
 
 
     return (
         
         <div className="itemCard" >
             {
-            allFromDB.map((recipe) => { 
-                if (recipe.publisher === user.email) {
+            recipies.map((recipe) => { 
+                // if (recipe.publisher === user.email) {
                 return (
                     <div className="itemCard__container" key={recipe.id}>
-                        
-                        { recipe.isPublished === false ? (
+                        { recipe.publisher === user.email && recipe.isPublished === false ? (
                                 <h1 className="itemCard__container__unpublished">UNPUBLISHED</h1>
                             ) :  <h1 className='itemCard__container__title'>{recipe.name}</h1>
                         }
                        
                             <img className='itemCard__container__img'  src="img/burger1-sm.jpg" alt="burger"/>
                             <div className='itemCard__container__footer'>
+                                <span className='itemCard__container__footer__publisherTitle'> 
+                                    Publisher:
+                                </span>
+                                <span className='itemCard__container__footer__publisherContent'> 
+                                {recipe.publisher}
+                                </span>
                                 <span className='itemCard__container__footer__categoryTitle'> 
                                     Category:
                                 </span>
@@ -57,17 +88,22 @@ const ItemCard = ({allFromDB, user}) => {
                                                 })}
                                 </span>
                                 {
-                                    user ? (
+                                    recipe.publisher === user.email ? (
                                         <div className='itemCard__container__footer__editBtnBox' >
-                                                <Button btnType='editRecipe' >Edit</Button>
+                                            <Link to={`/addRecipe`}  > 
+                                            {/* <Link to={`/addRecipe/${recipe.id}`}  >  */}
+                                            <Button btnType='editRecipe' onClick={() => onSelect(recipe.id)} >Edit</Button>
+                                            {/* <Button btnType='editRecipe' onClick={() => handleEditRecipeClick(recipe.id)} >Edit</Button> */}
+                                            </Link>
                                         </div>
                                     ) : null
                                 }
                             </div>    
                     </div> 
-                    ) } else {
-                        return null;
-                    }   
+                    ) 
+                // } else {
+                //         return null;
+                //     }   
                 
                 
                 })

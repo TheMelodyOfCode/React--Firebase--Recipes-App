@@ -15,7 +15,7 @@ root.render(
   <React.StrictMode>
         <ErrorBoundary FallbackComponent={ErrorFallback} >
             <UserProvider>
-              <App />
+                  <App />
             </UserProvider>
         </ErrorBoundary>
   </React.StrictMode>

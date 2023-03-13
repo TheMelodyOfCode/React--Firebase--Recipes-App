@@ -12,7 +12,7 @@ import { UserContext } from '../contexts/user.context';
 import AppRoutes from './appRoutes';
 // import { useAsync } from '../utils/lib/helperFunctions';
 // import { FullPageSpinner } from '../utils/lib/lib';
-
+import { RecipiesProvider } from '../contexts/recipies.context';
 
 
 const AuthenticatedApp = ({ logout}) => {
@@ -26,7 +26,9 @@ const AuthenticatedApp = ({ logout}) => {
           <>
             <MainNav user={currentUser} logout={logout} />
             <main className='authApp'>
-            <AppRoutes />
+              <RecipiesProvider>
+                  <AppRoutes />
+              </RecipiesProvider>
             </main>
           </>
         )

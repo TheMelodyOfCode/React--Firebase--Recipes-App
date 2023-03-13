@@ -11,17 +11,26 @@ import {
   collection,
   addDoc,
   // writeBatch,
-  // getDoc, 
+  getDoc, 
   query,
   getDocs,
-  // doc, 
+  doc, 
   // getDocFromCache,
-  // updateDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 
 
 export const db = getFirestore(initApp);
+
+const NameOfCollection = 'recipies';
+ 
+// ### UPDATE USER-PROFILE INFORMATION !! ### 
+// ##########################################
+
+export const UpdateUserDocinDB = async (item = {})=>{
+  await updateDoc(doc(db, "userData", item.id), item);
+}
 
 // ### UPLOAD FILES TO DB !! ###
 // #############################
@@ -30,7 +39,7 @@ export const db = getFirestore(initApp);
     console.log('objectsToAdd', objectsToAdd)
     try {
         // Add a new document with a generated id.
-        const docRef = await addDoc(collection(db, "recipies"), 
+        const docRef = await addDoc(collection(db, NameOfCollection), 
           objectsToAdd
         );
         console.log("Document written with ID: ", docRef.id);
@@ -40,13 +49,31 @@ export const db = getFirestore(initApp);
     }
   }
 
+// ### GET  single document from DB !! ###
+// #############################
+       
+export const getSingleDocfromDB = async ( singleDoc) =>{
+  const docRef = doc(db, NameOfCollection, singleDoc);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    // console.log("Document data:", docSnap.data());
+    return docSnap.data()
+  } 
+  else {
+    // doc.data() will be undefined in this case
+    const error = {error: 'error', status: 'rejected', message: `Recipe with the name "${singleDoc}"` }
+    return Promise.reject(error)
+  }
+
+}
+
 // ### GET all FILES from DB !! ###
 // #############################
 
 export const getAllRecipiesfromDB = async ()=>{
 
   try {
-    const collectionRef = collection(db, 'recipies');
+    const collectionRef = collection(db, NameOfCollection);
     const q = query(collectionRef);
     const querySnapshot = await getDocs(q);
 
