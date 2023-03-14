@@ -2,6 +2,7 @@ import * as React from "react";
 import { Configuration, OpenAIApi } from "openai";
 //TODO - add your OpenAI API key in .env file (figure out why it's not working)
 import { OPENAI_API_KEY } from "../../utils/openAI/config";
+import { Link } from "react-router-dom";
 
 const configuration = new Configuration({
       apiKey: OPENAI_API_KEY,
@@ -72,6 +73,9 @@ const GenerateText = () => {
             />
             <input className="generateText__form__submit" type="submit" value="Generate names" />
           </form>
+          <Link className="generateText__link" to='/addRecipe'>
+              Go to Add Recipe
+          </Link>
           <div className="generateText__textArea"  >{result}</div>
       </div>
     );
