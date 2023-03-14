@@ -1,11 +1,9 @@
 import * as React from 'react';
 
-import { useAsync } from '../utils/lib/helperFunctions';
 import { UserContext } from '../contexts/user.context';
 import { RecipiesContext } from '../contexts/recipies.context';
-import {  getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
 import { FullPageSpinner } from '../utils/lib/lib';
-
+import { getAllRecipiesfromDB } from '../utils/firebase/firebase.firestore';
 import Dashboard from './dashboard';
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm';
 import RouteErrors from '../components/errorHandling/routeErros/routeErrors';
@@ -21,15 +19,26 @@ import {
 const AppRoutes = () => {
 
   const { currentUser, } = React.useContext(UserContext);
-  const { recipies, status, error} = React.useContext(RecipiesContext);
+  const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
   const [currentRecipeID, setCurrentRecipeID] = React.useState(null);
   const [existingRecipe, setExistingRecipe] = React.useState(null);
 
-  // console.log(recipe)
-// console.log(currentRecipeID)
-  // console.log(recipies)
-  // console.log(error)
-  // console.log(status)
+
+
+    const getRecipies = async ()=> {
+
+      try {
+          const allFromDB = await getAllRecipiesfromDB()
+          setRecipies(allFromDB)
+          return allFromDB;
+          } catch (error) 
+          {
+            console.error(error.message);
+            throw error;
+          }
+    }
+
+
     React.useEffect(() => {
         if (!recipies) {
           return
@@ -37,7 +46,6 @@ const AppRoutes = () => {
         if(currentRecipeID) {
         const recipe = recipies.find(recipe => recipe.id === currentRecipeID)
         setExistingRecipe(recipe)
-        console.log(recipe)
         }
       }, [currentRecipeID, recipies])
 
@@ -62,7 +70,7 @@ const AppRoutes = () => {
           <>
             <Routes>
                   <Route path='/' element={<Dashboard recipies={recipies} user={currentUser} onSelect={handleEditRecipeClick} />} />
-                    <Route path="/addRecipe" element={<AddEditRecipeForm recipies={recipies} existingRecipe={existingRecipe}  /> } />
+                    <Route path="/addRecipe" element={<AddEditRecipeForm recipies={recipies} existingRecipe={existingRecipe} getRecipies={getRecipies}  /> } />
                     <Route path="/generateText" element={<GenerateText /> } />
                   {/* <Route path="/recipe/:recipeId" element={<ItemCard allFromDB={allFromDB} user={currentUser} />} /> */}
                   <Route path="*" element={<RouteErrors />} /> 

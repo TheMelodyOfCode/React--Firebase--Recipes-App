@@ -28,15 +28,27 @@ const NameOfCollection = 'recipies';
 // ### UPDATE USER-PROFILE INFORMATION !! ### 
 // ##########################################
 
-export const UpdateUserDocinDB = async (item = {})=>{
-  await updateDoc(doc(db, "userData", item.id), item);
+export const UpdateUserDocinDB = async (itemID, item)=>{
+  try {
+          const userDocRef = doc(db, NameOfCollection, itemID)
+          await updateDoc(userDocRef, item);
+          console.log("Document written with ID: ", itemID);
+      } 
+      catch (error) {
+          console.log('error updating the Recipie', error.message)
+      }
 }
+// export const UpdateUserDocinDB = async (item = {})=>{
+//   const userDocRef = doc(db, NameOfCollection, item.id)
+//     console.log(userDocRef)
+//   // await updateDoc(doc(db, NameOfCollection, item.id, item));
+// }
 
 // ### UPLOAD FILES TO DB !! ###
 // #############################
 
   export const createDocument = async ( objectsToAdd) => {
-    console.log('objectsToAdd', objectsToAdd)
+    // console.log('objectsToAdd', objectsToAdd)
     try {
         // Add a new document with a generated id.
         const docRef = await addDoc(collection(db, NameOfCollection), 

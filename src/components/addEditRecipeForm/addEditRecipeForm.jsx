@@ -4,18 +4,19 @@ import { DeleteIcon } from '../../utils/lib/lib';
 import {Link} from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { createDocument, UpdateUserDocinDB} from '../../utils/firebase/firebase.firestore';
-
-
+import { useNavigate } from 'react-router-dom';
+// import { RecipiesContext } from '../../contexts/recipies.context';
 function AddEditRecipeForm({
   existingRecipe,
-  handleUpdateRecipe,
+  getRecipies,
   handleDeleteRecipe,
   handleEditRecipeCancel,
 }) {
 
-  console.log(existingRecipe)
+
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
+  // const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
 
   const userEmail = currentUser.email;
 
@@ -31,14 +32,24 @@ function AddEditRecipeForm({
     }
   }, [ existingRecipe]);
 
+  const navigate = useNavigate();
+
+  
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
   const [directions, setDirections] = React.useState("");
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
-  const [currentRecipe, setCurrentRecipe] = React.useState(null);
+  const [currentRecipe, setCurrentRecipe] = React.useState(true);
+  
+  React.useEffect(() => {
+    if(currentRecipe === false)
+    navigate("/");
+  }, [currentRecipe, navigate]);
 
+
+  
   async function handleAddRecipe(newRecipe) {
 
     if(!newRecipe) return;
@@ -46,29 +57,31 @@ function AddEditRecipeForm({
         await createDocument(
         newRecipe,
       );
-      // handleFetchRecipes();
+      getRecipies();
+      setCurrentRecipe(false);
       console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
       alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
     } catch (error) {
       console.log(error.message);
     }
-  }
-// ################# Update Recipe Section ########################################
-  // async function handleUpdateRecipe(newRecipe, recipeId) {
-  //   try {
-  //     await UpdateUserDocinDB(
-  //       recipeId,
-  //       newRecipe
-  //     );
 
-  //     // handleFetchRecipes();
-  //     alert(`successfully updated a recipe with an ID = ${recipeId}`);
-  //     setCurrentRecipe(null);
-  //   } catch (error) {
-  //     alert(error.message);
-  //     throw error;
-  //   }
-  // }
+  }
+
+// ################# Update Recipe Section ########################################
+  async function handleUpdateRecipe(newRecipe, recipeId) {
+    try {
+      await UpdateUserDocinDB(
+        recipeId,
+        newRecipe
+      );
+        getRecipies();
+      // alert(`successfully updated a recipe with an ID = ${recipeId}`);
+      setCurrentRecipe(false);
+    } catch (error) {
+      alert(error.message);
+      throw error;
+    }
+  }
 
   // function handleEditRecipeClick(recipeId) {
   //   const selectedRecipe = recipes.find((recipe) => {
