@@ -8,7 +8,7 @@ import Dashboard from './dashboard';
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm';
 import RouteErrors from '../components/errorHandling/routeErros/routeErrors';
 import GenerateText from '../components/generateText/generateText';
-// import ItemCard from '../components/itemCard/itemCard';
+import SingleItemCard from '../components/itemCards/singleItemCard';
 
 import {
   Routes,
@@ -22,7 +22,6 @@ const AppRoutes = () => {
   const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
   const [currentRecipeID, setCurrentRecipeID] = React.useState(null);
   const [existingRecipe, setExistingRecipe] = React.useState(null);
-
 
 
     const getRecipies = async ()=> {
@@ -72,7 +71,7 @@ const AppRoutes = () => {
                   <Route path='/' element={<Dashboard recipies={recipies} user={currentUser} onSelect={handleEditRecipeClick} />} />
                     <Route path="/addRecipe" element={<AddEditRecipeForm recipies={recipies} existingRecipe={existingRecipe} getRecipies={getRecipies}  /> } />
                     <Route path="/generateText" element={<GenerateText /> } />
-                  {/* <Route path="/recipe/:recipeId" element={<ItemCard allFromDB={allFromDB} user={currentUser} />} /> */}
+                  <Route path="/recipe" element={<SingleItemCard existingRecipe={existingRecipe} user={currentUser} onSelect={handleEditRecipeClick} />} />
                   <Route path="*" element={<RouteErrors />} /> 
             </Routes>
           </>

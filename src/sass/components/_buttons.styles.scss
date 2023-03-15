@@ -197,5 +197,14 @@
             background-color: $color-white;
         }
     }
+// itemCard- View-btn
+    &--viewRecipe {
+        background-color: transparent;
+        border: 1px solid $color-black;
+        color: $color-black;
+        width: 100%;
+        font-family: $primary-font;
+        text-align: center;
+    }
 
 }

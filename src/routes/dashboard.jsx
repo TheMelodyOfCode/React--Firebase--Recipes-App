@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import ItemCard from '../components/itemCard/itemCard';
+import ItemCard from '../components/itemCards/itemCards';
 import FilterRow from '../components/filterRow/filterRow';
-import ItemCardFallback from "../components/itemCard/itemCardFallback";
+import ItemCardFallback from "../components/itemCards/itemCardFallback";
 
 const Dashboard = ({recipies, user, onSelect}) => {
 

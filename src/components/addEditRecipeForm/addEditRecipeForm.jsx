@@ -83,17 +83,6 @@ function AddEditRecipeForm({
     }
   }
 
-  // function handleEditRecipeClick(recipeId) {
-  //   const selectedRecipe = recipes.find((recipe) => {
-  //     return recipe.id === recipeId;
-  //   });
-
-  //   if (selectedRecipe) {
-  //     setCurrentRecipe(selectedRecipe);
-  //     window.scrollTo(0, document.body.scrollHeight);
-  //   }
-  // }
-
   // function handleEditRecipeCancel() {
   //   setCurrentRecipe(null);
   // }
