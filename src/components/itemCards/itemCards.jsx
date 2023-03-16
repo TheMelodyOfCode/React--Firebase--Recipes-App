@@ -32,8 +32,15 @@ const ItemCard = ({recipies, user, onSelect}) => {
         <div className="itemCard" >
             {
             recipies.map((recipe) => { 
-                // if (recipe.publisher === user.email) {
+                if (recipe.publisher !== user.email && recipe.isPublished === false) {
+                    return null
+                } else 
+                
+                {
                 return (
+                    
+                        
+                    
                     <div className="itemCard__container" key={recipe.id}>
 
                         { recipe.publisher === user.email && recipe.isPublished === false ? (
@@ -86,9 +93,7 @@ const ItemCard = ({recipies, user, onSelect}) => {
                             </div>    
                     </div> 
                     ) 
-                // } else {
-                //         return null;
-                //     }   
+                } 
                 
                 
                 })

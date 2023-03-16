@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import Button from "../button/button";
-import {useParams, Link} from 'react-router-dom'
-import { RecipiesContext } from '../../contexts/recipies.context';
+import {Link} from 'react-router-dom'
 import { FullPageSpinner } from '../../utils/lib/lib';
 
 const SingleItemCard = ({existingRecipe, user, onSelect}) => {
@@ -12,8 +11,8 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
     const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
     const [directions, setDirections] = React.useState("");
     const [ingredients, setIngredients] = React.useState([]);
-    const [ingredientName, setIngredientName] = React.useState("");
-    const [currentRecipe, setCurrentRecipe] = React.useState(true);
+    // const [ingredientName, setIngredientName] = React.useState("");
+    // const [currentRecipe, setCurrentRecipe] = React.useState(true);
 
     React.useEffect(() => {
         if (existingRecipe) {
@@ -77,7 +76,7 @@ if (!existingRecipe) {
             
             <div className="singleItemCard" >
                 <div className="singleItemCard__container" >
-                    <h1 className='singleItemCard__container__title'>{existingRecipe.name}</h1>
+                    <h1 className='singleItemCard__container__title'>{name}</h1>
                         <img className='singleItemCard__container__img'  src="img/burger1-sm.jpg" alt="burger"/>
                         <div className='singleItemCard__container__footer'>
                             <span className='singleItemCard__container__footer__publisherTitle'> 
@@ -90,7 +89,7 @@ if (!existingRecipe) {
                                 Category:
                             </span>
                             <span className='singleItemCard__container__footer__categoryContent'> 
-                                {lookupCategoryLabel(existingRecipe.category)}
+                                {lookupCategoryLabel(category)}
                             </span>
                             <span className='singleItemCard__container__footer__directionsTitle'> 
                                 Directions:
@@ -123,7 +122,7 @@ if (!existingRecipe) {
                                 Publish Date:
                             </span>
                             <span className='singleItemCard__container__footer__dateContent'>
-                                {existingRecipe.publishDate.toLocaleString("de-DE", {
+                                {publishDate.toLocaleString("de-DE", {
                                                 year: "numeric",
                                                 month: "long",
                                                 day: "numeric",
