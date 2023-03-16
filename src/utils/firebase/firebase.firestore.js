@@ -15,6 +15,7 @@ import {
   query,
   getDocs,
   doc, 
+  deleteDoc,
   // getDocFromCache,
   updateDoc,
 } from "firebase/firestore";
@@ -25,7 +26,21 @@ export const db = getFirestore(initApp);
 
 const NameOfCollection = 'recipies';
  
-// ### UPDATE USER-PROFILE INFORMATION !! ### 
+// ### DELETE INFORMATION !! ### 
+// ##########################################
+export const DeleteDocument = async (itemID) =>{
+   try {
+    await deleteDoc(doc(db, NameOfCollection, itemID)) 
+    console.log("Document deleted ");
+   } 
+   catch (error)
+   {
+    console.log('error deleting the Recipie', error.message)
+   }
+}
+
+
+// ### UPDATE INFORMATION !! ### 
 // ##########################################
 
 export const UpdateUserDocinDB = async (itemID, item)=>{

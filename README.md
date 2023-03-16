@@ -26,6 +26,9 @@
 > Sass  
 > - npm i sass  
 
+> UUID  
+> - npm i uuid   
+
 > React Error Boundary    
 > - npm i react-error-boundary  
 > React Router DOM 

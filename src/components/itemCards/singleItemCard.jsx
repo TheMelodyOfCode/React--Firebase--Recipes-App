@@ -34,11 +34,15 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
         setPublishDate("");
         setIngredients([]);
       }
-
+    //   const paragraphs = directions.replace(/\. /g, '.\n');
+    //   console.log(paragraphs)
     //   React.useEffect(() => {
-    //     const  sentences =  directions.split(/\. /)
-    //     // setName(sentences)
-    //     // console.log(paragraphs)
+    //     const paragraphs = directions.replace(/\. /g, '.\n');
+    //     // const paragraphs = directions.split('\n\n');
+    //     // const formattedParagraphs = paragraphs.map(paragraph => paragraph.split('\n').join('\n'));
+    //     // const formattedText = formattedParagraphs.join('\n\n');
+    //     console.log(paragraphs)
+    //     // setCurrentRecipe(paragraphs)
         
     //   }, [directions]);
 
@@ -93,11 +97,10 @@ if (!existingRecipe) {
                             </span>
                             <span className='singleItemCard__container__footer__directionsContent'> 
                             {
-                                directions.split(/\. /).map((item, index) => {
-                                    return <p key={index}>{item}</p>
-                                    // return <ul><li key={index}>{item}</li></ul>
-                                }
-                                )
+                                    directions.split("\n\n").map((item, index) => {
+                                        return <div key={index}> <p>{item.replace(/\. /g, '.\n')}</p></div>
+                                    }
+                                    )
                             }
                             </span>
                             <span className='singleItemCard__container__footer__ingredientsTitle'> 
@@ -105,13 +108,14 @@ if (!existingRecipe) {
                             </span>
                             <span className='singleItemCard__container__footer__ingredientsContent'> 
                                 {
+                        
                                     ingredients.map((item, index) => {
-                                        return <ul><li key={index}>{item}</li></ul>
+                                        return <div key={index}> <p>{item.replace(/\. /g, '.\n')}</p></div>
+                                        // return <ul><li key={index}>{item}</li></ul>
                                     }
                                     )
                                     
                                     
-                                // existingRecipe.ingredients.map((m, i) => ({id: i, author: m.split(': ')[0], content: m.split(': ')[1]}))
                                 }
                             </span>
 

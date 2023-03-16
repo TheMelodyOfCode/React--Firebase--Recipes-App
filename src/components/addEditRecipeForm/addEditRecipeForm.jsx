@@ -3,14 +3,13 @@ import Button from '../button/button';
 import { DeleteIcon } from '../../utils/lib/lib';
 import {Link} from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
-import { createDocument, UpdateUserDocinDB} from '../../utils/firebase/firebase.firestore';
+import { createDocument, UpdateUserDocinDB, DeleteDocument} from '../../utils/firebase/firebase.firestore';
 import { useNavigate } from 'react-router-dom';
+
 // import { RecipiesContext } from '../../contexts/recipies.context';
 function AddEditRecipeForm({
   existingRecipe,
   getRecipies,
-  handleDeleteRecipe,
-  handleEditRecipeCancel,
 }) {
 
 
@@ -59,7 +58,7 @@ function AddEditRecipeForm({
       );
       getRecipies();
       setCurrentRecipe(false);
-      console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
+      // console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
       alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
     } catch (error) {
       console.log(error.message);
@@ -83,9 +82,32 @@ function AddEditRecipeForm({
     }
   }
 
-  // function handleEditRecipeCancel() {
-  //   setCurrentRecipe(null);
-  // }
+  async function handleDeleteRecipe(recipeId) {
+    const deleteConfirmtion = window.confirm(
+      'Are you sure you want to delete this recipe? OK for Yes. Cancel for No.'
+    );
+
+    if (deleteConfirmtion) {
+      try {
+        await DeleteDocument(recipeId);
+
+        getRecipies();
+
+        setCurrentRecipe(false);
+
+        window.scrollTo(0, 0);
+
+        // alert(`successfully deleted a recipe with an ID = ${recipeId}`);
+      } catch (error) {
+        alert(error.message);
+        throw error;
+      }
+    }
+  }
+
+  function handleEditRecipeCancel() {
+    setCurrentRecipe(false);
+  }
 
 
   function handleRecipeFormSubmit(e) {
@@ -97,6 +119,7 @@ function AddEditRecipeForm({
     }
 
     const isPublished = new Date(publishDate) <= new Date() ? true : false;
+
 
     const newRecipe = {
       name,
