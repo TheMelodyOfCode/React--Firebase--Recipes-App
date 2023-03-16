@@ -33,7 +33,7 @@ const GenerateText = () => {
           max_tokens: 1000,
         });
         setResult(completion.data.choices[0].text);
-        console.log(completion.data.choices[0].text);
+        // console.log(completion.data.choices[0].text);
       } catch(error) {
         if (error.response) {
           console.error(error.response.status, error.response.data);
@@ -48,12 +48,12 @@ const GenerateText = () => {
   
       const capitalizedRecipe =
         recipe[0].toUpperCase() + recipe.slice(1).toLowerCase();
-      return `Suggest three names for an animal that is a superhero.
+      return `Suggest three names for a dish that is a superhero.
     
-    Dish: Cat
-    Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-    Dish: Dog
-    Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+    Dish: Pizza
+    Names: Slice-Man, Pizza Power, The Dough Avenger
+    Dish: Burger
+    Names: Burger Man, Captain Bun, The Beefy Hero
     Dish: ${capitalizedRecipe}
     Names: `;
     }
