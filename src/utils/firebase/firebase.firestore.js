@@ -13,9 +13,11 @@ import {
   // writeBatch,
   getDoc, 
   query,
+  where,
   getDocs,
   doc, 
   deleteDoc,
+  orderBy,
   // getDocFromCache,
   updateDoc,
 } from "firebase/firestore";
@@ -25,7 +27,130 @@ import {
 export const db = getFirestore(initApp);
 
 const NameOfCollection = 'recipies';
- 
+
+
+// ### GET DATA BY FIELD & FIELD-VALUE    ### 
+// ##########################################
+
+export const getFilteredDatafromDB = async (field, fieldValue)=>{
+
+  try {
+    const collectionRef = collection(db, NameOfCollection);
+    const q = query(collectionRef, where(field, '==', fieldValue))
+    const querySnapshot = await getDocs(q);
+
+    const responseFormated = querySnapshot.docs.map((doc) => {
+      const id = doc.id;
+      const data = doc.data();
+      data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+      return { id, ...data };
+    });
+    // console.log('responseFormated', responseFormated)
+    return responseFormated;
+  }
+  catch (e) {
+    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
+    return Promise.reject(error)
+  }
+
+}
+
+
+export const getDataOrderedByfromDB = async ({orderByField, orderByDirection}) => {
+
+  try {
+    const collectionRef = collection(db, NameOfCollection);
+    const q = query(collectionRef, orderBy(orderByField, orderByDirection))
+    const querySnapshot = await getDocs(q)
+
+    const responseFormated = querySnapshot.docs.map((doc) => {
+      const id = doc.id;
+      const data = doc.data();
+      data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+      return { id, ...data };
+    });
+    // console.log('responseFormated', responseFormated)
+    return responseFormated;
+  }
+  catch (e) {
+    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
+    return Promise.reject(error)
+  }
+};
+  // getSortedDatafromDB()
+
+
+  // const collectionRef = collection(db, NameOfCollection);
+  // const q = query(collectionRef)
+  // const querySnapshot = await getDocs(q);
+
+  // const snapShot = querySnapshot.docs.orderBy('publishDate', 'publishDateAsc').get();
+  // console.log('snapShot', snapShot)
+  // const q = query(collectionRef, where(orderByField, orderByDirection))
+  // const querySnapshot = await getDocs(q);
+
+  // console.log('querySnapshot', querySnapshot)
+  // if (queries && queries.length > 0) {
+  //   for (const query of queries) {
+  //     collectionRef = collectionRef.where(
+  //       query.field,
+  //       query.condition,
+  //       query.value
+  //     );
+  //   }
+  // }
+
+  // if (orderByField && orderByDirection) {
+  //   collectionRef = collectionRef.orderBy(orderByField, orderByDirection);
+  // }
+
+  // if (perPage) {
+  //   collectionRef = collectionRef.limit(perPage);
+  // }
+
+  // if (cursorId) {
+  //   const document = await getSingleDocfromDB(collection, cursorId);
+
+  //   collectionRef = collectionRef.startAfter(document);
+  // }
+  // console.log(collectionRef.get())
+  // return collectionRef.get();
+
+
+ // ### GET all FILES from DB !! ###
+// #############################
+
+export const getAllRecipiesfromDB = async ()=>{
+
+  try {
+    const collectionRef = collection(db, NameOfCollection);
+    // collectionRef.orderBy('publishDate', orderByDirection)
+    const q = query(collectionRef);
+    const querySnapshot = await getDocs(q)
+
+    const responseFormated = querySnapshot.docs.map((doc) => {
+      const id = doc.id;
+      const data = doc.data();
+      data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+      return { id, ...data };
+    });
+    // console.log('responseFormated', responseFormated)
+    return responseFormated;
+  }
+  catch (e) {
+    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
+    return Promise.reject(error)
+  }
+
+}
+
+
+
+
+
 // ### DELETE INFORMATION !! ### 
 // ##########################################
 export const DeleteDocument = async (itemID) =>{
@@ -94,32 +219,6 @@ export const getSingleDocfromDB = async ( singleDoc) =>{
 
 }
 
-// ### GET all FILES from DB !! ###
-// #############################
-
-export const getAllRecipiesfromDB = async ()=>{
-
-  try {
-    const collectionRef = collection(db, NameOfCollection);
-    const q = query(collectionRef);
-    const querySnapshot = await getDocs(q);
-
-    const responseFormated = querySnapshot.docs.map((doc) => {
-      const id = doc.id;
-      const data = doc.data();
-      data.publishDate = new Date(data.publishDate.seconds * 1000);
-
-      return { id, ...data };
-    });
-    // console.log('responseFormated', responseFormated)
-    return responseFormated;
-  }
-  catch (e) {
-    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
-    return Promise.reject(error)
-  }
-
-}
 
 
 

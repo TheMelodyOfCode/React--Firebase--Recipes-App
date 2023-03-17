@@ -1,13 +1,46 @@
 
 import * as React from 'react';
+import { RecipiesContext } from '../../contexts/recipies.context';
+// import getFilteredDatafromDB from '../../utils/firebase/firebase.firestore'
+import { getFilteredDatafromDB } from '../../utils/firebase/firebase.firestore';
+import { useAsync } from '../../utils/lib/helperFunctions';
+
 
 export const FilterRow = () => {
 
+    const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
     const [categoryFilter, setCategoryFilter] = React.useState('');
     const [orderBy, setOrderBy] = React.useState('publishDateDesc');
+    // console.log(categoryFilter)
+
+      
+//   React.useEffect(()=>{
+//     const getAllItems = async ()=> {
+//             const allFromDB = await getFilteredDatafromDB('category', categoryFilter)
+//             // setRecipies(allFromDB)
+//             // setCategoryFilter('')
+//             console.log(allFromDB)
+//             return allFromDB;
+//         };
+//         getAllItems();
+        
+//     }, [categoryFilter, setRecipies])
+
+    // React.useEffect (() => {
+    //     try {
+    //         const recipeByCategoryFromDB = getFilteredDatafromDB('category', categoryFilter)
+    //         console.log(recipeByCategoryFromDB)
+    //         // setRecipies(recipeByCategoryFromDB)
+    //         return recipeByCategoryFromDB;
+    //         } catch (error) 
+    //         {
+    //           console.error(error.message);
+    //           throw error;
+    //         }
+    // }, [categoryFilter, setRecipies])
 
 
-
+    
     return (
         <div className="filterRow">
             <label className="filterRow__recipeLabel">
