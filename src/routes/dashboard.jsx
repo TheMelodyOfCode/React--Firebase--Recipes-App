@@ -4,16 +4,16 @@ import ItemCard from '../components/itemCards/itemCards';
 // import FilterRow from '../components/filterRow/filterRow';
 import ItemCardFallback from "../components/itemCards/itemCardFallback";
 
-const Dashboard = ({recipies, user, onSelect, getRecipies}) => {
+const Dashboard = ({recipes, user, onSelect, getRecipes}) => {
 
 
     return (
       <>
-            {/* <FilterRow recipies={recipies} /> */}
+            {/* <FilterRow recipes={recipes} /> */}
             {
-              !recipies.length ? <ItemCardFallback  />
+              !recipes.length ? <ItemCardFallback  />
               : 
-            <ItemCard recipies={recipies} user={user} onSelect={onSelect} getRecipies={getRecipies}  />  
+            <ItemCard recipes={recipes} user={user} onSelect={onSelect} getRecipes={getRecipes}  />  
             }
       </>
 

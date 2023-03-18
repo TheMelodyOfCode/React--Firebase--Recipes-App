@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { UserContext } from '../contexts/user.context';
-import { RecipiesContext } from '../contexts/recipies.context';
+import { FirestoreContext } from '../contexts/firestore.context';
 import { FullPageSpinner } from '../utils/lib/lib';
-import { getAllRecipiesfromDB, getFilteredDatafromDB } from '../utils/firebase/firebase.firestore';
+import { getAllRecipesfromDB} from '../utils/firebase/firebase.firestore';
 import Dashboard from './dashboard';
 import AddEditRecipeForm from '../components/addEditRecipeForm/addEditRecipeForm';
 import RouteErrors from '../components/errorHandling/routeErros/routeErrors';
@@ -19,19 +19,15 @@ import {
 const AppRoutes = () => {
 
   const { currentUser, } = React.useContext(UserContext);
-  const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
+  const { recipes, setRecipes, status, error} = React.useContext(FirestoreContext);
   const [currentRecipeID, setCurrentRecipeID] = React.useState(null);
   const [existingRecipe, setExistingRecipe] = React.useState(null);
-  // const [categoryFilter, setCategoryFilter] = React.useState('');
-  // const [category, setCategory] = React.useState('');
-  
-  // console.log(category)
 
-    const getRecipies = async ()=> {
+    const getRecipes = async ()=> {
 
       try {
-          const allFromDB = await getAllRecipiesfromDB()
-          setRecipies(allFromDB)
+          const allFromDB = await getAllRecipesfromDB()
+          setRecipes(allFromDB)
           return allFromDB;
           } catch (error) 
           {
@@ -42,26 +38,21 @@ const AppRoutes = () => {
 
 
     React.useEffect(() => {
-        if (!recipies) {
+        if (!recipes) {
           return
         }
         if(currentRecipeID) {
-        const recipeByID = recipies.find(recipe => recipe.id === currentRecipeID)
+        const recipeByID = recipes.find(recipe => recipe.id === currentRecipeID)
         setExistingRecipe(recipeByID)
         }
 
-      }, [currentRecipeID, recipies, setRecipies])
+      }, [currentRecipeID, recipes, setRecipes])
 
 
 
   function handleEditRecipeClick (recipeID) {
         setCurrentRecipeID(recipeID)
     }
-
-  // function handleGetRecipeBycategory (category) {
-  //       setCategoryFilter(category)
-  //   }
-
 
 
     switch (status) {
@@ -76,8 +67,8 @@ const AppRoutes = () => {
         return (
           <>
             <Routes>
-                  <Route path='/' element={<Dashboard recipies={recipies} user={currentUser} onSelect={handleEditRecipeClick} getRecipies={getRecipies}  />} />
-                    <Route path="/addRecipe" element={<AddEditRecipeForm recipies={recipies} existingRecipe={existingRecipe} getRecipies={getRecipies}  /> } />
+                  <Route path='/' element={<Dashboard recipes={recipes} user={currentUser} onSelect={handleEditRecipeClick} getRecipes={getRecipes}  />} />
+                    <Route path="/addRecipe" element={<AddEditRecipeForm recipes={recipes} existingRecipe={existingRecipe} getRecipes={getRecipes}  /> } />
                     <Route path="/generateText" element={<GenerateText /> } />
                   <Route path="/recipe" element={<SingleItemCard existingRecipe={existingRecipe} user={currentUser} onSelect={handleEditRecipeClick} />} />
                   <Route path="*" element={<RouteErrors />} /> 

@@ -18,7 +18,7 @@ const MainNav = ({user, logout}) => {
 
     <div className="mainNav__logoBox">
     <Link to='/' className='mainNav__logoBox--link'>
-        <h1 className='mainNav__logoBox--logo'>Recipies</h1>
+        <h1 className='mainNav__logoBox--logo'>Recipes</h1>
     </Link>
         
     </div>

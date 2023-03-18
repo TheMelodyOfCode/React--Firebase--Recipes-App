@@ -2,35 +2,35 @@ import * as React from 'react';
 
 import Button from "../button/button";
 import { Link } from 'react-router-dom';
-import { RecipiesContext } from '../../contexts/recipies.context';
+import { FirestoreContext } from '../../contexts/Firestore.context';
 // import { getFilteredDatafromDB } from '../../utils/firebase/firebase.firestore';
 
 const ItemCard = ({ user, onSelect}) => {
 
     const { 
-        recipies, 
-        setRecipies, 
+        recipes, 
+        // setRecipes, 
         categoryFilter, 
         setCategoryFilter, 
         orderBy, 
         setOrderBy,
-        status, 
-        error
-    } = React.useContext(RecipiesContext);
+        // status, 
+        // error
+    } = React.useContext(FirestoreContext);
     
-    // const [orderBy, setOrderBy] = React.useState('publishDateDesc');
+
 
 
 
     React.useEffect(() => {
-        if (!recipies || categoryFilter === '') {
+        if (!recipes || categoryFilter === '') {
           return
         }
         if (categoryFilter === 'reset') {
             setCategoryFilter('')
         }
  
-      }, [categoryFilter, recipies, setCategoryFilter,])
+      }, [categoryFilter, recipes, setCategoryFilter,])
 
 
     // TODO: move to database instead of hardcoding
@@ -100,7 +100,7 @@ const ItemCard = ({ user, onSelect}) => {
 
       <div className="itemCard" >
             {
-            recipies.map((recipe) => { 
+            recipes.map((recipe) => { 
                 if ( recipe.publisher !== user.email && recipe.isPublished === false ) {
                     return null
                 } else {
@@ -165,6 +165,34 @@ const ItemCard = ({ user, onSelect}) => {
                 } 
              } )
             }
+
+{ (recipes && recipes.length > 0) ? (
+// {isLoading || (recipes && recipes.length > 0) ? (
+          <>
+            <label className="input-label">
+              Recipes Per Page:
+              <select
+                // value={recipesPerPage}
+                // onChange={handleRecipesPerPageChange}
+                className="select"
+              >
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+              </select>
+            </label>
+            <div className="pagination">
+              <button
+                type="button"
+                // onClick={handleLoadMoreRecipesClick}
+                className="primary-button"
+              >
+                LOAD MORE RECIPES
+              </button>
+            </div>
+          </>
+        ) : null}
+
         </div> 
     </>
     )

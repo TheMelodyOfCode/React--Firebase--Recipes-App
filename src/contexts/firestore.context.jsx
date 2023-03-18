@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { getAllRecipiesfromDB, getFilteredDatafromDB, getDataOrderedByfromDB} from '../utils/firebase/firebase.firestore';
+import { getAllRecipesfromDB, getFilteredDatafromDB, getDataOrderedByfromDB} from '../utils/firebase/firebase.firestore';
 import { useAsync } from "../utils/lib/helperFunctions";
 
 // as the actual value you want to access
-export const RecipiesContext = React.createContext({
-        recipies: null,
-        setRecipies:  null,
+export const FirestoreContext = React.createContext({
+        recipes: null,
+        setRecipes:  null,
         categoryFilter: null,
         setCategoryFilter: null,
         setOrderBy: null,
@@ -16,29 +16,29 @@ export const RecipiesContext = React.createContext({
 });
 
 
-export const RecipiesProvider = ({children})=>{
+export const FirestoreProvider = ({children})=>{
    
     const { status, error, run} = useAsync({ 
         status: 'idle' ,
       })
     
-    const [recipies, setRecipies] = React.useState(null);
+    const [recipes, setRecipes] = React.useState(null);
     const [categoryFilter, setCategoryFilter] = React.useState('');
     const [orderBy, setOrderBy] = React.useState('publishDateDesc');
 
-    const value = {recipies, setRecipies, categoryFilter,orderBy, setOrderBy, setCategoryFilter, status, error}
+    const value = {recipes, setRecipes, categoryFilter,orderBy, setOrderBy, setCategoryFilter, status, error}
 
     React.useEffect(()=>{
         if (categoryFilter === '') {
         const getAllItems = async ()=> {
-            const allFromDB = await getAllRecipiesfromDB()
-            setRecipies(allFromDB)
+            const allFromDB = await getAllRecipesfromDB()
+            setRecipes(allFromDB)
             return allFromDB;
         };
         run(getAllItems())   
 
         if (orderBy) {
-            const getSortedRecipies = async ()=> {
+            const getSortedRecipes = async ()=> {
                 const orderByField = 'publishDate';
                 let orderByDirection;
                 console.log(orderBy)
@@ -61,26 +61,26 @@ export const RecipiesProvider = ({children})=>{
                         }
                         )
                     // console.log(filteredItemsFromDB)
-                    setRecipies(filteredItemsFromDB)
+                    setRecipes(filteredItemsFromDB)
                     return filteredItemsFromDB;
                     }       
             }
-            run(getSortedRecipies())
+            run(getSortedRecipes())
         }
 
     } else {
 
-    const getFilteredRecipies = async ()=> {
+    const getFilteredRecipes = async ()=> {
 
             const filteredItemsFromDB = await getFilteredDatafromDB('category', categoryFilter)
-            setRecipies(filteredItemsFromDB)
+            setRecipes(filteredItemsFromDB)
             return filteredItemsFromDB;
             } 
-            run(getFilteredRecipies())
+            run(getFilteredRecipes())
     }
 
 
     }, [categoryFilter, orderBy, run])
 
-    return <RecipiesContext.Provider value={value}>{children}</RecipiesContext.Provider>
+    return <FirestoreContext.Provider value={value}>{children}</FirestoreContext.Provider>
 }

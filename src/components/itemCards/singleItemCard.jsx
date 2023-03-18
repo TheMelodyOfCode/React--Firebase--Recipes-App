@@ -11,8 +11,6 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
     const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
     const [directions, setDirections] = React.useState("");
     const [ingredients, setIngredients] = React.useState([]);
-    // const [ingredientName, setIngredientName] = React.useState("");
-    // const [currentRecipe, setCurrentRecipe] = React.useState(true);
 
     React.useEffect(() => {
         if (existingRecipe) {
@@ -33,18 +31,6 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
         setPublishDate("");
         setIngredients([]);
       }
-    //   const paragraphs = directions.replace(/\. /g, '.\n');
-    //   console.log(paragraphs)
-    //   React.useEffect(() => {
-    //     const paragraphs = directions.replace(/\. /g, '.\n');
-    //     // const paragraphs = directions.split('\n\n');
-    //     // const formattedParagraphs = paragraphs.map(paragraph => paragraph.split('\n').join('\n'));
-    //     // const formattedText = formattedParagraphs.join('\n\n');
-    //     console.log(paragraphs)
-    //     // setCurrentRecipe(paragraphs)
-        
-    //   }, [directions]);
-
 
     // console.log(existingRecipe.ingredients)
     // // TODO: move to database instead of hardcoding

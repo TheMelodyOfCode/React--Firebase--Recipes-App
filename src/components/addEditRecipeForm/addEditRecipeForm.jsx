@@ -6,16 +6,16 @@ import { UserContext } from '../../contexts/user.context';
 import { createDocument, UpdateUserDocinDB, DeleteDocument} from '../../utils/firebase/firebase.firestore';
 import { useNavigate } from 'react-router-dom';
 
-// import { RecipiesContext } from '../../contexts/recipies.context';
+// import { RecipesContext } from '../../contexts/recipes.context';
 function AddEditRecipeForm({
   existingRecipe,
-  getRecipies,
+  getRecipes,
 }) {
 
 
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
-  // const { recipies, setRecipies, status, error} = React.useContext(RecipiesContext);
+  // const { recipes, setRecipes, status, error} = React.useContext(RecipesContext);
 
   const userEmail = currentUser.email;
 
@@ -56,7 +56,7 @@ function AddEditRecipeForm({
         await createDocument(
         newRecipe,
       );
-      getRecipies();
+      getRecipes();
       setCurrentRecipe(false);
       // console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
       alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
@@ -73,7 +73,7 @@ function AddEditRecipeForm({
         recipeId,
         newRecipe
       );
-        getRecipies();
+        getRecipes();
       // alert(`successfully updated a recipe with an ID = ${recipeId}`);
       setCurrentRecipe(false);
     } catch (error) {
@@ -91,7 +91,7 @@ function AddEditRecipeForm({
       try {
         await DeleteDocument(recipeId);
 
-        getRecipies();
+        getRecipes();
 
         setCurrentRecipe(false);
 
