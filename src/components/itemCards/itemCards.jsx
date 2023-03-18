@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Button from "../button/button";
 import { Link } from 'react-router-dom';
-import { FirestoreContext } from '../../contexts/Firestore.context';
+import { FirestoreContext } from '../../contexts/firestore.context';
 // import { getFilteredDatafromDB } from '../../utils/firebase/firebase.firestore';
 
 const ItemCard = ({ user, onSelect}) => {
@@ -169,27 +169,28 @@ const ItemCard = ({ user, onSelect}) => {
 { (recipes && recipes.length > 0) ? (
 // {isLoading || (recipes && recipes.length > 0) ? (
           <>
-            <label className="input-label">
+            <div className="pagination">
+            <label className="pagination__inputLabel">
               Recipes Per Page:
               <select
                 // value={recipesPerPage}
                 // onChange={handleRecipesPerPageChange}
-                className="select"
+                className="pagination__inputLabel--select"
               >
                 <option value="3">3</option>
                 <option value="6">6</option>
                 <option value="9">9</option>
               </select>
             </label>
-            <div className="pagination">
-              <button
-                type="button"
+            <div className="pagination__btnBox">
+              <Button
+                btnType='createUpdate'
                 // onClick={handleLoadMoreRecipesClick}
-                className="primary-button"
               >
                 LOAD MORE RECIPES
-              </button>
-            </div>
+              </Button>
+            </div>    
+             </div>
           </>
         ) : null}
 

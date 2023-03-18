@@ -41,7 +41,7 @@ export const FirestoreProvider = ({children})=>{
             const getSortedRecipes = async ()=> {
                 const orderByField = 'publishDate';
                 let orderByDirection;
-                console.log(orderBy)
+                // console.log(orderBy)
                     if(orderBy) {
                         switch (orderBy) {
                             case 'publishDateAsc':
