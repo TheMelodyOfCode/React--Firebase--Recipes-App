@@ -3,34 +3,20 @@ import * as React from 'react';
 import Button from "../button/button";
 import { Link } from 'react-router-dom';
 import { FirestoreContext } from '../../contexts/firestore.context';
-// import { getFilteredDatafromDB } from '../../utils/firebase/firebase.firestore';
+import { UserContext } from '../../contexts/user.context';
 
-const ItemCard = ({ user, onSelect}) => {
+const ItemCard = () => {
 
+    const { currentUser, } = React.useContext(UserContext);
     const { 
         recipes, 
-        // setRecipes, 
-        categoryFilter, 
-        setCategoryFilter, 
-        orderBy, 
-        setOrderBy,
-        // status, 
-        // error
+        setCurrentRecipeID,
     } = React.useContext(FirestoreContext);
+   
     
-
-
-
-
-    React.useEffect(() => {
-        if (!recipes || categoryFilter === '') {
-          return
-        }
-        if (categoryFilter === 'reset') {
-            setCategoryFilter('')
-        }
- 
-      }, [categoryFilter, recipes, setCategoryFilter,])
+    function onSelect(recipeID) {
+        setCurrentRecipeID(recipeID);
+    }
 
 
     // TODO: move to database instead of hardcoding
@@ -55,53 +41,11 @@ const ItemCard = ({ user, onSelect}) => {
 
 
     return (
-        <>
-        {/* TODO: separate filter row from itemCard */}
-        <div className="filterRow">
-            <label className="filterRow__recipeLabel">
-                <select
-                    value={categoryFilter}
-                    onChange={(e) => setCategoryFilter(e.target.value)}
-                    className="filterRow__recipeLabel--select"
-                    required
-                >
-                    <option value="reset">ALL Categories</option>
-                    <option value="breadsSandwichesAndPizza">Breads,Sandwiches, & Pizza</option>
-                    <option value="eggsAndBreakfast">Eggs & Breakfast</option>
-                    <option value="saladsAnsSnacks">Salads & Snacks</option>
-                    <option value="soups">Soups</option>
-                    <option value="mainDish">Main Dish</option>
-                    <option value="meatLovers">Meat Lover's</option>
-                    <option value="fishAndSeafood">Fish & Seafood</option>
-                    <option value="vegetables">Vegetables</option>
-                    <option value="dessertsAndBakedGoods">Desserts & Baked Goods</option>
-                </select>
-                </label>
-
-                <div className="filterRow__addRecipeBox">
-                        <a className="filterRow__addRecipeBox--link"  href='/addRecipe'>Click to Add a Recipe</a>
-                </div>
-                
-                <label className="filterRow__dateLabel">
-                <select
-                    value={orderBy}
-                    onChange={(e) => setOrderBy(e.target.value)}
-                    className="filterRow__dateLabel--select"
-                >
-                    <option value="publishDateDesc">
-                    Sort Date (newest - oldest)
-                    </option>
-                    <option value="publishDateAsc">
-                    Sort Date (oldest - newest)
-                    </option>
-                </select>
-            </label>
-      </div>
-
+    <>
       <div className="itemCard" >
             {
             recipes.map((recipe) => { 
-                if ( recipe.publisher !== user.email && recipe.isPublished === false ) {
+                if ( recipe.publisher !== currentUser.email && recipe.isPublished === false ) {
                     return null
                 } else {
 
@@ -110,7 +54,7 @@ const ItemCard = ({ user, onSelect}) => {
                     <div className="itemCard__container" key={recipe.id}>
                         <>
 
-                        { recipe.publisher === user.email && recipe.isPublished === false ? (
+                        { recipe.publisher === currentUser.email && recipe.isPublished === false ? (
                                 <h1 className="itemCard__container__unpublished">UNPUBLISHED</h1>
                             ) :  <h1 className='itemCard__container__title'>{recipe.name}</h1>
                         }
@@ -147,7 +91,7 @@ const ItemCard = ({ user, onSelect}) => {
                                                 })}
                                 </span>
                                 {
-                                    recipe.publisher === user.email ? (
+                                    recipe.publisher === currentUser.email ? (
                                         <div className='itemCard__container__footer__editBtnBox' >
                                             <Link to={`/addRecipe`}  > 
                                                 <Button btnType='editRecipe' onClick={() => onSelect(recipe.id)} >
@@ -165,35 +109,6 @@ const ItemCard = ({ user, onSelect}) => {
                 } 
              } )
             }
-
-{ (recipes && recipes.length > 0) ? (
-// {isLoading || (recipes && recipes.length > 0) ? (
-          <>
-            <div className="pagination">
-            <label className="pagination__inputLabel">
-              Recipes Per Page:
-              <select
-                // value={recipesPerPage}
-                // onChange={handleRecipesPerPageChange}
-                className="pagination__inputLabel--select"
-              >
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="9">9</option>
-              </select>
-            </label>
-            <div className="pagination__btnBox">
-              <Button
-                btnType='createUpdate'
-                // onClick={handleLoadMoreRecipesClick}
-              >
-                LOAD MORE RECIPES
-              </Button>
-            </div>    
-             </div>
-          </>
-        ) : null}
-
         </div> 
     </>
     )

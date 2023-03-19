@@ -81,6 +81,12 @@
             display: block;
             border: none;
         }
+        &__spinner {
+            grid-column: 1/3;
+            grid-row: 4/5;
+            justify-self: center;
+            margin-top: 3rem;
+        }
 
         &__link {
             grid-column: 1/3;

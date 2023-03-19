@@ -1,16 +1,26 @@
 
 import * as React from 'react';
-// import { RecipesContext } from '../../contexts/recipes.context';
-// import getFilteredDatafromDB from '../../utils/firebase/firebase.firestore'
-// import { getFilteredDatafromDB } from '../../utils/firebase/firebase.firestore';
-// import { useAsync } from '../../utils/lib/helperFunctions';
 
+import { FirestoreContext } from '../../contexts/firestore.context';
 
 export const FilterRow = () => {
 
-    // const { recipes, setRecipes, status, error} = React.useContext(RecipesContext);
-    const [categoryFilter, setCategoryFilter] = React.useState('');
-    const [orderBy, setOrderBy] = React.useState('publishDateDesc');
+    const { 
+        categoryFilter, 
+        setCategoryFilter, 
+        orderBy, 
+        setOrderBy,
+    } = React.useContext(FirestoreContext);
+
+    React.useEffect(() => {
+        if (categoryFilter === '') {
+          return
+        }
+        if (categoryFilter === 'reset') {
+            setCategoryFilter('')
+        }
+ 
+      }, [categoryFilter, setCategoryFilter])
 
 
     return (
@@ -22,7 +32,7 @@ export const FilterRow = () => {
                     className="filterRow__recipeLabel--select"
                     required
                 >
-                    <option value="">Categories</option>
+                    <option value="">ALL Categories</option>
                     <option value="breadsSandwichesAndPizza">Breads,Sandwiches, & Pizza</option>
                     <option value="eggsAndBreakfast">Eggs & Breakfast</option>
                     <option value="saladsAnsSnacks">Salads & Snacks</option>

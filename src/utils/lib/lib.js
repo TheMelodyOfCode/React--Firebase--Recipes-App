@@ -30,11 +30,23 @@ function FullPageSpinner() {
     <div
       css={{
         fontSize: '5rem',
-        height: '100vh',
+        height: '10vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+      }}
+    >
+      <Spinner />
+    </div>
+  )
+}
+
+function smallSpinner() {
+  return (
+    <div
+      css={{
+        fontSize: '3rem',
       }}
     >
       <Spinner />
@@ -133,6 +145,7 @@ function ContactIcon() {
 
   export {
     FullPageSpinner,
+    smallSpinner,
     FoodIcon,
     SettingsIcon,
     LogoutIcon,

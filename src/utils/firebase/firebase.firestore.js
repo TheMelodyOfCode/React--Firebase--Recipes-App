@@ -34,15 +34,14 @@ const NameOfCollection = 'recipes';
 // ### GET PAGINATION ### 
 // ##########################################
 
-
-export const paginateDataFromDB = async (pageSize, lastVisible) => {
+export const paginateDataFromDB = async ({pageSize, lastVisible, orderByField, orderByDirection}) => {
 
   const collectionRef = collection(db, NameOfCollection);
   
-  let postsQuery = query(collectionRef, orderBy('publishDate', 'desc'), limit(pageSize));
+  let postsQuery = query(collectionRef, orderBy(orderByField, orderByDirection), limit(pageSize));
   
   if (lastVisible) {
-    postsQuery = query(collectionRef, orderBy('publishDate', 'desc'), startAfter(lastVisible), limit(pageSize));
+    postsQuery = query(collectionRef, orderBy(orderByField, orderByDirection), startAfter(lastVisible), limit(pageSize));
   }
   
   const querySnapshot = await getDocs(postsQuery);
@@ -51,6 +50,7 @@ export const paginateDataFromDB = async (pageSize, lastVisible) => {
   querySnapshot.forEach((docSnapshot) => {
     const postData = docSnapshot.data();
     postData.id = docSnapshot.id;
+    postData.publishDate = new Date(postData.publishDate.seconds * 1000);
     posts.push(postData);
   });
   
@@ -58,7 +58,7 @@ export const paginateDataFromDB = async (pageSize, lastVisible) => {
   const newLastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
   return { posts, newLastVisible };
 }
-// To fetch the first page of posts, you would call the function like this:
+// To fetch the first page of posts
 // paginateDataFromDB(5).then(({ posts, newLastVisible }) => {
 //   console.log(posts);
 //   // Save newLastVisible for later use when fetching the next page
@@ -71,6 +71,33 @@ export const paginateDataFromDB = async (pageSize, lastVisible) => {
 // });
 
 
+// ### GET DATA in ORDERBY   ### 
+// CURRENTLY NOT IN USE SINCE WE ORDER IN PAGINATION
+// ##########################################
+
+export const getDataOrderedByfromDB = async ({orderByField, orderByDirection}) => {
+
+  try {
+    const collectionRef = collection(db, NameOfCollection);
+    const q = query(collectionRef, orderBy(orderByField, orderByDirection))
+    const querySnapshot = await getDocs(q)
+
+    const responseFormated = querySnapshot.docs.map((doc) => {
+      const id = doc.id;
+      const data = doc.data();
+      data.publishDate = new Date(data.publishDate.seconds * 1000);
+
+      return { id, ...data };
+    });
+    // console.log('responseFormated', responseFormated)
+    return responseFormated;
+  }
+  catch (e) {
+    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
+    return Promise.reject(error)
+  }
+};
+ 
 
 
 // ### GET DATA BY FIELD & FIELD-VALUE    ### 
@@ -100,37 +127,12 @@ export const getFilteredDatafromDB = async (field, fieldValue)=>{
 
 }
 
-// ### GET DATA in ORDERBY   ### 
-// ##########################################
 
-export const getDataOrderedByfromDB = async ({orderByField, orderByDirection}) => {
-
-  try {
-    const collectionRef = collection(db, NameOfCollection);
-    const q = query(collectionRef, orderBy(orderByField, orderByDirection))
-    const querySnapshot = await getDocs(q)
-
-    const responseFormated = querySnapshot.docs.map((doc) => {
-      const id = doc.id;
-      const data = doc.data();
-      data.publishDate = new Date(data.publishDate.seconds * 1000);
-
-      return { id, ...data };
-    });
-    // console.log('responseFormated', responseFormated)
-    return responseFormated;
-  }
-  catch (e) {
-    const error = {error: 'error', status: 'rejected', message: `Oh, no! - Look: ${e.message}` }
-    return Promise.reject(error)
-  }
-};
- 
 
 // ### GET all FILES from DB !! ###
 // #############################
 
-export const getAllRecipesfromDB = async ()=>{
+export const getAllDatafromDB = async ()=>{
 
   try {
     const collectionRef = collection(db, NameOfCollection);
@@ -162,8 +164,14 @@ export const getSingleDocfromDB = async ( singleDoc) =>{
   const docRef = doc(db, NameOfCollection, singleDoc);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    // console.log("Document data:", docSnap.data());
+      // const responseFormated = {
+      //   // id: docSnap.id,
+      //   // data: docSnap.data(),
+      //   publishDate: new Date(docSnap.data().publishDate.seconds * 1000),
+      // }
     return docSnap.data()
+    // console.log(responseFormated)
+    // return responseFormated
   } 
   else {
     // doc.data() will be undefined in this case
@@ -177,6 +185,7 @@ export const getSingleDocfromDB = async ( singleDoc) =>{
 // ##########################################
 
 export const UpdateUserDocinDB = async (itemID, item)=>{
+
   try {
           const userDocRef = doc(db, NameOfCollection, itemID)
           await updateDoc(userDocRef, item);

@@ -1,10 +1,15 @@
 import * as React from 'react';
 
-import Button from "../button/button";
+import { FirestoreContext } from '../../contexts/firestore.context';
 import {Link} from 'react-router-dom'
 import { FullPageSpinner } from '../../utils/lib/lib';
+import { UserContext } from '../../contexts/user.context';
+import Button from "../button/button";
+import ItemCardFallback from './itemCardFallback';
 
-const SingleItemCard = ({existingRecipe, user, onSelect}) => {
+const SingleItemCard = () => {
+
+    const { currentUser, } = React.useContext(UserContext);
 
     const [name, setName] = React.useState("");
     const [category, setCategory] = React.useState("");
@@ -12,17 +17,30 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
     const [directions, setDirections] = React.useState("");
     const [ingredients, setIngredients] = React.useState([]);
 
+    const { 
+        singleRecipe, 
+        setCurrentRecipeID,
+        currentRecipeID,
+        status, 
+        error
+    } = React.useContext(FirestoreContext);
+
+    function onSelect(recipeID) {
+        setCurrentRecipeID(recipeID)
+    }
+    
     React.useEffect(() => {
-        if (existingRecipe) {
-          setName(existingRecipe.name);
-          setCategory(existingRecipe.category);
-          setDirections(existingRecipe.directions);
-          setPublishDate(existingRecipe.publishDate.toISOString().split("T")[0]);
-          setIngredients(existingRecipe.ingredients);
+        if (singleRecipe) {
+        const formatDate = new Date(singleRecipe.publishDate.seconds * 1000)
+          setName(singleRecipe.name);
+          setCategory(singleRecipe.category);
+          setDirections(singleRecipe.directions);
+          setPublishDate(formatDate);
+          setIngredients(singleRecipe.ingredients);
         } else {
           resetForm();
         }
-      }, [existingRecipe]);
+      }, [singleRecipe]);
 
       function resetForm() {
         setName("");
@@ -52,12 +70,16 @@ const SingleItemCard = ({existingRecipe, user, onSelect}) => {
         return label;
       }
 
-
       
-if (!existingRecipe) {
-    return <FullPageSpinner />
+if (!singleRecipe) {
+    return <ItemCardFallback />
 } else {
-
+    switch (status) {
+      case 'pending':
+        return <FullPageSpinner />
+      case 'rejected':
+        throw error
+      case 'resolved':
         return (
             
             <div className="singleItemCard" >
@@ -69,7 +91,7 @@ if (!existingRecipe) {
                                 Publisher:
                             </span>
                             <span className='singleItemCard__container__footer__publisherContent'> 
-                            {existingRecipe.publisher}
+                            {singleRecipe.publisher}
                             </span>
                             <span className='singleItemCard__container__footer__categoryTitle'> 
                                 Category:
@@ -115,12 +137,10 @@ if (!existingRecipe) {
                                             })}
                             </span>
                             {
-                                existingRecipe.publisher === user.email ? (
+                                singleRecipe.publisher === currentUser.email ? (
                                     <div className='singleItemCard__container__footer__editBtnBox' >
                                         <Link to={`/addRecipe`}  > 
-                                        {/* <Link to={`/addRecipe/${recipe.id}`}  >  */}
-                                        <Button btnType='editRecipe' onClick={() => onSelect(existingRecipe.id)} >Edit</Button>
-                                        {/* <Button btnType='editRecipe' onClick={() => handleEditRecipeClick(recipe.id)} >Edit</Button> */}
+                                        <Button btnType='editRecipe' onClick={() => onSelect(currentRecipeID)} >Edit</Button>
                                         </Link>
                                     </div>
                                 ) : null
@@ -128,9 +148,13 @@ if (!existingRecipe) {
                         </div>    
                 </div> 
             </div>
-        );
+        )
+        default:
+            throw new Error('This should be impossible')
+          }
     }
-}
+    }
+
 
 
 

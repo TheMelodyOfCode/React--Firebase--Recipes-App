@@ -5,31 +5,37 @@ import {Link} from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { createDocument, UpdateUserDocinDB, DeleteDocument} from '../../utils/firebase/firebase.firestore';
 import { useNavigate } from 'react-router-dom';
+import { FirestoreContext } from '../../contexts/firestore.context';
 
-// import { RecipesContext } from '../../contexts/recipes.context';
+// TODO: check date when updating recipe
+
 function AddEditRecipeForm({
-  existingRecipe,
+  // existingRecipe,
   getRecipes,
 }) {
 
 
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
-  // const { recipes, setRecipes, status, error} = React.useContext(RecipesContext);
+  const { singleRecipe, getAllRecipesFromDB, currentRecipeID, setCurrentRecipeID} = React.useContext(FirestoreContext);
 
   const userEmail = currentUser.email;
 
   React.useEffect(() => {
-    if (existingRecipe) {
-      setName(existingRecipe.name);
-      setCategory(existingRecipe.category);
-      setDirections(existingRecipe.directions);
-      setPublishDate(existingRecipe.publishDate.toISOString().split("T")[0]);
-      setIngredients(existingRecipe.ingredients);
+    if (singleRecipe) {
+      const formatDate = new Date(singleRecipe.publishDate.seconds * 1000)
+      setName(singleRecipe.name);
+      setCategory(singleRecipe.category);
+      setDirections(singleRecipe.directions);
+      //toISOString().split("T")[0] converts date to string and adds it. 
+      //users don't need to put the date in again when updating the recipe
+      setPublishDate(formatDate.toISOString().split("T")[0]);
+      setIngredients(singleRecipe.ingredients);
+      setSingleRecipeID(currentRecipeID)
     } else {
       resetForm();
     }
-  }, [ existingRecipe]);
+  }, [currentRecipeID, singleRecipe]);
 
   const navigate = useNavigate();
 
@@ -41,13 +47,14 @@ function AddEditRecipeForm({
   const [ingredients, setIngredients] = React.useState([]);
   const [ingredientName, setIngredientName] = React.useState("");
   const [currentRecipe, setCurrentRecipe] = React.useState(true);
+  const [singleRecipeID, setSingleRecipeID] = React.useState(null);
   
   React.useEffect(() => {
     if(currentRecipe === false)
     navigate("/");
   }, [currentRecipe, navigate]);
 
-
+// console.log(ingredients)
   
   async function handleAddRecipe(newRecipe) {
 
@@ -56,7 +63,8 @@ function AddEditRecipeForm({
         await createDocument(
         newRecipe,
       );
-      getRecipes();
+      // getRecipes();
+      getAllRecipesFromDB()
       setCurrentRecipe(false);
       // console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
       alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
@@ -68,12 +76,14 @@ function AddEditRecipeForm({
 
 // ################# Update Recipe Section ########################################
   async function handleUpdateRecipe(newRecipe, recipeId) {
+    console.log(recipeId)
     try {
       await UpdateUserDocinDB(
         recipeId,
         newRecipe
       );
-        getRecipes();
+        // getRecipes();
+        getAllRecipesFromDB()
       // alert(`successfully updated a recipe with an ID = ${recipeId}`);
       setCurrentRecipe(false);
     } catch (error) {
@@ -91,10 +101,11 @@ function AddEditRecipeForm({
       try {
         await DeleteDocument(recipeId);
 
-        getRecipes();
+        // getRecipes();
+        getAllRecipesFromDB()
 
         setCurrentRecipe(false);
-
+        setCurrentRecipeID(null)
         window.scrollTo(0, 0);
 
         // alert(`successfully deleted a recipe with an ID = ${recipeId}`);
@@ -132,8 +143,9 @@ function AddEditRecipeForm({
 
     };
 
-    if (existingRecipe) {
-      handleUpdateRecipe(newRecipe, existingRecipe.id);
+    if (singleRecipe) {
+      console.log(singleRecipeID)
+      handleUpdateRecipe(newRecipe, singleRecipeID);
     } else {
       handleAddRecipe(newRecipe);
     }
@@ -154,7 +166,6 @@ function AddEditRecipeForm({
       alert("Missing ingredient field. Please double check.");
       return;
     }
-
     setIngredients([...ingredients, ingredientName]);
     setIngredientName("");
   }
@@ -181,7 +192,7 @@ function AddEditRecipeForm({
       onSubmit={handleRecipeFormSubmit}
       className="recipeForm"
     >
-      {existingRecipe ? 
+      {singleRecipe ? 
       <h2 className='recipeForm__mainTitle'>Update the Recipe</h2> : <h2 className='recipeForm__mainTitle'>Add a New Recipe</h2>}
       <div className="recipeForm__topFormSection">
         
@@ -310,10 +321,11 @@ function AddEditRecipeForm({
 {/* SECTION 3 ############################################################################# SECTION 3*/}
       <div className="recipeForm__bottomSection">
         <Button type="submit" btnType='createUpdate'>
-          {existingRecipe ? "Update Recipe" : "Create Recipe"}
+          {singleRecipe ? "Update Recipe" : "Create Recipe"}
         </Button>
-        {existingRecipe ? (
+        {singleRecipe ? (
           <>
+          <br />
             <Button
               type="button"
               onClick={handleEditRecipeCancel}
@@ -323,7 +335,7 @@ function AddEditRecipeForm({
             </Button>
             <Button
               type="button"
-              onClick={() => handleDeleteRecipe(existingRecipe.id)}
+              onClick={() => handleDeleteRecipe(singleRecipeID)}
               btnType='deleteRecipe'
             >
               Delete

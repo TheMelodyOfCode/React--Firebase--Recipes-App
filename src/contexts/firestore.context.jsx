@@ -1,6 +1,11 @@
 import * as React from "react";
 
-import { getAllRecipesfromDB, getFilteredDatafromDB, getDataOrderedByfromDB} from '../utils/firebase/firebase.firestore';
+import { 
+    getAllDatafromDB, 
+    getSingleDocfromDB,
+    getFilteredDatafromDB, 
+    paginateDataFromDB
+} from '../utils/firebase/firebase.firestore';
 import { useAsync } from "../utils/lib/helperFunctions";
 
 // as the actual value you want to access
@@ -11,6 +16,12 @@ export const FirestoreContext = React.createContext({
         setCategoryFilter: null,
         setOrderBy: null,
         orderBy: null,
+        recipesPerPage: null,
+        setRecipesPerPage: null,
+        currentRecipeID: null,
+        setCurrentRecipeID: null,
+        singleRecipe: null,
+        setSingleRecipe: null,
         status: null,
         error: null,
 });
@@ -25,17 +36,70 @@ export const FirestoreProvider = ({children})=>{
     const [recipes, setRecipes] = React.useState(null);
     const [categoryFilter, setCategoryFilter] = React.useState('');
     const [orderBy, setOrderBy] = React.useState('publishDateDesc');
+    const [recipesPerPage, setRecipesPerPage] = React.useState(3);
+    const [currentRecipeID, setCurrentRecipeID] = React.useState(null);
+    const [singleRecipe, setSingleRecipe] = React.useState(null);
+    
+    const getAllRecipesFromDB = async ()=> {
 
-    const value = {recipes, setRecipes, categoryFilter,orderBy, setOrderBy, setCategoryFilter, status, error}
+      try {
+          const allFromDB = await getAllDatafromDB()
+          setRecipes(allFromDB)
+          return allFromDB;
+          } catch (error) 
+          {
+            console.error(error.message);
+            throw error;
+          }
+    }
+
+    const value = {getAllRecipesFromDB, recipes, setRecipes,recipesPerPage, setRecipesPerPage,singleRecipe, setSingleRecipe, currentRecipeID, setCurrentRecipeID, categoryFilter,orderBy, setOrderBy, setCategoryFilter, status, error}
+    
+
+
+
+    React.useEffect(() => {
+        if (!recipes) {
+          return
+        }
+        if(currentRecipeID) {
+            const getSingleRecipes = async ()=> {
+      
+              try {
+                  const allFromDB = await getSingleDocfromDB(currentRecipeID)
+                //   console.log('allFromDB: ', allFromDB);
+                  setSingleRecipe(allFromDB)
+                //   return allFromDB;
+                  } catch (error) 
+                  {
+                    console.error(error.message);
+                    throw error;
+                  }
+            }
+            run(getSingleRecipes())
+        }
+        // if(currentRecipeID) {
+        //     const getRecipes = async ()=> {
+      
+        //       try {
+        //           const allFromDB = await getAllDatafromDB()
+        //           setFilter(allFromDB)
+        //           return allFromDB;
+        //           } catch (error) 
+        //           {
+        //             console.error(error.message);
+        //             throw error;
+        //           }
+        //     }
+        //     run(getRecipes())
+        //     const recipeByID = recipes.find(recipe => recipe.id === currentRecipeID)
+        //     setSingleRecipe(recipeByID)
+        // }
+      }, [currentRecipeID, recipes, run, setRecipes])
+
 
     React.useEffect(()=>{
         if (categoryFilter === '') {
-        const getAllItems = async ()=> {
-            const allFromDB = await getAllRecipesfromDB()
-            setRecipes(allFromDB)
-            return allFromDB;
-        };
-        run(getAllItems())   
 
         if (orderBy) {
             const getSortedRecipes = async ()=> {
@@ -53,16 +117,24 @@ export const FirestoreProvider = ({children})=>{
                             default:
                                 break;
                     }
-        
-            const filteredItemsFromDB = await getDataOrderedByfromDB(
-                        {
-                            orderByField: orderByField,
-                            orderByDirection: orderByDirection,
-                        }
+
+                    const postsFromDB = await paginateDataFromDB(
+                                {
+                                    pageSize:recipesPerPage,
+                                    // lastVisible: lastVisible,
+                                    orderByField: orderByField,
+                                    orderByDirection: orderByDirection,
+                                }
                         )
-                    // console.log(filteredItemsFromDB)
-                    setRecipes(filteredItemsFromDB)
-                    return filteredItemsFromDB;
+                        .then((
+                        {posts, newLastVisible }  
+                        ) => {
+                        return posts;
+                    });
+
+                    setRecipes(postsFromDB)
+                    return postsFromDB;
+
                     }       
             }
             run(getSortedRecipes())
@@ -80,7 +152,7 @@ export const FirestoreProvider = ({children})=>{
     }
 
 
-    }, [categoryFilter, orderBy, run])
+    }, [categoryFilter, orderBy, recipesPerPage, run])
 
     return <FirestoreContext.Provider value={value}>{children}</FirestoreContext.Provider>
 }

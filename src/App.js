@@ -22,10 +22,7 @@ import {
 function App() {
 
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
- 
   const [state, setState] = React.useState('idle')
-
-
 
   const login = async (formData) => {
 
