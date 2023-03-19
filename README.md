@@ -1,4 +1,4 @@
-# Recepies App
+# Recipes App
 
 ### Description
 > This is mainly a Firebase project about:  
@@ -61,7 +61,7 @@
 >> - npm run build  
 >> - ***To deploy the app run this command.***  
 >> - firebase deploy  
->> - Hosting URL: https://recepies-64384.web.app  
+>> - Hosting URL: https://themelodyofcode.com
   
 #### Automatic Firebase deployment through Github Actions   
 >> - ***Github Action Deploy***     
@@ -115,7 +115,7 @@
 -  Example:  
   
 The location is: 
-/recipies/{recipieId}
+/recipes/{recipeId}
 
 rules_version = '2';  
 service cloud.firestore {  
