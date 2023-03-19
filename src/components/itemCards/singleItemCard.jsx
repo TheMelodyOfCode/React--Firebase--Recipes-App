@@ -7,6 +7,7 @@ import { UserContext } from '../../contexts/user.context';
 import Button from "../button/button";
 import ItemCardFallback from './itemCardFallback';
 
+
 const SingleItemCard = () => {
 
     const { currentUser, } = React.useContext(UserContext);
@@ -16,6 +17,7 @@ const SingleItemCard = () => {
     const [publishDate, setPublishDate] = React.useState(new Date().toISOString().split("T")[0]);
     const [directions, setDirections] = React.useState("");
     const [ingredients, setIngredients] = React.useState([]);
+    const [singleRecipestate, setSingleRecipeState] = React.useState(false);
 
     const { 
         singleRecipe, 
@@ -28,9 +30,13 @@ const SingleItemCard = () => {
     function onSelect(recipeID) {
         setCurrentRecipeID(recipeID)
     }
+
+
+
     
     React.useEffect(() => {
         if (singleRecipe) {
+        setSingleRecipeState(true)
         const formatDate = new Date(singleRecipe.publishDate.seconds * 1000)
           setName(singleRecipe.name);
           setCategory(singleRecipe.category);
@@ -48,6 +54,7 @@ const SingleItemCard = () => {
         setDirections("");
         setPublishDate("");
         setIngredients([]);
+        setSingleRecipeState(false)
       }
 
     // console.log(existingRecipe.ingredients)
@@ -70,8 +77,8 @@ const SingleItemCard = () => {
         return label;
       }
 
-      
-if (!singleRecipe) {
+    
+if (singleRecipestate === false) {
     return <ItemCardFallback />
 } else {
     switch (status) {
@@ -152,8 +159,9 @@ if (!singleRecipe) {
         default:
             throw new Error('This should be impossible')
           }
+        }
     }
-    }
+    
 
 
 

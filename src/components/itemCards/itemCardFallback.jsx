@@ -16,7 +16,7 @@ const ItemCardFallback = () => {
                             No recipes with that category available <br/> or no connection
                         </span>
                         <span className='itemCardFallback__container__footer__linkBox'>
-                            <a className='itemCardFallback__container__footer__linkBox--link'  href='/'>Go to Back</a>
+                            <a className='itemCardFallback__container__footer__linkBox--link'  href='/'>Go Back</a>
                         </span>
                     </div>    
                 </div>    
