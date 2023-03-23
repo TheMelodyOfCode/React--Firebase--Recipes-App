@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from "react-router-dom";
 import { 
     FoodIcon, 
-    SettingsIcon, 
+    // SettingsIcon, 
     LogoutIcon, 
     ContactIcon,
     AddIcon,
@@ -37,7 +37,7 @@ const MainNav = ({user, logout}) => {
                 <br/>
                 <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/"}} className="mainNav__toggleMenu__link"><FoodIcon />{' '} Home</Link></li>
 
-                <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/profile"}} className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li>
+                {/* <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/profile"}} className="mainNav__toggleMenu__link"><SettingsIcon/>{' '} Profile</Link></li> */}
 
                 <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/addRecipe"}} className="mainNav__toggleMenu__link"><AddIcon/>{' '} Add Recipe</Link></li>
 
