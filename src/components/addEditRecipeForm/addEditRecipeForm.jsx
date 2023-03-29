@@ -10,11 +10,7 @@ import ImageUploadPreview from '../imageUploadPreview/imageUploadPreview';
 
 // TODO: check date when updating recipe
 
-function AddEditRecipeForm({
-  // existingRecipe,
-  getRecipes,
-}) {
-
+function AddEditRecipeForm() {
 
   // eslint-disable-next-line no-unused-vars
   const { currentUser, setCurrentUser} = React.useContext(UserContext);
