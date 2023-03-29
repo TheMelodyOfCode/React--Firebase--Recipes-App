@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # openAI api_key
-/src/utils/openAI/config.js
+# /src/utils/openAI/config.js
