@@ -16,6 +16,7 @@ const BUTTON_Style_CLASSES = {
     cancelRecipe: 'btn--cancelRecipe',
     editRecipe: 'btn--editRecipe',
     viewRecipe: 'btn--viewRecipe',
+    cancelImg: 'btn--cancelImg',
 }
 
 const BUTTON_Animation_CLASSES = {

@@ -36,6 +36,11 @@
             font-size: 2rem;
             }
     }
+
+    &__imageInputBox {
+        grid-row: 2 / 3;
+        font-size: 1.8rem;
+    }
     
 // ### TOP SECTION ###
     &__topFormSection {

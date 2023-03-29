@@ -18,6 +18,7 @@ const SingleItemCard = () => {
     const [directions, setDirections] = React.useState("");
     const [ingredients, setIngredients] = React.useState([]);
     const [singleRecipestate, setSingleRecipeState] = React.useState(false);
+    const [imageUrl, setImageUrl] = React.useState("");
 
     const { 
         singleRecipe, 
@@ -32,7 +33,6 @@ const SingleItemCard = () => {
     }
 
 
-
     
     React.useEffect(() => {
         if (singleRecipe) {
@@ -43,6 +43,7 @@ const SingleItemCard = () => {
           setDirections(singleRecipe.directions);
           setPublishDate(formatDate);
           setIngredients(singleRecipe.ingredients);
+          setImageUrl(singleRecipe.imageUrl);
         } else {
           resetForm();
         }
@@ -57,7 +58,6 @@ const SingleItemCard = () => {
         setSingleRecipeState(false)
       }
 
-    // console.log(existingRecipe.ingredients)
     // // TODO: move to database instead of hardcoding
     function lookupCategoryLabel(categoryKey) {
         const categories = {
@@ -92,7 +92,7 @@ if (singleRecipestate === false) {
             <div className="singleItemCard" >
                 <div className="singleItemCard__container" >
                     <h1 className='singleItemCard__container__title'>{name}</h1>
-                        <img className='singleItemCard__container__img'  src="img/burger1-sm.jpg" alt="burger"/>
+                        <img className='singleItemCard__container__img'  src={imageUrl} alt="burger"/>
                         <div className='singleItemCard__container__footer'>
                             <span className='singleItemCard__container__footer__publisherTitle'> 
                                 Publisher:

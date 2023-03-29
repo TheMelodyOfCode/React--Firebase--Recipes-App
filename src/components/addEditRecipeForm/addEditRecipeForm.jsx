@@ -6,6 +6,7 @@ import { UserContext } from '../../contexts/user.context';
 import { createDocument, UpdateUserDocinDB, DeleteDocument} from '../../utils/firebase/firebase.firestore';
 import { useNavigate } from 'react-router-dom';
 import { FirestoreContext } from '../../contexts/firestore.context';
+import ImageUploadPreview from '../imageUploadPreview/imageUploadPreview';
 
 // TODO: check date when updating recipe
 
@@ -32,6 +33,7 @@ function AddEditRecipeForm({
       setPublishDate(formatDate.toISOString().split("T")[0]);
       setIngredients(singleRecipe.ingredients);
       setSingleRecipeID(currentRecipeID)
+      setImageUrl(singleRecipe.imageUrl);
     } else {
       resetForm();
     }
@@ -48,6 +50,7 @@ function AddEditRecipeForm({
   const [ingredientName, setIngredientName] = React.useState("");
   const [currentRecipe, setCurrentRecipe] = React.useState(true);
   const [singleRecipeID, setSingleRecipeID] = React.useState(null);
+  const [imageUrl, setImageUrl] = React.useState("");
   
   React.useEffect(() => {
     if(currentRecipe === false)
@@ -128,6 +131,10 @@ function AddEditRecipeForm({
       alert("Ingredients cannot be empty. Please add at least 1 ingredient");
       return;
     }
+    if (!imageUrl) {
+      alert("Missing recipe image. Please add a recipe image.");
+      return;
+    }
 
     const isPublished = new Date(publishDate) <= new Date() ? true : false;
 
@@ -140,6 +147,7 @@ function AddEditRecipeForm({
       publishDate: new Date(publishDate),
       isPublished,
       ingredients,
+      imageUrl,
 
     };
 
@@ -184,6 +192,7 @@ function AddEditRecipeForm({
     setDirections("");
     setPublishDate("");
     setIngredients([]);
+    setImageUrl("");
   }
 
   return (
@@ -194,6 +203,16 @@ function AddEditRecipeForm({
     >
       {singleRecipe ? 
       <h2 className='recipeForm__mainTitle'>Update the Recipe</h2> : <h2 className='recipeForm__mainTitle'>Add a New Recipe</h2>}
+      <div className="recipeForm__imageInputBox">
+          Recipe Image
+          <ImageUploadPreview
+            basePath="recipes"
+            existingImageUrl={imageUrl}
+            handleUploadFinish={(downloadUrl) => setImageUrl(downloadUrl)}
+            handleUploadCancel={() => setImageUrl("")}
+          ></ImageUploadPreview>
+        </div>
+     
       <div className="recipeForm__topFormSection">
         
           <label className="recipeForm__topFormSection__label--1">

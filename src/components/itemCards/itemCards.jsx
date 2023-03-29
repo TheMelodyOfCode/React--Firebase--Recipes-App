@@ -18,7 +18,6 @@ const ItemCard = () => {
         setCurrentRecipeID(recipeID);
     }
 
-
     // TODO: move to database instead of hardcoding
     function lookupCategoryLabel(categoryKey) {
         const categories = {
@@ -61,7 +60,8 @@ const ItemCard = () => {
                        
                             <Link  to={`/recipe`}  > 
                                 <div className='itemCard__container__imgBtnBox' >
-                                <img className='itemCard__container__imgBtnBox--img'  src="img/burger1-sm.jpg" alt="burger"/>
+                                <img className='itemCard__container__imgBtnBox--img'  src={recipe.imageUrl} alt="dish"/>
+                                {/* <img className='itemCard__container__imgBtnBox--img'  src="img/burger1-sm.jpg" alt="burger"/> */}
                                     <Button btnType='viewRecipe' onClick={() => onSelect(recipe.id)} >
                                         View
                                     </Button>
