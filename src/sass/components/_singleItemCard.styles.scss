@@ -4,12 +4,10 @@
   
     display: grid;
     grid-row: 2/3;
-    // grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     justify-content: center;
     justify-self: center;
     row-gap: 2rem;
     column-gap: 2rem;
-    // height: 100%;
     min-width: 40%;
     max-width: 50%;
 
@@ -21,15 +19,18 @@
           justify-content: center;
           justify-self: center;
           row-gap: 1rem;
-          // min-width: 55rem;
+          width: 52rem;
           padding: 2rem;
           border-radius: 1rem;
           border: 1px solid $color-gray-4;
           background-image: radial-gradient(
-            farthest-corner at 40px 40px,
-            $color-gray-4 0%,
-            $color-gray-3 80%
+            farthest-corner at 40px 2px,
+            $color-primary-blue-2 0%,
+            $color-gray-3 70%
           );
+          @include respond(phone) { 
+            width: auto;
+        }
 
           &__title {
             grid-column: 1/2;
@@ -80,6 +81,7 @@
               grid-column: 1/2;
               grid-row: 1/2;
               font-family: $special-font-1;
+              padding-top: 1rem;
             }
             &__publisherContent {
               grid-column: 2/3;
@@ -87,6 +89,7 @@
               justify-self: end;
               font-family: $special-font-1;
               border-radius: 1rem;
+              padding-top: 1rem;
               @include respond(phone-xsm) {
                 justify-self: start;
                 }

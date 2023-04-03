@@ -88,7 +88,7 @@ function ImageUploadPreview({
             btnType='cancelImg' 
             onClick={handleCancelImageClick}
           >
-            Cancel Image
+            Change Image
           </Button>
         </div>
       ) : null}

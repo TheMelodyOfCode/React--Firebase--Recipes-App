@@ -22,9 +22,9 @@
           border-radius: 1rem;
           border: 1px solid $color-gray-4;
           background-image: radial-gradient(
-            farthest-corner at 40px 40px,
-            $color-gray-4 0%,
-            $color-gray-3 80%
+            farthest-corner at 40px 2px,
+            $color-primary-blue-2 0%,
+            $color-gray-3 70%
           );
 
           &__title {
@@ -61,6 +61,7 @@
                   width: 16.5rem;
                   z-index: 2;
                   object-fit: cover;
+                  border-radius: 5%;
                   &:hover{
                     transform: scale(1.1);
                     transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);

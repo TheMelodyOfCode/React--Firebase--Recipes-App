@@ -33,7 +33,7 @@ export const FilterRow = () => {
                     required
                 >
                     <option value="">ALL Categories</option>
-                    <option value="breadsSandwichesAndPizza">Breads,Sandwiches, & Pizza</option>
+                    <option value="breadsSandwichesAndPizza">Sandwiches, & Pizza</option>
                     <option value="eggsAndBreakfast">Eggs & Breakfast</option>
                     <option value="saladsAnsSnacks">Salads & Snacks</option>
                     <option value="soups">Soups</option>

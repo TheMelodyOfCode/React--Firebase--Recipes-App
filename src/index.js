@@ -4,7 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import {ErrorBoundary} from 'react-error-boundary'
 
 import './main.scss';
-import './utils/openAI/openAI';
 import App from './App';
 import { UserProvider } from './contexts/user.context';
 import ErrorFallback from './components/errorHandling/errorFallback/errorFallback';

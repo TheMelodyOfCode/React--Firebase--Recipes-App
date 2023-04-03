@@ -10,6 +10,7 @@ const BUTTON_Style_CLASSES = {
     green: 'btn--green',
     red: 'btn--red',
     resetPW: 'btn--resetPW',
+    pagination: 'btn--pagination',
     addIngredient: 'btn--addIngredient',
     createUpdate: 'btn--createUpdate',
     deleteRecipe: 'btn--deleteRecipe',

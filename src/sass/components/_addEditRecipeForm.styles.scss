@@ -8,20 +8,23 @@
     grid-gap: 1rem;
     justify-self: center;
     height: 100%;
-    min-width: 40rem;
-    max-width: 40%;
-
+    // min-width: 40rem;
+    // max-width: 40%;
+    width: 52rem;
     border: 0.1rem solid #000;
     border-radius: 0.4rem;
     padding: 1rem;
     margin-bottom: 3rem;
 
     background-image: radial-gradient(
-        farthest-corner at 40px 40px,
-        $color-gray-4 0%,
-        $color-gray-3 80%
+        farthest-corner at 40px 2px,
+        $color-primary-blue-2 0%,
+        $color-gray-3 70%
       );
 
+      @include respond(phone) { 
+        width: auto;
+    }
     
     @include respond(phone-sm) {
         min-width: 27rem;
@@ -39,6 +42,7 @@
 
     &__imageInputBox {
         grid-row: 2 / 3;
+        justify-self: center;
         font-size: 1.8rem;
     }
     
@@ -61,7 +65,8 @@
             grid-column: 1/2;
             grid-row: 2/3;
             margin: 1rem .5rem;
-            font-size: 1.2rem;
+            font-size: 1.7rem;
+            font-family: $handwriting-font-1;
             @include respond(phone-sm) {
                 grid-column: 1/2;
                 grid-row: 3/4;

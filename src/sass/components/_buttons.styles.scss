@@ -150,6 +150,15 @@
             background-color: $color-light-green-1;
         }
     }
+// ### Pagination Button
+    &--pagination {
+        background-color: $color-primary-blue;
+        color: $color-white;
+        width: 90%;
+        height: 3rem;
+        font-family: $special-font-1;
+        margin-bottom: 1rem;
+    }
 
 // ### Recipe Form Image Upload
     &--cancelImg {
@@ -160,7 +169,7 @@
         margin: 0.5rem;
         background-color: $color-white;
         border: 1px solid $color-black;
-        border-radius: 2%;
+        border-radius: 3%;
         color: $color-black;
         font-family: $primary-font;
         text-align: center;
@@ -183,7 +192,7 @@
 // ### Recipe Form Section 3
 // ### Action buttons createUpdateRecipe, cancelRecipe, deleteRecipe
     &--createUpdate {
-        background-color: $color-BTN-blue-1;
+        background-color: $color-secondary-blue;
         color: $color-white;
         width: 90%;
         height: 3rem;
@@ -198,7 +207,7 @@
         font-family: $primary-font;
     }
     &--cancelRecipe {
-        background-color: $color-white;
+        background-color: transparent;
         border: 1px solid $color-black;
         color: $color-black;
         width: 90%;

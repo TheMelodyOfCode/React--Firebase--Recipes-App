@@ -40,7 +40,7 @@ if (recipes && recipes.length > 0) {
               </label>
               <div className="pagination__btnBox">
                 <Button
-                  btnType='createUpdate'
+                  btnType='pagination'
                   onClick={handleLoadMoreRecipesClick}
                 >
                   LOAD 3 MORE RECIPES

@@ -27,7 +27,10 @@
             &--logo {
                 font-family: $handwriting-font-1;
                 font-weight: bold;
-                color: $color-green-1;
+                background-image: linear-gradient(to right, $color-light-green-2, $color-primary-blue);
+                background-clip: text;
+                color: transparent;
+                // color: $color-light-green-2;
                 font-size: 5.5rem;
                 padding: 0 0 0 2rem;
                 @include respond(phone) {  
@@ -68,9 +71,14 @@
       &__checkbox {
           display: none;
       }
+
       &__button {
           position: fixed;
-          background-color: $color-light-green-2;
+        background-image: radial-gradient(
+            farthest-corner at 40px 40px,
+            $color-gray-4 0%,
+            $color-primary-blue 80%
+          );
           top: 2rem;
           right: 2rem;
           height: 6.5rem;
@@ -89,7 +97,7 @@
           width: 3.5rem;
           border-radius: 50%;
           position: fixed;
-          background-image: radial-gradient($color-gray-1, $color-white );
+          background-image: radial-gradient($color-gray-3, $color-white );
           z-index: 1000;
           transition: transform .8s  cubic-bezier(0.86, 0, 0.07, 1);
       }
@@ -102,6 +110,7 @@
           z-index: 1500;
     
       /* to hide navigation at until clicked */
+            top: -90rem;
           opacity: 0;
           width: 0;
           transition: all .8s;
@@ -130,7 +139,7 @@
               color: $color-black;
               text-decoration: none;
               text-transform: uppercase;
-              background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-light-green-2 50%);
+              background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-gray-3 50%);
               background-size: 230%;
               transition: all .4s;
     
@@ -152,11 +161,13 @@
     // on click functionality
           &__checkbox:checked ~ &__background {
           transform: scale(100);
+          top: 0;
           }
     
           &__checkbox:checked ~ &__nav {
               opacity: 1;
               width: 100%;
+              top: 10rem;
           }
     
     // ICON 
@@ -180,10 +191,10 @@
               }
     
               &::before {
-                  top: -.5rem;
+                  top: -.7rem;
               }
               &::after {
-                  top: .5rem;
+                  top: .7rem;
               }
           }
     

@@ -6,11 +6,11 @@ import {
     LogoutIcon, 
     ContactIcon,
     AddIcon,
-    TextIcon } from '../../../utils/lib/lib';
+    TextIcon } from '../../utils/lib/lib';
 
 
 
-const MainNav = ({user, logout}) => {
+const Navigation = ({user, logout}) => {
 
 
     return (
@@ -43,7 +43,7 @@ const MainNav = ({user, logout}) => {
 
                 <li className="toggleMenu__item"><Link onClick={() => {window.location.href="/generateText"}}className="mainNav__toggleMenu__link"><TextIcon/>{' '} Generate Name</Link></li>
 
-                <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link"><ContactIcon/>{' '} Contact</Link></li>
+                {/* <li className="toggleMenu__item"><Link to='/contact' className="mainNav__toggleMenu__link"><ContactIcon/>{' '} Contact</Link></li> */}
 
                 <li className="toggleMenu__item"><Link className="mainNav__toggleMenu__link"  onClick={logout} ><LogoutIcon/>{' '} SIGN OUT</Link ></li>
             </ul>
@@ -54,4 +54,4 @@ const MainNav = ({user, logout}) => {
     )
 }   
 
-export default MainNav;
+export default Navigation;

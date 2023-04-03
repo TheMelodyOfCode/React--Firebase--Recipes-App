@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MainNav from '../components/navigation/mainNav/mainNav'
+import Navigation from '../components/navigation/navigation';
 import { UserContext } from '../contexts/user.context';
 import AppRoutes from './appRoutes';
 import { FirestoreProvider } from '../contexts/firestore.context';
@@ -14,7 +14,7 @@ const AuthenticatedApp = ({ logout}) => {
 
         return (
           <>
-            <MainNav user={currentUser} logout={logout} />
+            <Navigation user={currentUser} logout={logout} />
             <main className='authApp'>
               <FirestoreProvider>
                   <AppRoutes />
