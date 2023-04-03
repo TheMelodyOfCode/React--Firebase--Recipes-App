@@ -1,12 +1,8 @@
 import { Configuration, OpenAIApi } from "openai";
-//TODO - add your OpenAI API key in .env file
-import { OPENAI_API_KEY } from "./config";
-
 
 const configuration = new Configuration({
-      apiKey: OPENAI_API_KEY,
-    //  apiKey: process.env.OPENAI_API_KEY,  
-
+      // apiKey: OPENAI_API_KEY,
+     apiKey: process.env.REACT_APP_OPENAI_API_KEY, 
 });
 const openai = new OpenAIApi(configuration);
 
@@ -14,6 +10,7 @@ const fetchData = async  (formInput) => {
 
   if (!configuration.apiKey) {
     console.error("No OpenAI API key found. Please add your key to the .env file.");
+
     return;
   }
 

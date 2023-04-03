@@ -1,13 +1,11 @@
 import * as React from "react";
 import { Configuration, OpenAIApi } from "openai";
-//TODO - add your OpenAI API key in .env file (figure out why it's not working)
-import { OPENAI_API_KEY } from "../../utils/openAI/config";
 import { Link } from "react-router-dom";
 import { smallSpinner } from "../../utils/lib/lib";
 
 const configuration = new Configuration({
-      apiKey: OPENAI_API_KEY,
-    //  apiKey: process.env.OPENAI_API_KEY,  
+      // apiKey: OPENAI_API_KEY,
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY, 
 
 });
 const openai = new OpenAIApi(configuration);
