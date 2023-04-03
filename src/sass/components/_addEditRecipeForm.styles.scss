@@ -8,9 +8,7 @@
     grid-gap: 1rem;
     justify-self: center;
     height: 100%;
-    // min-width: 40rem;
-    // max-width: 40%;
-    width: 52rem;
+    width: 50rem;
     border: 0.1rem solid #000;
     border-radius: 0.4rem;
     padding: 1rem;
@@ -23,12 +21,9 @@
         $color-gray-3 70%
       );
 
-      @include respond(phone) { 
-        width: auto;
-    }
     
     @include respond(phone-sm) {
-        min-width: 27rem;
+        width: 26rem;
         }
 
 
@@ -45,6 +40,9 @@
         grid-row: 2 / 3;
         justify-self: center;
         font-size: 1.8rem;
+        @include respond(phone-sm) {
+            width: 26rem;
+            }
     }
     
 // ### TOP SECTION ###

@@ -14,7 +14,9 @@
 > - Add, edit, and update recipes
 > - Recipe owner can only edit their recipes
 > - Unpublished recipes are only visible to the recipe owner
-> - Option to generate a recipe name using AI
+
+> **OpenAI GPT-3 Recipe Name Generator**  
+> - > - Option to generate a cool recipe name using AI
   
 > **Recipe Browsing**  
 > - Sort recipes by category

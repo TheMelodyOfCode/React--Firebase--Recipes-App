@@ -10,7 +10,12 @@
             display: grid;
             justify-self: center;
             grid-template-rows: repeat(2, minmax(min-content, max-content));
-            width: 27rem;
+            width: 37rem;
+            @include respond(phone-sm) {
+                width: 26rem;
+                justify-self: start;
+                }
+
             &__img {
                 grid-row: 1/2;
                 justify-self: center;
