@@ -4,7 +4,7 @@ import {
     FoodIcon, 
     // SettingsIcon, 
     LogoutIcon, 
-    ContactIcon,
+    // ContactIcon,
     AddIcon,
     TextIcon } from '../../utils/lib/lib';
 
