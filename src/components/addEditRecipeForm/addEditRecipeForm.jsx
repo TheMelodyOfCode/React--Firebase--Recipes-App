@@ -192,7 +192,7 @@ function AddEditRecipeForm() {
   }
 
   return (
-
+<div className="frame">
    <form
       onSubmit={handleRecipeFormSubmit}
       className="recipeForm"
@@ -361,6 +361,7 @@ function AddEditRecipeForm() {
 
       </div>
     </form>
+    </div>
   );
 }
 
