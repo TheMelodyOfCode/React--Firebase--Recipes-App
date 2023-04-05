@@ -1,6 +1,7 @@
 .authApp {
 
     display: grid;
+    grid-row: 2/3;
     grid-template-rows: repeat(3, minmax(min-content, max-content))  3rem;
     width: 90%;
     margin: 2rem auto;

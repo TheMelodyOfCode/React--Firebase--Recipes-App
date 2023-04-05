@@ -1,5 +1,6 @@
 .navigation {
     display: grid;
+    grid-row: 1/2;
     grid-template-columns:  repeat(3, minmax(0, 1fr));
     grid-template-rows: 10rem;
     border-bottom: 1px lightgray solid;
