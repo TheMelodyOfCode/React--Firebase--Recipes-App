@@ -9,16 +9,15 @@
     row-gap: 2rem;
     column-gap: 2rem;
     width: 58rem;
-    // max-width: 50%;
     padding: 4rem;
     border-bottom: 1px lightgray solid;
     border-radius: 2%;
     box-shadow: $shadow-black-medium;
-    @include respond(phone) { 
+    
+    @include respond(phone-bg) { 
       width: 36rem;
-      padding-bottom: 1.5rem;
     }
-    @include respond(phone-xsm) {
+    @include respond(phone-sm) {
       width: 30rem;
       }
     
@@ -38,6 +37,7 @@
             $color-primary-blue-2 0%,
             $color-gray-3 70%
           );
+
           box-shadow: 0 0 1.7rem rgba(0, 0, 0, 0.5);
           &:hover {
             transform: translateY(.3rem);
@@ -50,11 +50,11 @@
         }
 
 
-          @include respond(phone) { 
+          @include respond(phone-bg) { 
             width: 30rem;
         }
-        @include respond(phone-xsm) {
-          width: 24rem;
+        @include respond(phone-sm) {
+          width: 28rem;
           }
 
           &__title {

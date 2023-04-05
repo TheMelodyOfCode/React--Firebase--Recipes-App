@@ -7,6 +7,10 @@
     width: 90%;
     justify-self: center;
     row-gap: 2rem;
+    @include respond(phone-sm) {
+        justify-self: start;
+        margin-left: .5rem;
+        }
 
     &__mainLogo{
         height: 32rem;
