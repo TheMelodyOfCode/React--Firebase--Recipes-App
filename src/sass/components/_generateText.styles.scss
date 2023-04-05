@@ -9,12 +9,13 @@
     justify-self: center;
 
     border: 0.1rem solid #000;
-    border-radius: 0.4rem;
-    padding: 1rem;
+    border-radius: 2%;
+
+    padding: 3rem;
+
     height: 100%;
     min-width: 40rem;
     max-width: 40%;
-
 
     background-image: radial-gradient(
         farthest-corner at 40px 2px,
@@ -22,6 +23,16 @@
         $color-gray-3 70%
       );
 
+    box-shadow: 0 0 1.7rem rgba(0, 0, 0, 0.5);
+        &:hover {
+        transform: translateY(.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        &:hover::after {
+            transform: scaleX(1.4) scaleY(1.8);
+            /* to fade out */
+            opacity: 0;
+        }
+    }
     
     @include respond(phone-sm) {
         min-width: 31rem;

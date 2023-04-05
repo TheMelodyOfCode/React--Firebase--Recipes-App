@@ -40,7 +40,7 @@ const Navigation = ({user, logout}) => {
       </div>
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
         <li>
-        <p className="mainNav__userEmail" >{user.email}</p>
+        <p className="userEmail" >{user.email}</p>
         </li>
         <li>
           <Link  onClick={() => {window.location.href="/"}}><FoodIcon />{' '} Home</Link>
