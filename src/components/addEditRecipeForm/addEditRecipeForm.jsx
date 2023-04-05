@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { FirestoreContext } from '../../contexts/firestore.context';
 import ImageUploadPreview from '../imageUploadPreview/imageUploadPreview';
 
-// TODO: check date when updating recipe
 
 function AddEditRecipeForm() {
 

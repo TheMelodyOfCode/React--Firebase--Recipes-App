@@ -5,6 +5,7 @@ import FilterRow from '../components/filterRow/filterRow';
 import Pagination from '../components/pagination/pagination';
 import ItemCardFallback from "../components/itemCards/itemCardFallback";
 import { FirestoreContext } from '../contexts/firestore.context';
+// import HeaderCarousel from '../components/headerCarousel/headerCarousel';
 
 const Dashboard = () => {
 
@@ -13,6 +14,7 @@ const Dashboard = () => {
     return (
       <>
             <FilterRow />
+            {/* <HeaderCarousel /> */}
             {
               !recipes.length ? <ItemCardFallback />
               : 
