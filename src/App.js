@@ -101,7 +101,7 @@ const handleSendResetPasswordEmail = async (formData) => {
       return <VerifyEmail />
     case 'idle':
       return currentUser ? (
-        <div className="container"> >
+        <div className="container">
           <BrowserRouter >
             <AuthenticatedApp logout={logout} />
           </BrowserRouter>

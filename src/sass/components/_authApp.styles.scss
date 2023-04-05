@@ -3,9 +3,9 @@
     display: grid;
     grid-row: 2/3;
     grid-column: 2/3;
-    grid-template-rows: repeat(3, minmax(min-content, max-content))  3rem;
+    grid-template-rows: repeat(3, minmax(min-content, max-content))  1rem;
     width: 90%;
-    margin: 2rem auto;
+    justify-self: center;
     row-gap: 2rem;
 
     &__mainLogo{
