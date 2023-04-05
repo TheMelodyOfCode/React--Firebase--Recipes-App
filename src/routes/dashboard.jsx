@@ -16,8 +16,8 @@ const Dashboard = () => {
             <FilterRow />
             {/* <HeaderCarousel /> */}
             {
-              !recipes.length ? <ItemCardFallback />
-              : 
+              // !recipes.length ? <ItemCardFallback />
+              // : 
             <ItemCard />  
             }
             <Pagination />

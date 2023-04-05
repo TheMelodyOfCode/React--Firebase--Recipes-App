@@ -43,8 +43,8 @@ Base + typography > general layout + grid > page layout > components */
     
     @mixin respond($breakpoint) {
 
-        @if $breakpoint == phone-tiny {         
-            @media only screen and (max-width: 21.87em) {@content}; // 350px / 16
+        @if $breakpoint == phone-xxsm {         
+            @media only screen and (max-width: 23.75em) {@content}; // 380px / 16
         }
         @if $breakpoint == phone-xsm {         
             @media only screen and (max-width: 26.25em) {@content}; // 420px / 16
