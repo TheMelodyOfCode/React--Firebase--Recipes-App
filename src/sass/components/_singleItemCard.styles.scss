@@ -8,13 +8,19 @@
     justify-self: center;
     row-gap: 2rem;
     column-gap: 2rem;
-    min-width: 40%;
-    max-width: 50%;
-    padding: 3rem 2rem 3rem 2rem;
+    width: 58rem;
+    // max-width: 50%;
+    padding: 3rem 2rem 2rem 2rem;
     border-bottom: 1px lightgray solid;
-    border-radius: 5%;
+    border-radius: 2%;
     box-shadow: $shadow-black-medium;
-
+    @include respond(phone) { 
+      width: 36rem;
+      padding-bottom: 1.5rem;
+    }
+    @include respond(phone-xsm) {
+      width: 30rem;
+      }
     
         &__container {
           display: grid;
@@ -24,7 +30,7 @@
           justify-self: center;
           row-gap: 1rem;
           width: 52rem;
-          padding: 2rem;
+          padding: 4rem;
           border-radius: 1rem;
           border: 1px solid $color-gray-4;
           background-image: radial-gradient(
@@ -33,8 +39,11 @@
             $color-gray-3 70%
           );
           @include respond(phone) { 
-            width: auto;
+            width: 30rem;
         }
+        @include respond(phone-xsm) {
+          width: 24rem;
+          }
 
           &__title {
             grid-column: 1/2;

@@ -6,6 +6,7 @@
     border-bottom: 1px lightgray solid;
     box-shadow: $shadow-black-medium;
     z-index: 1;
+    width: 100%;
     @include respond(phone) { 
         grid-template-columns:  repeat(2, minmax(0, 1fr)); 
         grid-template-rows: 5rem 5rem;
@@ -17,8 +18,13 @@
             align-self: center;
             @include respond(phone) {  
                 grid-row: 1/2;
-                margin-top: .5rem;
+                margin-top: 1.5rem;
             }
+            @include respond(phone-sm) { 
+                grid-row: 1/3;
+                margin-top: 0;
+              }
+              
 
             &--link {
                 text-decoration: none;
@@ -37,6 +43,7 @@
                     padding-left: 1rem;
                     font-size: 3.5rem;
                 }
+                
             }
         }
 
@@ -56,20 +63,20 @@
                 font-size: 1.5rem;
               }
               @include respond(phone-sm) { 
-                padding-left: 3.5rem;
-
+                display: none;
               }
         }
       
     &__toggleMenu {
-
-      @include respond(phone-tiny) {    
+      @include respond(phone-xsm) {    
           line-height: 0.3;
           font-size: 1.3rem;
       }
+
     
       &__checkbox {
           display: none;
+          
       }
 
       &__button {
@@ -80,7 +87,7 @@
             $color-primary-blue 80%
           );
           top: 2rem;
-          right: 3rem;
+          right: 4rem;
           height: 6.5rem;
           width: 6.5rem;
           border-radius: 50%;
@@ -88,11 +95,14 @@
           box-shadow: 0 1rem 3rem rgba($color-black, .1);
           text-align: center;
           cursor: pointer;
-    
+          @include respond(phone-xsm) {    
+            top: 2rem;
+            right: 6rem;
+            }
       }
       &__background {
           top: 4rem;
-          right: 4rem;
+          right: 5rem;
           height: 3.5rem;
           width: 3.5rem;
           border-radius: 50%;
@@ -100,17 +110,21 @@
           background-image: radial-gradient($color-gray-3, $color-white );
           z-index: 1000;
           transition: transform .8s  cubic-bezier(0.86, 0, 0.07, 1);
+          @include respond(phone-xsm) {    
+            top: 2rem;
+            right: 8rem;
+        }
       }
     
       &__nav {
-          height: 100vh;
+        //   height: 100vh;
           position: fixed;
           top: 2rem;
           left: 0;
           z-index: 1500;
     
       /* to hide navigation at until clicked */
-            top: -90rem;
+            top: -70rem;
           opacity: 0;
           width: 0;
           transition: all .8s;
@@ -118,7 +132,7 @@
       &__list {
           padding-top: 10rem;
           position: absolute;
-          top: 20%;
+          top: 40%;
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 1;
@@ -143,9 +157,9 @@
               background-size: 230%;
               transition: all .4s;
     
-              @include respond(phone-sm) {   
-                  font-size: 1.8rem;
-              }
+            //   @include respond(phone-sm) {   
+            //       font-size: 1.8rem;
+            //   }
           }
     
           &:hover,
