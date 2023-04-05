@@ -91,8 +91,10 @@
             width: 26.5rem;
             z-index: 2;
             object-fit: cover;
+            border-radius: 3%;
             &:hover {
-              transform: scale(1.5);
+              transform: scale(1.15);
+
               transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
               box-shadow: 0 1rem 2rem rgba($color-black, .2);
               &:hover::after {
