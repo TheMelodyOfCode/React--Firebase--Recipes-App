@@ -31,16 +31,7 @@
             $color-primary-blue-2 0%,
             $color-gray-3 70%
           );
-        //   box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
-        //   &:hover {
-        //     transform: translateY(.3rem);
-        //     box-shadow: 0 1rem 2rem rgba($color-black, .2);
-        //     &:hover::after {
-        //         transform: scaleX(1.4) scaleY(1.8);
-        //         /* to fade out */
-        //         opacity: 0;
-        //     }
-        // }
+          box-shadow: $shadow-black-medium;
 
           &__title {
             grid-column: 1/2;
