@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FirestoreContext } from '../../contexts/firestore.context';
 import {Link} from 'react-router-dom'
 import { FullPageSpinner } from '../../utils/lib/lib';
+import Tooltip from '../tooltip/tooltip';
 import { UserContext } from '../../contexts/user.context';
 import Button from "../button/button";
 import ItemCardFallback from './itemCardFallback';
@@ -93,7 +94,9 @@ if (singleRecipestate === false) {
                 <div className="singleItemCard__container" >
                     <h1 className='singleItemCard__container__title'>{name}</h1>
                         <Link className='singleItemCard__container__img' to='/' >
+                            <Tooltip content='click to go Back'>
                             <img   src={imageUrl} alt="burger"/>
+                            </Tooltip>
                         </Link>
                         <div className='singleItemCard__container__footer'>
                             <span className='singleItemCard__container__footer__publisherTitle'> 
