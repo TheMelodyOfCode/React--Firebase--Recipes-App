@@ -91,6 +91,7 @@ if (singleRecipestate === false) {
         return (
             
             <div className="singleItemCard" >
+                <Link className="singleItemCard__goBackLink"  to='/'> &larr; Go Back</Link>
                 <div className="singleItemCard__container" >
                     <h1 className='singleItemCard__container__title'>{name}</h1>
                         <Link className='singleItemCard__container__img' to='/' >

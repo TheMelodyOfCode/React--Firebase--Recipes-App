@@ -24,6 +24,19 @@
       width: 28rem;
       padding: 2rem;
       }
+
+      &__goBackLink {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        justify-self: start;
+        font-size: 1.8rem;
+        // font-family: $special-font-1;
+        // color: $color-primary-blue-1;
+        text-decoration: none;
+        &:hover {
+          color: $color-primary-blue-2;
+        }
+      }
     
         &__container {
           display: grid;
