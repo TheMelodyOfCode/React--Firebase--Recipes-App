@@ -1,14 +1,37 @@
 # Recipes App  
 > This is a simple recipes app that allows users to manage  
   and share their favorite recipes. The app is built using   
-  React, Sass, and hosted with Firebase via Github Actions.  
+  React, Sass, and Firebase.
 
-### Features  
-> **User Authentication with Firebase**  
+### Minimal Dependencies  
+> The main goal of this project was to create a functional recipes app  
+  using only React, Sass, and Firebase, without relying on too many external libraries.  
+
+### Firebase Features  
+> My personal opionion is that Firebase is a great tool for  
+  building web apps. It provides a lot of useful features  
+  that can be used to build a functional app without having  
+  to write a lot of backend code. The following are some of  
+  the Firebase features that are used in this project:  
+  
+> **Authentication with Firebase**  
 > - Login required to access the app
 > - Sign up for new users
 > - Password reset
 > - Email confirmation  
+
+> **Hosting**  
+> - Integrated with GitHub Actions, Firebase Hosting streamlines the deployment process  
+
+> **Firebase Storage**  
+> - User can upload their Recipe Images  
+
+> **Firebase Cloud Functions**
+> - Functions are used to remove img from storage when a recipe gets deleted
+> - Count recipes by how many are published and how many are there all together.   
+> - Use cron job to change recipe status from unpublished to published.  
+
+### General App Features  
 
 > **Recipe Management**  
 > - Add, edit, and update recipes
@@ -16,22 +39,13 @@
 > - Unpublished recipes are only visible to the recipe owner
 
 > **OpenAI GPT-3 Recipe Name Generator**  
-> - > - Option to generate a cool recipe name using AI
+> - Option to generate a cool recipe name using AI
   
 > **Recipe Browsing**  
 > - Sort recipes by category
 > - Sort recipes by newest to oldest or oldest to newest
 > - Pagination to navigate through the list of recipes
 > - Load more recipes per page
-  
-> **Storage and Hosting**  
-> - Content is stored in Firestore
-> - User can upload recipe images, which are stored in Firebase Storage
-> - Hosted with GitHub Actions and Firebase
-  
-### Minimal Dependencies  
-> The main goal of this project was to create a functional recipes app  
-  using only React, Sass, and Firebase, without relying on too many external libraries.
   
 ### Getting Started  
 > Clone the repository  
