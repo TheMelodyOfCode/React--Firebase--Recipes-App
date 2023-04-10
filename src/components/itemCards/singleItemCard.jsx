@@ -92,7 +92,9 @@ if (singleRecipestate === false) {
             <div className="singleItemCard" >
                 <div className="singleItemCard__container" >
                     <h1 className='singleItemCard__container__title'>{name}</h1>
-                        <img className='singleItemCard__container__img'  src={imageUrl} alt="burger"/>
+                        <Link className='singleItemCard__container__img' to='/' >
+                            <img   src={imageUrl} alt="burger"/>
+                        </Link>
                         <div className='singleItemCard__container__footer'>
                             <span className='singleItemCard__container__footer__publisherTitle'> 
                                 Publisher:

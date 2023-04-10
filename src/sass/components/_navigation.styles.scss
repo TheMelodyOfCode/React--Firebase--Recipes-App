@@ -57,7 +57,7 @@
     cursor: pointer;
     z-index: 1001;
     @include respond(phone-xxsm) { 
-      justify-self: start;
+      // justify-self: start;
       margin-left: 2rem;
     }
   

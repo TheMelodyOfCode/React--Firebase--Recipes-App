@@ -12,6 +12,9 @@
         grid-template-columns: repeat(2, minmax(min-content, 1fr)); 
         grid-template-rows: repeat(2, minmax(min-content, max-content));
     }
+    @include respond(phone-xxsm) { 
+      grid-template-rows: repeat(3, minmax(min-content, max-content));
+    }
 
         &__recipeLabel {
           grid-column: 1/2;
@@ -25,7 +28,10 @@
             grid-column: 1/2;
             grid-row: 2/3;
           }
-
+          @include respond(phone-xxsm) { 
+            grid-column: 1/3;
+          }
+          
               &--select {
                 color: $color-black;
                 border-radius: $border-radius-small;
@@ -43,10 +49,6 @@
               grid-column: 1/3;
               grid-row: 1/2;
             }
-            // @include respond(phone) { 
-            //   grid-column: 1/2;
-            //   grid-row: 1/2;
-            // }
 
               &--link {
                 font-size: 1.9rem;
@@ -64,11 +66,10 @@
             grid-column: 2/3;
             grid-row: 2/3;
           }
-          // @include respond(phone) { 
-          //   grid-column: 1/2;
-          //   grid-row: 3/4;
-
-          // }
+          @include respond(phone-xxsm) { 
+            grid-column: 1/3;
+            grid-row: 3/4;
+          }
             &--select {
               color: $color-black;
               border-radius: $border-radius-small;

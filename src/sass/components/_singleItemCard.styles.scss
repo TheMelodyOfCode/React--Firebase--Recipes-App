@@ -23,8 +23,6 @@
     @include respond(phone-xxsm) {
       width: 28rem;
       padding: 2rem;
-      justify-self: start;
-      margin-left: 1rem;
       }
     
         &__container {

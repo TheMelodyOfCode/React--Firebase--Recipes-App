@@ -24,6 +24,9 @@ It's important to set a % value here since the user can change the font-settings
     display: grid;
     grid-template-rows: repeat(2, minmax(min-content, max-content)) .5rem;
     grid-template-columns: 1rem repeat(1, minmax(min-content, 1fr))  1rem;
+    @include respond(phone-xxsm) { 
+        grid-template-columns: repeat(1, minmax(min-content, max-content)) ;
+      }
 }
 
 /* to set color to text-select on page */
