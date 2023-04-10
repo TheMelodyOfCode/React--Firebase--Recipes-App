@@ -13,7 +13,7 @@
   that can be used to build a functional app without having  
   to write a lot of backend code. The following are some of  
   the Firebase features that are used in this project:  
-  
+
 > **Authentication with Firebase**  
 > - Login required to access the app
 > - Sign up for new users
@@ -81,3 +81,4 @@
 ### Credits
 > This project was influenced by
 > - https://github.com/JaredPotter
+> - I have used some of his code as a reference. But I have also added my own features and made many changes to the code since his original version is more then 3 years old and some of the code is deprecated. Nevertheless, I would like to thank him for his work and inspiration.  
