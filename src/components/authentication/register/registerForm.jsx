@@ -1,8 +1,5 @@
 
-
 import Button from "../../button/button"
-
-
 
 const RegisterForm = ({onSubmit, buttonText}) => {
     
@@ -39,7 +36,6 @@ const RegisterForm = ({onSubmit, buttonText}) => {
       <div>
       <br/>
       <Button btnType='blueGray' type="submit">{buttonText}</Button>
-        {/* <Spinner css={{marginLeft: 5}} /> */}
       </div>
     </form>
     )

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { smallSpinner } from "../../utils/lib/lib";
 
 const configuration = new Configuration({
-      // apiKey: OPENAI_API_KEY,
       apiKey: process.env.REACT_APP_OPENAI_API_KEY, 
 
 });
@@ -49,7 +48,7 @@ const GenerateText = () => {
   
       const capitalizedRecipe =
         recipe[0].toUpperCase() + recipe.slice(1).toLowerCase();
-      return `Suggest three names for a dish that is a superhero.
+      return `Suggest three names for a dish that is a superhero. with not more then 22 characters.
     
     Dish: Pizza
     Names: Slice-Man, Pizza Power, The Dough Avenger

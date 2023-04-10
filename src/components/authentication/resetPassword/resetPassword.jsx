@@ -10,7 +10,6 @@ const ResetPassword = ({handleSendResetPasswordEmail}) => {
       event.preventDefault()
       const {email} = event.target.elements
 
-
       handleSendResetPasswordEmail({
         email: email.value,
       })
@@ -70,8 +69,6 @@ const ResetPassword = ({handleSendResetPasswordEmail}) => {
                   <a className="resetForm__resetBox--link"  href='/'>Go to Login</a>
               }
             </div>
-
-
       </form>
 
       </>

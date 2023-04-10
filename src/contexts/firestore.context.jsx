@@ -67,9 +67,7 @@ export const FirestoreProvider = ({children})=>{
       
               try {
                   const allFromDB = await getSingleDocfromDB(currentRecipeID)
-                //   console.log('allFromDB: ', allFromDB);
                   setSingleRecipe(allFromDB)
-                //   return allFromDB;
                   } catch (error) 
                   {
                     console.error(error.message);
@@ -78,23 +76,7 @@ export const FirestoreProvider = ({children})=>{
             }
             run(getSingleRecipes())
         }
-        // if(currentRecipeID) {
-        //     const getRecipes = async ()=> {
-      
-        //       try {
-        //           const allFromDB = await getAllDatafromDB()
-        //           setFilter(allFromDB)
-        //           return allFromDB;
-        //           } catch (error) 
-        //           {
-        //             console.error(error.message);
-        //             throw error;
-        //           }
-        //     }
-        //     run(getRecipes())
-        //     const recipeByID = recipes.find(recipe => recipe.id === currentRecipeID)
-        //     setSingleRecipe(recipeByID)
-        // }
+
       }, [currentRecipeID, recipes, run, setRecipes])
 
 
@@ -105,7 +87,6 @@ export const FirestoreProvider = ({children})=>{
             const getSortedRecipes = async ()=> {
                 const orderByField = 'publishDate';
                 let orderByDirection;
-                // console.log(orderBy)
                     if(orderBy) {
                         switch (orderBy) {
                             case 'publishDateAsc':
@@ -121,7 +102,6 @@ export const FirestoreProvider = ({children})=>{
                     const postsFromDB = await paginateDataFromDB(
                                 {
                                     pageSize:recipesPerPage,
-                                    // lastVisible: lastVisible,
                                     orderByField: orderByField,
                                     orderByDirection: orderByDirection,
                                 }

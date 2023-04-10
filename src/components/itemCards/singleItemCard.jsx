@@ -96,7 +96,7 @@ if (singleRecipestate === false) {
                     <h1 className='singleItemCard__container__title'>{name}</h1>
                         <Link className='singleItemCard__container__img' to='/' >
                             <Tooltip content='click to go Back'>
-                            <img   src={imageUrl} alt="burger"/>
+                            <img className='singleItemCard__container__img'  src={imageUrl} alt="burger"/>
                             </Tooltip>
                         </Link>
                         <div className='singleItemCard__container__footer'>

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 const RouteErrors = () => {
 
-
-
   return (
     <section className="errorPage">
 

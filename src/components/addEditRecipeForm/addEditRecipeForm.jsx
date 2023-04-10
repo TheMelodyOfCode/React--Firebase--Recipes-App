@@ -51,8 +51,6 @@ function AddEditRecipeForm() {
     if(currentRecipe === false)
     navigate("/");
   }, [currentRecipe, navigate]);
-
-// console.log(ingredients)
   
   async function handleAddRecipe(newRecipe) {
 
@@ -61,10 +59,8 @@ function AddEditRecipeForm() {
         await createDocument(
         newRecipe,
       );
-      // getRecipes();
       getAllRecipesFromDB()
       setCurrentRecipe(false);
-      // console.log(`succesfully created a recipe with an ID = ${newRecipe.id}`);
       alert(`succesfully created a recipe with NAME = ${newRecipe.name}`);
     } catch (error) {
       console.log(error.message);
@@ -80,9 +76,7 @@ function AddEditRecipeForm() {
         recipeId,
         newRecipe
       );
-        // getRecipes();
         getAllRecipesFromDB()
-      // alert(`successfully updated a recipe with an ID = ${recipeId}`);
       setCurrentRecipe(false);
     } catch (error) {
       alert(error.message);
@@ -99,14 +93,11 @@ function AddEditRecipeForm() {
       try {
         await DeleteDocument(recipeId);
 
-        // getRecipes();
         getAllRecipesFromDB()
-
         setCurrentRecipe(false);
         setCurrentRecipeID(null)
         window.scrollTo(0, 0);
 
-        // alert(`successfully deleted a recipe with an ID = ${recipeId}`);
       } catch (error) {
         alert(error.message);
         throw error;

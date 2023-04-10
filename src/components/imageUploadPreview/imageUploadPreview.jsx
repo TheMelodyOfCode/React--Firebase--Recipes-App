@@ -75,10 +75,6 @@ function ImageUploadPreview({
         <div className="imageUploadContainer__progress">
           <label htmlFor="file">Upload Progress:</label>
           <FullPageSpinner />
-          {/* <progress id="file" value={uploadProgress} max="100">
-            {uploadProgress}%
-          </progress>
-          <span>{uploadProgress}%</span> */}
         </div>
       ) : null}
       {imageUrl ? (

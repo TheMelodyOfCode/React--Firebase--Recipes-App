@@ -34,8 +34,8 @@ if (recipes && recipes.length > 0) {
                   <option value="6">6</option>
                   <option value="9">9</option>
                   <option value="12">12</option>
-                  <option value="15">15</option>
                   <option value="25">25</option>
+                  <option value="50">50</option>
                 </select>
               </label>
               <div className="pagination__btnBox">
