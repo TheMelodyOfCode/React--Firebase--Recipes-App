@@ -8,26 +8,25 @@
   using only React, Sass, and Firebase, without relying on too many external libraries.  
 
 ### Firebase Features  
-> My personal opionion is that Firebase is a great tool for  
+> My personal opinion is that Firebase is a great tool for  
   building web apps. It provides a lot of useful features  
-  that can be used to build a functional app without having  
-  to write a lot of backend code. The following are some of  
-  the Firebase features that are used in this project:  
+  to build a functional app without having to write a lot of backend code.  
+  The following are some of the Firebase features that are used in this project:   
 
-> **Authentication with Firebase**  
+> **Authentication with Firebase**
 > - Login required to access the app
 > - Sign up for new users
 > - Password reset
 > - Email confirmation  
 
-> **Hosting**  
-> - Integrated with GitHub Actions, Firebase Hosting streamlines the deployment process  
+> **Hosting**
+> - Firebase Hosting integrated with GitHub Actions to deploy the app automatically when a new commit is pushed to the main branch.  
 
-> **Firebase Storage**  
+> **Firebase Storage**
 > - User can upload their Recipe Images  
 
 > **Firebase Cloud Functions**
-> - Functions are used to remove img from storage when a recipe gets deleted
+> - Functions are used to remove img from storage when a recipe gets deleted / updated
 > - Count recipes by how many are published and how many are there all together.   
 > - Use cron job to change recipe status from unpublished to published.  
 
