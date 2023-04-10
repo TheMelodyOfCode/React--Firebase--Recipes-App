@@ -1,7 +1,6 @@
 # Recipes App  
-> This is a simple recipes app that allows users to manage  
-  and share their favorite recipes. The app is built using   
-  React, Sass, and Firebase.
+> This is a simple recipes app that allows users to manage and share their favorite recipes.  
+ The app is built using React, Sass, and Firebase.  
 
 ### Minimal Dependencies  
 > The main goal of this project was to create a functional recipes app  
