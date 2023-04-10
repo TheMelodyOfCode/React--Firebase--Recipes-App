@@ -8,7 +8,8 @@
     justify-self: center;
     row-gap: 2rem;
     @include respond(phone-sm) {
-        justify-self: start;
+        justify-self: center;
+        grid-template-rows: repeat(3, minmax(min-content, max-content)) ;
         }
 
     &__mainLogo{

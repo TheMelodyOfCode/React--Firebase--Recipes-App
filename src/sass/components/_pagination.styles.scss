@@ -8,11 +8,16 @@
     grid-template-rows:  repeat(2, minmax(min-content, max-content));
     grid-gap: .5rem;
 
+    @include respond(phone) { 
+      grid-template-columns:  repeat(1, minmax(min-content, 1fr));
+    }
+
         &__inputLabel {
           grid-column: 2/3;
           justify-self: center;
           font-size: 1.6rem;
           &--select {
+            justify-self: center;
             color: $color-black;
             border-radius: $border-radius-small;
             transition: all .3s;
