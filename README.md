@@ -69,8 +69,6 @@
 > Open your browser and navigate to   
 > - http://localhost:3000 to view the app.
 
-### Deployment
-> The app is temporarily hosted on https://themelodyofcode.com/
 
 ### Contributing  
 > Feel free to submit pull requests or create issues   
